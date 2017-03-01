@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="main.css">
+  <title>Title</title>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">
+      <img alt="Brand" src="assets/taskboard-logo.svg" height="45px">
+    </a>
+  </div>
+  <ul class="nav navbar-nav">
+    <li class="active"><a href="#">Board<span  class="sr-only">(current)</span ></a></li>
+    <li><a href="#">Members</a></li>
+  </ul>
+</nav>
+
+<main class="main-section">
+  <ul class="flex-wrap">
+
+    <li class="card-li">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span class="span-elm panel-title li-title" >Backlog</span >
+          <input type="text">
+        </div>
+        <div class="panel-body">
+        <ul class="main-ul">
+          <li class="main-li">Card 1
+          <li class="main-li">Card 2
+        </ul>
+        </div>
+        <div class="panel-footer">
+          <button class="add-card-btn">Add a Card...</button>
+        </div>
+      </div>
+    </li>
+
+    <li class="card-li">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span class="span-elm panel-title li-title" >To Do</span >
+          <input type="text">
+        </div>
+        <div class="panel-body">
+        <ul class="main-ul">
+          <li class="main-li">Card 1
+        </ul>
+        </div>
+        <div class="panel-footer">
+          <button class="add-card-btn">Add a Card...</button>
+        </div>
+      </div>
+    </li>
+
+    <li class="card-li">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span class="span-elm panel-title li-title" >In Progress</span >
+          <input type="text">
+        </div>
+        <div class="panel-body">
+        <ul class="main-ul">
+          <li class="main-li">Card 1
+          <li class="main-li">Card 2
+          <li class="main-li">Card 3
+
+        </ul>
+        </div>
+        <div class="panel-footer">
+          <button class="add-card-btn">Add a Card...</button>
+        </div>
+      </div>
+    </li>
+
+    <li class="card-li">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span class="span-elm panel-title li-title" >Done</span >
+          <input type="text">
+        </div>
+        <div class="panel-body">
+          <ul class="main-ul">
+            <li class="main-li">Card 1
+            <li class="main-li">Card 2
+            <li class="main-li">Card 3
+            <li class="main-li">Card 4
+            <li class="main-li">Card 5
+          </ul>
+        </div>
+        <div class="panel-footer">
+          <button class="add-card-btn">Add a Card...</button>
+        </div>
+      </div>
+    </li>
+
+    <li class="add-li">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <button class="panel-title add-list-btn li-btn">Add a List...</button>
+
+        </div>
+      </div>
+    </li>
+  </ul>
+</main>
+
+
+<script src="JS/main.js"></script>
+</body>
+</html>

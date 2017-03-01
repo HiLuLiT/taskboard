@@ -1,0 +1,91 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+}
+
+.navbar {
+  width: 100%;
+  position: fixed;
+}
+
+.main-section {
+  position: absolute;
+  top: 50px;
+  height: calc(100% - 50px);
+  background-color: lightskyblue;
+}
+
+.navbar-brand {
+  padding: 0;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+/*// each section inside wrapper div*/
+.card-li {
+  display: block;
+  position: relative;
+  margin: 10px;
+  width: 300px;
+}
+
+/*// styling for add-list li*/
+.add-li {
+  display: block;
+  position: relative;
+  margin: 10px;
+  width: 300px;
+}
+
+.main-ul {
+  overflow: scroll;
+  max-height: calc(100vh - 180px);
+  padding: 0;
+}
+
+.main-li {
+  border: 1px solid deepskyblue;
+  list-style: none;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+
+}
+
+input {
+  display: none;
+}
+.panel-body {
+  padding: 0;
+}
+
+.panel {
+  margin: 0;
+}
+
+/*//flex-box div wrapper*/
+.flex-wrap {
+  display: flex;
+  margin:0;
+  flex-wrap: nowrap;
+  padding-left:0;
+}
+
+
+.add-list-btn,
+.add-card-btn {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+span {
+  font-size: 15px;
+  font-weight: bolder;
+}
