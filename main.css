@@ -7,6 +7,40 @@ body {
 
 }
 
+/*/// general styling*/
+
+
+/*//flex-box div wrapper*/
+.flex-wrap {
+  display: flex;
+  margin:0;
+  flex-wrap: nowrap;
+  padding-left:0;
+}
+
+.panel-body {
+  padding: 0;
+}
+
+.panel {
+  margin: 0;
+}
+
+
+.add-list-btn,
+.add-card-btn {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+/*// bolds span elements*/
+span {
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+
 .navbar {
   width: 100%;
   position: fixed;
@@ -55,37 +89,22 @@ body {
   margin: auto;
   margin-bottom: 20px;
   margin-top: 20px;
-
 }
 
+.dropdown {
+  position: absolute;
+  left: 85%;
+  top: 5px;
+}
+
+.dropdown ul {
+  position:  absolute;
+  top: 33px;
+  left:-125px;
+}
+
+/*//hides all inputs*/
 input {
   display: none;
 }
-.panel-body {
-  padding: 0;
-}
 
-.panel {
-  margin: 0;
-}
-
-/*//flex-box div wrapper*/
-.flex-wrap {
-  display: flex;
-  margin:0;
-  flex-wrap: nowrap;
-  padding-left:0;
-}
-
-
-.add-list-btn,
-.add-card-btn {
-  padding: 0;
-  border: none;
-  background: none;
-}
-
-span {
-  font-size: 15px;
-  font-weight: bolder;
-}

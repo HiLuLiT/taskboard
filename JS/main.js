@@ -1,22 +1,26 @@
-// Adds New Lists
 
-initButtonsPage();
+//
+function addListHandler(event) {
+  // Get a reference to the parent element
+  const dadUl = document.querySelector('.lists-wrap');
+  const addList = document.querySelector('.add-li');
 
-const addList = document.querySelector('.add-li');
-// get a reference to the element, before we want to insert the element
-const refLi = document.querySelector('.add-li');
-// Get a reference to the parent element
-const dadUl = document.querySelector('.flex-wrap');
-
-
-addList.addEventListener('click', function () {
   let newLi = document.createElement('li');
   newLi.className = "card-li";
   newLi.innerHTML = `
      <div class="panel panel-default">
         <div class="panel-heading">
-          <span class="span-elm panel-title li-title" >New List</span >
+          <span class="span-elm panel-title li-title" >New List</span>
           <input type="text">
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="true">
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="#">Delete List</a></li>
+            </ul>
+          </div>
         </div>
         <div class="panel-body">
           <ul class="main-ul">
@@ -27,11 +31,23 @@ addList.addEventListener('click', function () {
           <button class="add-card-btn">Add a Card...</button>
         </div>
       </div>`;
-  dadUl.insertBefore(newLi, refLi);
+
+  dadUl.insertBefore(newLi, addList);
   initialListTitles(newLi);
+
+  //add listeners to 'add card' btns
   const addBtn = newLi.querySelector('.add-card-btn');
   handleAddingCardEvent(addBtn);
-});
+
+  // add listener to dropdown btns
+  const dropDownBtn = newLi.querySelector('.dropdown-toggle');
+  makeTheButtonSupportDelete(dropDownBtn);
+}
+
+function CreateNewList() {
+  const addList = document.querySelector('.add-li');
+  addList.addEventListener('click', addListHandler);
+}
 
 
 // Adds new Cards to Lists
@@ -43,8 +59,10 @@ function handleAddingCardEvent(button) {
   });
 }
 
+
 function initButtonsPage() {
   const buttons = document.querySelectorAll('.add-card-btn');
+
   for (const btn of buttons) {
     handleAddingCardEvent(btn);
   }
@@ -56,7 +74,6 @@ function addCard(cardslist) {
   newCard.textContent = "Another Card";
   cardslist.appendChild(newCard);
 }
-
 
 
 function initialListTitles() {
@@ -76,7 +93,7 @@ function initialListTitles() {
       // show the input next to the span
       inputElm.style.display = 'inline-block';
       inputElm.value = target.textContent;
-      inputElm.focus ();
+      inputElm.focus();
     });
   }
 
@@ -87,43 +104,89 @@ function initialListTitles() {
     title.addEventListener('keydown', function (event) {
       const target = event.target;
 
-        if (event.keyCode === 13) {
-          //take the value from the input
-          const value = target.value;
-          // update the span(title) with that value
-          const titleElm = target.parentNode.querySelector('span');
-          titleElm.innerHTML = value;
+      if (event.keyCode === 13) {
+        //take the value from the input
+        const value = target.value;
+        // update the span(title) with that value
+        const titleElm = target.parentNode.querySelector('span');
+        titleElm.innerHTML = value;
 
-          //since span is currently hidden, we need to hide the input and show the span
-          target.style.display = 'none';
-          titleElm.style.display = 'inline-block';
-        }
-    })
+        //since span is currently hidden, we need to hide the input and show the span
+        target.style.display = 'none';
+        titleElm.style.display = 'inline-block';
+      }
+    });
 
-     title.addEventListener('blur', function (event) {
-       const target = event.target;
-         //take the value from the input
-         const value = target.value;
-         // update the span(title) with that value
-         const titleElm = target.parentNode.querySelector('span');
-         titleElm.innerHTML = value;
+    title.addEventListener('blur', function (event) {
+      const target = event.target;
+      //take the value from the input
+      const value = target.value;
+      // update the span(title) with that value
+      const titleElm = target.parentNode.querySelector('span');
+      titleElm.innerHTML = value;
 
-         //since span is currently hidden, we need to hide the input and show the span
-         target.style.display = 'none';
-         titleElm.style.display = 'inline-block';
-     });
+      //since span is currently hidden, we need to hide the input and show the span
+      target.style.display = 'none';
+      titleElm.style.display = 'inline-block';
+    });
   }
 }
 
-// const father = e.target.parentNode;
-// const newChild = document.createElement('input');
-// // newChild.className = ""
-// newChild.value = header.textContent;
-// // newChild.focus ();
-// // newChild.setSelectionRange(0, newChild.value.length);
-// father.replaceChild(newChild, header);
+// Dropdown menu & delete list
+
+// show ul when button is clicked
+
+const dropDownBtn = document.querySelectorAll('.dropdown-toggle');
+for (const btn of dropDownBtn) {
+  makeTheButtonSupportDelete(btn);
+}
+function makeTheButtonSupportDelete (btn) {
+  //add event listeners to each dropdown btn
+  btn.addEventListener('click', openUL);
+
+// delete list functionality
+  const dropDownUl = btn.parentNode.querySelector('.dropdown-menu');
+  const aElm = dropDownUl.querySelector('li a');
+  aElm.addEventListener('click', deleteListItem);
+}
 
 //
-//   });
-// }
+function openUL(event) {
+  //display block ul; catch ul, display it:
+  const target = event.target;
+  const targetParent = target.parentNode.parentNode;
+  const targetUL = targetParent.querySelector('.dropdown-menu');
+  toggleUL(targetUL);
+  //
+}
+
+function toggleUL(targetList) {
+  if (((targetList.style.display) === 'none') || ((!targetList.style.display))) {
+    targetList.style.display = 'block';
+  }
+  else
+    targetList.style.display = 'none';
+}
+
+
+function deleteListItem(event) {
+  const target = event.target;
+  const liItem = target.closest('.card-li');
+  const liItemName = liItem.querySelector('span');
+  console.log(liItemName.innerHTML);
+  const isSure = confirm(`Are you sure you want to delete ${liItemName.innerHTML} ?`);
+
+  if (isSure === true) {
+    liItem.remove();
+  }
+}
+
+
+
+/**
+ * Init the app
+ */
+
+initButtonsPage();
+CreateNewList();
 initialListTitles();
