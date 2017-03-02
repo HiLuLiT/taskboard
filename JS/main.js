@@ -1,12 +1,11 @@
-
-//
-function addListHandler(event) {
+//====== NEW LISTS =====
+function addListHandler() {
   // Get a reference to the parent element
   const dadUl = document.querySelector('.lists-wrap');
   const addList = document.querySelector('.add-li');
 
   let newLi = document.createElement('li');
-  newLi.className = "card-li";
+  newLi.className = "list-li";
   newLi.innerHTML = `
      <div class="panel panel-default">
         <div class="panel-heading">
@@ -32,14 +31,15 @@ function addListHandler(event) {
         </div>
       </div>`;
 
+  // adds new list to position, and makes it support title change
   dadUl.insertBefore(newLi, addList);
-  initialListTitles(newLi);
+  makeNewListSupportTitle(newLi);
 
-  //add listeners to 'add card' btns
+  //targets new card button of new list and runs function on it
   const addBtn = newLi.querySelector('.add-card-btn');
   handleAddingCardEvent(addBtn);
 
-  // add listener to dropdown btns
+  // add listener to dropdown btns and runs function
   const dropDownBtn = newLi.querySelector('.dropdown-toggle');
   makeTheButtonSupportDelete(dropDownBtn);
 }
@@ -50,7 +50,8 @@ function CreateNewList() {
 }
 
 
-// Adds new Cards to Lists
+// ===== NEW CARDS =======
+// adds a click listener to card button and targets it's destination UL, then runs function
 function handleAddingCardEvent(button) {
   button.addEventListener('click', function (e) {
     const list = e.target.parentNode.parentNode;
@@ -58,16 +59,7 @@ function handleAddingCardEvent(button) {
     addCard(ul);
   });
 }
-
-
-function initButtonsPage() {
-  const buttons = document.querySelectorAll('.add-card-btn');
-
-  for (const btn of buttons) {
-    handleAddingCardEvent(btn);
-  }
-}
-
+//creates new card <li> with class & content
 function addCard(cardslist) {
   const newCard = document.createElement('li');
   newCard.className = "main-li";
@@ -75,33 +67,44 @@ function addCard(cardslist) {
   cardslist.appendChild(newCard);
 }
 
+function targetAllAddCardBtns() {
+  const buttons = document.querySelectorAll('.add-card-btn');
+  for (const btn of buttons) {
+    handleAddingCardEvent(btn);
+  }
+}
 
-function initialListTitles() {
+
+// ===== Titles ======
+function makeNewListSupportTitle() {
 // target all spans
   const titleElm = document.querySelectorAll('.span-elm');
-
-// on span click hides span & shows input with text and focus
   for (const title of titleElm) {
-    title.addEventListener('click', function (event) {
+    // adds click event listener and runs function
+    title.addEventListener('click', titleClickHandler);
+  }
+  // if click - updates span with value and shows it
+  function titleClickHandler(event) {
+    // target input (where clicked)
+    let target = event.target;
+    const inputElm = target.parentNode.querySelector('input');
 
-      let target = event.target;
-      const inputElm = target.parentNode.querySelector('input');
+    // hide the clicked span
+    target.style.display = 'none';
 
-      // hide the clicked title
-      target.style.display = 'none';
-
-      // show the input next to the span
-      inputElm.style.display = 'inline-block';
-      inputElm.value = target.textContent;
-      inputElm.focus();
-    });
+    // show the input (next to the span) & gives it content & focus
+    inputElm.style.display = 'inline-block';
+    inputElm.value = target.textContent;
+    inputElm.focus();
   }
 
-  // targets all the inputs and adds them keydown listener
-  const titleInput = document.querySelectorAll('.card-li input');
-
+// targets all inputs
+  const titleInput = document.querySelectorAll('.list-li input');
   for (const title of titleInput) {
-    title.addEventListener('keydown', function (event) {
+    // adds key down event listener and runs function
+    title.addEventListener('keydown', titleInputKeyHandler);
+    // if ENTER - updates span with value and shows it
+    function titleInputKeyHandler(event) {
       const target = event.target;
 
       if (event.keyCode === 13) {
@@ -115,9 +118,11 @@ function initialListTitles() {
         target.style.display = 'none';
         titleElm.style.display = 'inline-block';
       }
-    });
-
-    title.addEventListener('blur', function (event) {
+    };
+    // adds blur event listener and runs function
+    title.addEventListener('blur', titleBlurHandler);
+    // if blur - updates span with value and shows it
+    function titleBlurHandler(event) {
       const target = event.target;
       //take the value from the input
       const value = target.value;
@@ -128,7 +133,7 @@ function initialListTitles() {
       //since span is currently hidden, we need to hide the input and show the span
       target.style.display = 'none';
       titleElm.style.display = 'inline-block';
-    });
+    }
   }
 }
 
@@ -140,14 +145,14 @@ const dropDownBtn = document.querySelectorAll('.dropdown-toggle');
 for (const btn of dropDownBtn) {
   makeTheButtonSupportDelete(btn);
 }
-function makeTheButtonSupportDelete (btn) {
+function makeTheButtonSupportDelete(btn) {
   //add event listeners to each dropdown btn
   btn.addEventListener('click', openUL);
 
 // delete list functionality
   const dropDownUl = btn.parentNode.querySelector('.dropdown-menu');
   const aElm = dropDownUl.querySelector('li a');
-  aElm.addEventListener('click', deleteListItem);
+  aElm.addEventListener('mousedown', deleteListItem);
 }
 
 //
@@ -171,9 +176,8 @@ function toggleUL(targetList) {
 
 function deleteListItem(event) {
   const target = event.target;
-  const liItem = target.closest('.card-li');
+  const liItem = target.closest('.list-li');
   const liItemName = liItem.querySelector('span');
-  console.log(liItemName.innerHTML);
   const isSure = confirm(`Are you sure you want to delete ${liItemName.innerHTML} ?`);
 
   if (isSure === true) {
@@ -181,12 +185,22 @@ function deleteListItem(event) {
   }
 }
 
+// ==== ADD EDIT OPTION TO CARDS =====
+
+// target all cards
+const allCards = document.querySelectorAll('edit-card-btn');
+for (const card of allCards) {
+console.log(card);
+}
+
+
 
 
 /**
+ *
  * Init the app
  */
 
-initButtonsPage();
+targetAllAddCardBtns();
 CreateNewList();
-initialListTitles();
+makeNewListSupportTitle();
