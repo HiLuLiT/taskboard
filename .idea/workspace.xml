@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3e654c3-85a9-47cf-9d32-65e9a1ac919a" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/board.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JS/main.js" afterPath="$PROJECT_DIR$/JS/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
@@ -27,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="180">
+              <first_editor relative-caret-position="165">
                 <caret line="11" column="104" lean-forward="false" selection-start-line="11" selection-start-column="104" selection-end-line="11" selection-end-column="104" />
                 <folding />
               </first_editor>
@@ -36,11 +38,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="47" column="50" lean-forward="false" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
+            <state relative-caret-position="523">
+              <caret line="152" column="57" lean-forward="false" selection-start-line="152" selection-start-column="57" selection-end-line="152" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="board.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/board.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="31" lean-forward="true" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -49,38 +61,30 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JS/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="64" column="27" lean-forward="false" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
+            <state relative-caret-position="360">
+              <caret line="109" column="20" lean-forward="true" selection-start-line="109" selection-start-column="20" selection-end-line="109" selection-end-column="20" />
               <folding>
-                <element signature="n#!!block;n#CreateNewList#0" expanded="false" />
-                <element signature="n#!!block;n#handleAddingCardEvent#0" expanded="false" />
-                <element signature="n#!!block;n#targetAllAddCardBtns#0" expanded="false" />
-                <element signature="n#!!block;n#makeNewListSupportTitle#0" expanded="false" />
-                <element signature="n#!!block;n#titleClickHandler#0;n#!!block;n#makeNewListSupportTitle#0" expanded="false" />
-                <element signature="e#3564#4052#0" expanded="false" />
-                <element signature="e#4249#4678#0" expanded="false" />
-                <element signature="n#!!block;n#makeTheButtonSupportDelete#0" expanded="false" />
-                <element signature="n#!!block;n#openUL#0" expanded="false" />
-                <element signature="n#!!block;n#toggleUL#0" expanded="false" />
-                <element signature="n#!!block;n#deleteListItem#0" expanded="false" />
-                <marker date="1488445430000" expanded="false" signature="339:1150" ph="..." />
-                <marker date="1488445430000" expanded="true" signature="375:924" ph="..." />
-                <marker date="1488445430000" expanded="true" signature="509:909" ph="..." />
-                <marker date="1488445430000" expanded="true" signature="626:752" ph="..." />
-                <marker date="1488445430000" expanded="true" signature="823:892" ph="..." />
-                <marker date="1488445430000" expanded="true" signature="957:1025" ph="..." />
-                <marker date="1488445430000" expanded="true" signature="988:1010" ph="..." />
-                <marker date="1488445430000" expanded="true" signature="1060:1137" ph="..." />
+                <element signature="n#!!block;n#titleClickHandler#0;n#!!block;n#makeListSupportTitle#0" expanded="false" />
+                <element signature="e#5207#5695#0" expanded="false" />
+                <element signature="e#5892#6321#0" expanded="false" />
+                <marker date="1488665354000" expanded="false" signature="340:1151" ph="..." />
+                <marker date="1488665354000" expanded="true" signature="376:925" ph="..." />
+                <marker date="1488665354000" expanded="true" signature="510:910" ph="..." />
+                <marker date="1488665354000" expanded="true" signature="627:753" ph="..." />
+                <marker date="1488665354000" expanded="true" signature="824:893" ph="..." />
+                <marker date="1488665354000" expanded="true" signature="958:1026" ph="..." />
+                <marker date="1488665354000" expanded="true" signature="989:1011" ph="..." />
+                <marker date="1488665354000" expanded="true" signature="1061:1138" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="430">
-              <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+              <caret line="48" column="19" lean-forward="false" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -99,28 +103,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>40px</find>
-      <find>heigh</find>
-      <find>overflo</find>
-      <find>height</find>
-      <find>overflow</find>
-      <find>main-ul</find>
-      <find>event</find>
-      <find>h3</find>
-      <find>Temp</find>
-      <find>console.</find>
-      <find>refLi</find>
-      <find>handleAddingCardEvent</find>
-      <find>addNewListSetup</find>
-      <find>dadUl</find>
-      <find>addList</find>
-      <find>toggleUl</find>
       <find>toggleUL</find>
       <find>openUL</find>
       <find>add-ca</find>
       <find>addli</find>
       <find>wrap</find>
-      <find>console</find>
       <find>card-li</find>
       <find>card-lil</find>
       <find>list-li</find>
@@ -128,7 +115,24 @@
       <find>addCard</find>
       <find>createn</find>
       <find>dropdown-menu</find>
+      <find>addNewList</find>
+      <find>console.log</find>
+      <find>taskData</find>
+      <find>console.</find>
+      <find>label</find>
+      <find>rela</find>
+      <find>ab</find>
+      <find>main-ul</find>
+      <find>mem</find>
+      <find>span</find>
+      <find>member-label</find>
+      <find>document</find>
       <find>main-li</find>
+      <find>editbtn</find>
+      <find>taskdata</find>
+      <find>edit-card-btn</find>
+      <find>console</find>
+      <find>edit</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -144,9 +148,10 @@
         <option value="$PROJECT_DIR$/taskboard.js" />
         <option value="$PROJECT_DIR$/taskboard.css" />
         <option value="$PROJECT_DIR$/bootstrap.css" />
-        <option value="$PROJECT_DIR$/main.css" />
-        <option value="$PROJECT_DIR$/JS/main.js" />
+        <option value="$PROJECT_DIR$/assets/board.json" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/JS/main.js" />
+        <option value="$PROJECT_DIR$/main.css" />
       </list>
     </option>
   </component>
@@ -184,7 +189,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -197,9 +201,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="taskboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="taskboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -223,6 +242,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -301,21 +321,21 @@
       <option name="presentableId" value="Default" />
       <updated>1488112572862</updated>
       <workItem from="1488112574666" duration="1450000" />
-      <workItem from="1488114179537" duration="106919000" />
+      <workItem from="1488114179537" duration="118435000" />
+      <workItem from="1488619296390" duration="21365000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108369000" />
+    <option name="totallyTimeSpent" value="141250000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947146" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -327,6 +347,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -356,11 +377,38 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="41" column="28" lean-forward="false" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/board.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="64" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -384,7 +432,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -424,7 +471,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -455,7 +501,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -470,7 +515,7 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="180">
+          <first_editor relative-caret-position="165">
             <caret line="11" column="104" lean-forward="false" selection-start-line="11" selection-start-column="104" selection-end-line="11" selection-end-column="104" />
             <folding />
           </first_editor>
@@ -478,46 +523,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.css">
+    <entry file="file://$PROJECT_DIR$/assets/board.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+        <state relative-caret-position="135">
+          <caret line="9" column="31" lean-forward="true" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="152" column="57" lean-forward="false" selection-start-line="152" selection-start-column="57" selection-end-line="152" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JS/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="64" column="27" lean-forward="false" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
+        <state relative-caret-position="360">
+          <caret line="109" column="20" lean-forward="true" selection-start-line="109" selection-start-column="20" selection-end-line="109" selection-end-column="20" />
           <folding>
-            <element signature="n#!!block;n#CreateNewList#0" expanded="false" />
-            <element signature="n#!!block;n#handleAddingCardEvent#0" expanded="false" />
-            <element signature="n#!!block;n#targetAllAddCardBtns#0" expanded="false" />
-            <element signature="n#!!block;n#makeNewListSupportTitle#0" expanded="false" />
-            <element signature="n#!!block;n#titleClickHandler#0;n#!!block;n#makeNewListSupportTitle#0" expanded="false" />
-            <element signature="e#3564#4052#0" expanded="false" />
-            <element signature="e#4249#4678#0" expanded="false" />
-            <element signature="n#!!block;n#makeTheButtonSupportDelete#0" expanded="false" />
-            <element signature="n#!!block;n#openUL#0" expanded="false" />
-            <element signature="n#!!block;n#toggleUL#0" expanded="false" />
-            <element signature="n#!!block;n#deleteListItem#0" expanded="false" />
-            <marker date="1488445430000" expanded="false" signature="339:1150" ph="..." />
-            <marker date="1488445430000" expanded="true" signature="375:924" ph="..." />
-            <marker date="1488445430000" expanded="true" signature="509:909" ph="..." />
-            <marker date="1488445430000" expanded="true" signature="626:752" ph="..." />
-            <marker date="1488445430000" expanded="true" signature="823:892" ph="..." />
-            <marker date="1488445430000" expanded="true" signature="957:1025" ph="..." />
-            <marker date="1488445430000" expanded="true" signature="988:1010" ph="..." />
-            <marker date="1488445430000" expanded="true" signature="1060:1137" ph="..." />
+            <element signature="n#!!block;n#titleClickHandler#0;n#!!block;n#makeListSupportTitle#0" expanded="false" />
+            <element signature="e#5207#5695#0" expanded="false" />
+            <element signature="e#5892#6321#0" expanded="false" />
+            <marker date="1488665354000" expanded="false" signature="340:1151" ph="..." />
+            <marker date="1488665354000" expanded="true" signature="376:925" ph="..." />
+            <marker date="1488665354000" expanded="true" signature="510:910" ph="..." />
+            <marker date="1488665354000" expanded="true" signature="627:753" ph="..." />
+            <marker date="1488665354000" expanded="true" signature="824:893" ph="..." />
+            <marker date="1488665354000" expanded="true" signature="958:1026" ph="..." />
+            <marker date="1488665354000" expanded="true" signature="989:1011" ph="..." />
+            <marker date="1488665354000" expanded="true" signature="1061:1138" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="47" column="50" lean-forward="false" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
+        <state relative-caret-position="430">
+          <caret line="48" column="19" lean-forward="false" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
           <folding />
         </state>
       </provider>

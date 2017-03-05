@@ -1,5 +1,6 @@
 //====== NEW LISTS =====
-function addListHandler() {
+function addNewList(data) {
+
   // Get a reference to the parent element
   const dadUl = document.querySelector('.lists-wrap');
   const addList = document.querySelector('.add-li');
@@ -33,38 +34,95 @@ function addListHandler() {
 
   // adds new list to position, and makes it support title change
   dadUl.insertBefore(newLi, addList);
-  makeNewListSupportTitle(newLi);
+  makeListSupportTitle(newLi);
 
-  //targets new card button of new list and runs function on it
+  //targets add new card button of new list and runs function on it
   const addBtn = newLi.querySelector('.add-card-btn');
   handleAddingCardEvent(addBtn);
 
-  // add listener to dropdown btns and runs function
+  // add listener to new list's dropdown btns and makes them support delete
   const dropDownBtn = newLi.querySelector('.dropdown-toggle');
   makeTheButtonSupportDelete(dropDownBtn);
+
+  // const editBtn = newLi.querySelector('.edit-card-btn');
+  // editListButton(editBtn);
+
+
+  if (data !== undefined && !data.type) {
+// ========== if there is JSON data ========
+
+    // target data title
+    const dataTitle = data.title;
+
+    // target new list title
+    const listTitle = newLi.querySelector('.span-elm');
+    listTitle.innerHTML = dataTitle;
+
+    // target new list's UL
+    const mainUl = newLi.querySelector('.main-ul');
+
+    // taregt array of tasks objects
+    const taskData = data.tasks;
+
+    for (const data of taskData) {
+      addCard(mainUl, data);
+      const dataMembers = data.members;
+
+    }
+  }
 }
 
-function CreateNewList() {
+
+// adds event listener to all existing lists
+function addListHandler() {
   const addList = document.querySelector('.add-li');
-  addList.addEventListener('click', addListHandler);
+  addList.addEventListener('click', addNewList);
 }
 
 
 // ===== NEW CARDS =======
 // adds a click listener to card button and targets it's destination UL, then runs function
 function handleAddingCardEvent(button) {
+
   button.addEventListener('click', function (e) {
     const list = e.target.parentNode.parentNode;
     const ul = list.querySelector('.main-ul');
     addCard(ul);
   });
 }
-//creates new card <li> with class & content
-function addCard(cardslist) {
+//creates new card <li> with class & content & EDIT BTN & assigned members initials
+function addCard(cardslist, taskData) {
   const newCard = document.createElement('li');
-  newCard.className = "main-li";
-  newCard.textContent = "Another Card";
-  cardslist.appendChild(newCard);
+  const editBtn = document.createElement('button');
+  const membersDiv = document.createElement('div');
+  membersDiv.className = "member-labels";
+
+
+  editBtn.className = 'btn btn-info edit-card-btn btn-xs';
+  editBtn.textContent = "Edit Card";
+  if (taskData) {
+    newCard.className = "main-li";
+    newCard.textContent = taskData.text;
+    const dataMembers = taskData.members;
+    for (const member of dataMembers) {
+      const memberName = document.createElement('span');
+      const secondWord = member.indexOf(' ') + 1;
+      memberName.textContent = member[0] + member[secondWord];
+      memberName.title= member;
+      memberName.className = "label label-primary";
+      membersDiv.appendChild(memberName);
+    }
+    newCard.appendChild(membersDiv);
+    newCard.appendChild(editBtn);
+    cardslist.appendChild(newCard);
+
+  }
+  if (!taskData) {
+    newCard.className = "main-li";
+    newCard.textContent = "Another Card";
+    cardslist.appendChild(newCard);
+    newCard.appendChild(editBtn);
+  }
 }
 
 function targetAllAddCardBtns() {
@@ -76,7 +134,7 @@ function targetAllAddCardBtns() {
 
 
 // ===== Titles ======
-function makeNewListSupportTitle() {
+function makeListSupportTitle() {
 // target all spans
   const titleElm = document.querySelectorAll('.span-elm');
   for (const title of titleElm) {
@@ -187,20 +245,45 @@ function deleteListItem(event) {
 
 // ==== ADD EDIT OPTION TO CARDS =====
 
-// target all cards
-const allCards = document.querySelectorAll('edit-card-btn');
-for (const card of allCards) {
-console.log(card);
-}
-
-
-
-
+// function addEditBtn() {
+//   const editButtons = document.querySelectorAll('.edit-card-btn');
+//   for (const btn of editButtons) {
+//     btn.addEventListener('click', doSomethingToEdit)
+//   }
+//
+//   function doSomethingToEdit(event) {
+//     console.info("hey");
+//   }
+// }
 /**
  *
  * Init the app
  */
 
+
 targetAllAddCardBtns();
-CreateNewList();
-makeNewListSupportTitle();
+addListHandler();
+makeListSupportTitle();
+
+
+function reqListener() {
+  const localDataList = JSON.parse(this.responseText);
+  const listsData = localDataList.board;
+
+  for (const list of listsData) {
+    addNewList(list);
+  }
+
+  // const taskboard = localDataList.board
+  // console.log(localDataList);
+
+}
+
+var DataList = new XMLHttpRequest();
+DataList.addEventListener("load", reqListener);
+DataList.open("GET", "assets/board.json");
+DataList.send();
+
+
+
+

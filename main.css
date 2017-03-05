@@ -10,15 +10,15 @@ body {
 body {
   background-color: lightskyblue;
 }
-/*/// general styling*/
 
+/*/// general styling*/
 
 /*//flex-box div wrapper*/
 .flex-wrap {
   display: flex;
-  margin:0;
+  margin: 0;
   flex-wrap: nowrap;
-  padding-left:0;
+  padding-left: 0;
 }
 
 .panel-body {
@@ -28,7 +28,6 @@ body {
 .panel {
   margin: 0;
 }
-
 
 .add-list-btn,
 .add-card-btn {
@@ -44,10 +43,12 @@ span {
 }
 
 .edit-card-btn {
+  display: none;
+  position: absolute;
   margin-top: 2px;
   padding: 3px 6px;
-  position: absolute;
-  right: 30px;
+  top: 2%;
+  right: 2%;
 }
 
 .navbar {
@@ -85,24 +86,32 @@ span {
 }
 
 .main-ul {
+  position: relative;
   overflow: scroll;
   max-height: calc(100vh - 180px);
   padding: 0;
 }
 
 .main-li {
+  position: relative;
   border: 1px solid deepskyblue;
   list-style: none;
   width: 250px;
-  height: 200px;
+  min-height: 150px;
   margin: auto;
   margin-bottom: 30px;
   margin-top: 20px;
   border-radius: 10px;
 }
 
-.main-li:hover {
+.member-labels {
+position: absolute;
+  bottom: 2%;
+  right: 2%;
+}
 
+.main-li:hover .edit-card-btn {
+  display: block;
 }
 
 .dropdown {
@@ -112,9 +121,9 @@ span {
 }
 
 .dropdown ul {
-  position:  absolute;
+  position: absolute;
   top: 33px;
-  left:-125px;
+  left: -125px;
 }
 
 /*//hides all inputs*/
