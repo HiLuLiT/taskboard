@@ -25,51 +25,63 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="close-x" aria-hidden="true">&times;</span></button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="close-x"
+                                                                                            aria-hidden="true">&times;</span>
+          </button>
           <h4 class="modal-title">Edit Card</h4>
         </div>
+
         <div class="modal-body">
-
-          <div class="text-area">
-            <span class="text-title">Card Text:</span>
-            <textarea class="form-control text-box" rows="3"></textarea>
-          </div>
-
-          <div class="move-select-list">
-            <span class="text-title">Move To:</span>
-            <select class="form-control select-list-menu">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-
-          <span class="text-title">Members:</span>
-          <div class="members-checkbox">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="">
-                Alex Ilyaev
-              </label>
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="cardtext" class="col-sm-2 control-label">Card Text:</label>
+              <div class="col-sm-10">
+                <textarea class="form-control text-box" id="cardtext" rows="5"></textarea>
+              </div>
             </div>
 
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="">
-                Dima Vishnevetsky
-              </label>
+            <div class="form-group">
+              <label for="moveto" class="col-sm-2 control-label">Move To:</label>
+              <div class="col-sm-10">
+                <select id="moveto" class="form-control select-list-menu">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
             </div>
 
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="">
-                Gil Tayar
-              </label>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Members:</label>
+              <div class="col-sm-7">
+                  <div class="panel panel-default">
+                    <div class="panel-body members-checkbox">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="">
+                        Alex Ilyaev
+                      </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="">
+                        Dima Vishnevetsky
+                      </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="">
+                        Gil Tayar
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <button type="button" class="btn btn-danger">Delete Card</button>
+            <button type="button" class="btn btn-danger">Delete Card</button>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>
@@ -79,45 +91,46 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 
+
   <ul class="flex-wrap lists-wrap">
 
     <!--<li class="list-li">-->
-      <!--<div class="panel panel-default">-->
-        <!--<div class="panel-heading">-->
-          <!--<span class="span-elm panel-title li-title">Backlog</span>-->
-          <!--<input type="text" class="title-input">-->
-          <!--<div class="dropdown">-->
-            <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"-->
-                    <!--aria-haspopup="true" aria-expanded="true">-->
-              <!--<span class="caret"></span>-->
-            <!--</button>-->
-            <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
-              <!--<li><a href="#">Delete List</a></li>-->
-            <!--</ul>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="panel-body">-->
-          <!--<ul class="main-ul">-->
-            <!--<li class="main-li">Card 1-->
-              <!--<button type="button" class="btn btn-info edit-card-btn btn-xs">Edit Card</button>-->
-              <!--<div class="member-labels">-->
-              <!--<span class="label label-primary"></span>-->
-              <!--<span class="label label-primary"></span>-->
-              <!--</div>-->
-            <!--</li>-->
-            <!--<li class="main-li">Card 2-->
-              <!--<button type="button" class="btn btn-info edit-card-btn btn-xs">Edit Card</button>-->
-              <!--<div class="member-labels">-->
-                <!--<span class="label label-primary">DV</span>-->
-                <!--<span class="label label-primary">Hila</span>-->
-              <!--</div>-->
-            <!--</li>-->
-          <!--</ul>-->
-        <!--</div>-->
-        <!--<div class="panel-footer">-->
-          <!--<button class="add-card-btn">Add a Card...</button>-->
-        <!--</div>-->
-      <!--</div>-->
+    <!--<div class="panel panel-default">-->
+    <!--<div class="panel-heading">-->
+    <!--<span class="span-elm panel-title li-title">Backlog</span>-->
+    <!--<input type="text" class="title-input">-->
+    <!--<div class="dropdown">-->
+    <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"-->
+    <!--aria-haspopup="true" aria-expanded="true">-->
+    <!--<span class="caret"></span>-->
+    <!--</button>-->
+    <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+    <!--<li><a href="#">Delete List</a></li>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="panel-body">-->
+    <!--<ul class="main-ul">-->
+    <!--<li class="main-li">Card 1-->
+    <!--<button type="button" class="btn btn-info edit-card-btn btn-xs">Edit Card</button>-->
+    <!--<div class="member-labels">-->
+    <!--<span class="label label-primary"></span>-->
+    <!--<span class="label label-primary"></span>-->
+    <!--</div>-->
+    <!--</li>-->
+    <!--<li class="main-li">Card 2-->
+    <!--<button type="button" class="btn btn-info edit-card-btn btn-xs">Edit Card</button>-->
+    <!--<div class="member-labels">-->
+    <!--<span class="label label-primary">DV</span>-->
+    <!--<span class="label label-primary">Hila</span>-->
+    <!--</div>-->
+    <!--</li>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--<div class="panel-footer">-->
+    <!--<button class="add-card-btn">Add a Card...</button>-->
+    <!--</div>-->
+    <!--</div>-->
     <!--</li>-->
 
     <!--<li class="list-li">-->
