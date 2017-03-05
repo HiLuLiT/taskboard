@@ -21,46 +21,104 @@
 </nav>
 
 <main class="main-section">
+  <div class="modal mymodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="close-x" aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Edit Card</h4>
+        </div>
+        <div class="modal-body">
+
+          <div class="text-area">
+            <span class="text-title">Card Text:</span>
+            <textarea class="form-control text-box" rows="3"></textarea>
+          </div>
+
+          <div class="move-select-list">
+            <span class="text-title">Move To:</span>
+            <select class="form-control select-list-menu">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+
+          <span class="text-title">Members:</span>
+          <div class="members-checkbox">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="">
+                Alex Ilyaev
+              </label>
+            </div>
+
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="">
+                Dima Vishnevetsky
+              </label>
+            </div>
+
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="">
+                Gil Tayar
+              </label>
+            </div>
+          </div>
+          <button type="button" class="btn btn-danger">Delete Card</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
   <ul class="flex-wrap lists-wrap">
 
-    <li class="list-li">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <span class="span-elm panel-title li-title">Backlog</span>
-          <input type="text">
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="true">
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><a href="#">Delete List</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="panel-body">
-          <ul class="main-ul">
-            <li class="main-li">Card 1
-              <button type="button" class="btn btn-info edit-card-btn btn-xs">Edit Card</button>
-              <div class="member-labels">
-              <span class="label label-primary"></span>
-              <span class="label label-primary"></span>
-              </div>
-            </li>
-            <li class="main-li">Card 2
-              <button type="button" class="btn btn-info edit-card-btn btn-xs">Edit Card</button>
-              <div class="member-labels">
-                <span class="label label-primary">DV</span>
-                <span class="label label-primary">Hila</span>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="panel-footer">
-          <button class="add-card-btn">Add a Card...</button>
-        </div>
-      </div>
-    </li>
+    <!--<li class="list-li">-->
+      <!--<div class="panel panel-default">-->
+        <!--<div class="panel-heading">-->
+          <!--<span class="span-elm panel-title li-title">Backlog</span>-->
+          <!--<input type="text" class="title-input">-->
+          <!--<div class="dropdown">-->
+            <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"-->
+                    <!--aria-haspopup="true" aria-expanded="true">-->
+              <!--<span class="caret"></span>-->
+            <!--</button>-->
+            <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+              <!--<li><a href="#">Delete List</a></li>-->
+            <!--</ul>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="panel-body">-->
+          <!--<ul class="main-ul">-->
+            <!--<li class="main-li">Card 1-->
+              <!--<button type="button" class="btn btn-info edit-card-btn btn-xs">Edit Card</button>-->
+              <!--<div class="member-labels">-->
+              <!--<span class="label label-primary"></span>-->
+              <!--<span class="label label-primary"></span>-->
+              <!--</div>-->
+            <!--</li>-->
+            <!--<li class="main-li">Card 2-->
+              <!--<button type="button" class="btn btn-info edit-card-btn btn-xs">Edit Card</button>-->
+              <!--<div class="member-labels">-->
+                <!--<span class="label label-primary">DV</span>-->
+                <!--<span class="label label-primary">Hila</span>-->
+              <!--</div>-->
+            <!--</li>-->
+          <!--</ul>-->
+        <!--</div>-->
+        <!--<div class="panel-footer">-->
+          <!--<button class="add-card-btn">Add a Card...</button>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</li>-->
 
     <!--<li class="list-li">-->
     <!--<div class="panel panel-default">-->

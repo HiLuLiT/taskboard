@@ -61,6 +61,7 @@ span {
   top: 50px;
   height: calc(100% - 50px);
   background-color: lightskyblue;
+  overflow: auto;
 }
 
 .navbar-brand {
@@ -127,7 +128,66 @@ position: absolute;
 }
 
 /*//hides all inputs*/
-input {
+.title-input {
   display: none;
 }
 
+/*======= styling for modal =======*/
+.modal-body {
+  width: 100%;
+
+}
+
+
+.text-area {
+
+}
+
+.text-box {
+  width: 70%;
+  display: inline-block;
+  vertical-align: text-top;
+  resize: none;
+}
+
+.text-title {
+  display: inline-block;
+  width: 120px;
+}
+
+
+.select-list-menu {
+  width: 70%;
+  display: inline-block;
+  vertical-align: text-top;
+}
+
+.move-select-list {
+
+}
+
+.members-checkbox {
+  display: inline-block;
+  vertical-align: text-top;
+  width: 70%;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.mymodal {
+  display: block;
+  background-color: rgba(0,0,0,0.6);
+  /*display: none;*/
+}
+
+/*.modal-dialog {*/
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*left: 0;*/
+/*}*/

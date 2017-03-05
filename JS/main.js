@@ -11,7 +11,7 @@ function addNewList(data) {
      <div class="panel panel-default">
         <div class="panel-heading">
           <span class="span-elm panel-title li-title" >New List</span>
-          <input type="text">
+          <input type="text" class="title-input">
           <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="true">
@@ -94,6 +94,7 @@ function handleAddingCardEvent(button) {
 function addCard(cardslist, taskData) {
   const newCard = document.createElement('li');
   const editBtn = document.createElement('button');
+  editBtn.addEventListener('click', toggleEditModal);
   const membersDiv = document.createElement('div');
   membersDiv.className = "member-labels";
 
@@ -145,7 +146,7 @@ function makeListSupportTitle() {
   function titleClickHandler(event) {
     // target input (where clicked)
     let target = event.target;
-    const inputElm = target.parentNode.querySelector('input');
+    const inputElm = target.parentNode.querySelector('.title-input');
 
     // hide the clicked span
     target.style.display = 'none';
@@ -157,7 +158,7 @@ function makeListSupportTitle() {
   }
 
 // targets all inputs
-  const titleInput = document.querySelectorAll('.list-li input');
+  const titleInput = document.querySelectorAll('.list-li .title-input');
   for (const title of titleInput) {
     // adds key down event listener and runs function
     title.addEventListener('keydown', titleInputKeyHandler);
@@ -243,24 +244,39 @@ function deleteListItem(event) {
   }
 }
 
-// ==== ADD EDIT OPTION TO CARDS =====
+// ==== opens edit modal =====
+//   function openEditModal(event) {
+//     const modalDisplay = document.querySelector('.mymodal');
+//     modalDisplay.style.display = ('block');
+//   }
 
-// function addEditBtn() {
-//   const editButtons = document.querySelectorAll('.edit-card-btn');
-//   for (const btn of editButtons) {
-//     btn.addEventListener('click', doSomethingToEdit)
-//   }
-//
-//   function doSomethingToEdit(event) {
-//     console.info("hey");
-//   }
-// }
+  function handleClosing () {
+  const closeBtn = document.querySelector('.close-btn');
+  closeBtn.addEventListener('click', toggleEditModal);
+  const closeX = document.querySelector('.close-x');
+  closeX.addEventListener('click', toggleEditModal);
+  }
+
+  function toggleEditModal (event) {
+    const modalDisplay = document.querySelector('.mymodal');
+    if (modalDisplay.style.display === ('block')) {
+      modalDisplay.style.display = ('none');
+    }
+    else {
+      modalDisplay.style.display = ('block');
+    }
+    // if (modalDisplay.style.display = ('block')) {
+    //   modalDisplay.style.display = ('none')
+    // }
+    // else {
+    //   modalDisplay.style.display = ('block');
+    // }
+  }
 /**
  *
  * Init the app
  */
-
-
+handleClosing ();
 targetAllAddCardBtns();
 addListHandler();
 makeListSupportTitle();
