@@ -11,6 +11,15 @@ body {
   background-color: lightskyblue;
 }
 
+/*===== REMOVE THIS WHEN MEMBERS SECTION IS READY =======*/
+.main-section {
+  display: none;
+}
+
+.members-section {
+  /*display: none;*/
+}
+/*================================*/
 /*/// general styling*/
 
 /*//flex-box div wrapper*/
@@ -172,7 +181,6 @@ position: absolute;
 }
 
 .mymodal {
-  display: block;
   background-color: rgba(0,0,0,0.6);
   display: none;
 }
@@ -182,3 +190,44 @@ position: absolute;
   /*top: 0;*/
   /*left: 0;*/
 /*}*/
+
+
+/*---------MEMBERS SECTION STYLING ----------*/
+
+.members-header {
+  display: block;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+}
+
+.list-group {
+  display: block;
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  width: 40%;
+}
+
+.list-group-item {
+  line-height: 30px;
+  position: relative;
+}
+
+
+.btn-container {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
+.edit-member,
+.delete-member {
+  display: none;
+  margin: 2px;
+}
+
+.list-group-item:hover .edit-member,
+.list-group-item:hover .delete-member {
+  display: inline-block;
+}

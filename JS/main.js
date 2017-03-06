@@ -54,7 +54,7 @@ function addNewList(data) {
     // target data title
     const dataTitle = data.title;
 
-    // target new list title
+    // target new list title and gives it title from data
     const listTitle = newLi.querySelector('.span-elm');
     listTitle.innerHTML = dataTitle;
 
@@ -66,8 +66,6 @@ function addNewList(data) {
 
     for (const data of taskData) {
       addCard(mainUl, data);
-      const dataMembers = data.members;
-
     }
   }
 }
@@ -109,7 +107,7 @@ function addCard(cardslist, taskData) {
       const memberName = document.createElement('span');
       const secondWord = member.indexOf(' ') + 1;
       memberName.textContent = member[0] + member[secondWord];
-      memberName.title= member;
+      memberName.title = member;
       memberName.className = "label label-primary";
       membersDiv.appendChild(memberName);
     }
@@ -250,33 +248,56 @@ function deleteListItem(event) {
 //     modalDisplay.style.display = ('block');
 //   }
 
-  function handleClosing () {
+function handleClosing() {
   const closeBtn = document.querySelector('.close-btn');
   closeBtn.addEventListener('click', toggleEditModal);
   const closeX = document.querySelector('.close-x');
   closeX.addEventListener('click', toggleEditModal);
+}
+
+function toggleEditModal(event) {
+  const modalDisplay = document.querySelector('.mymodal');
+  if (modalDisplay.style.display === ('block')) {
+    modalDisplay.style.display = ('none');
+  }
+  else {
+    modalDisplay.style.display = ('block');
+  }
+}
+
+// gets members names from JSON, creates new list with them
+function addMembers(membersList) {
+  if (membersList !== undefined && !membersList.type) {
+    // ======= if there's JSON member DATA ========='
+    const dataName = membersList.name;
+    const wrapUl = document.querySelector('.list-group');
+    const newMemberLi = document.createElement('li');
+    newMemberLi.innerHTML = dataName;
+    newMemberLi.className = 'list-group-item';
+    wrapUl.appendChild(newMemberLi);
+    addButtonsMember(newMemberLi);
   }
 
-  function toggleEditModal (event) {
-    const modalDisplay = document.querySelector('.mymodal');
-    if (modalDisplay.style.display === ('block')) {
-      modalDisplay.style.display = ('none');
-    }
-    else {
-      modalDisplay.style.display = ('block');
-    }
-    // if (modalDisplay.style.display = ('block')) {
-    //   modalDisplay.style.display = ('none')
-    // }
-    // else {
-    //   modalDisplay.style.display = ('block');
-    // }
+// adds edit & delete buttons to every list member
+  function addButtonsMember(list) {
+    const liButtons = document.createElement('div');
+    liButtons.className = 'btn-container';
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'btn btn-xs btn-danger edit-member';
+    deleteBtn.innerHTML = "Delete";
+    const editBtn = document.createElement('button');
+    editBtn.className = 'btn btn-xs btn-info delete-member';
+    editBtn.innerHTML = "Edit";
+    liButtons.appendChild(deleteBtn);
+    liButtons.appendChild(editBtn);
+    list.appendChild(liButtons);
   }
+}
 /**
  *
  * Init the app
  */
-handleClosing ();
+handleClosing();
 targetAllAddCardBtns();
 addListHandler();
 makeListSupportTitle();
@@ -285,20 +306,29 @@ makeListSupportTitle();
 function reqListener() {
   const localDataList = JSON.parse(this.responseText);
   const listsData = localDataList.board;
-
   for (const list of listsData) {
     addNewList(list);
   }
+}
 
-  // const taskboard = localDataList.board
-  // console.log(localDataList);
-
+function reqMemberListener() {
+  const memberDataList = JSON.parse(this.responseText);
+  const listsData = memberDataList.members;
+  for (const list of listsData) {
+    addMembers(list);
+  }
 }
 
 var DataList = new XMLHttpRequest();
 DataList.addEventListener("load", reqListener);
 DataList.open("GET", "assets/board.json");
 DataList.send();
+
+var membersList = new XMLHttpRequest();
+membersList.addEventListener("load", reqMemberListener);
+membersList.open("GET", "assets/members.json");
+membersList.send();
+
 
 
 
