@@ -13,11 +13,11 @@ body {
 
 /*===== REMOVE THIS WHEN MEMBERS SECTION IS READY =======*/
 .main-section {
-  display: none;
+  /*display: none;*/
 }
 
 .members-section {
-  /*display: none;*/
+  display: none;
 }
 /*================================*/
 /*/// general styling*/
@@ -206,7 +206,7 @@ position: absolute;
   position: absolute;
   top: 20%;
   left: 5%;
-  width: 40%;
+  width: 30%;
 }
 
 .list-group-item {
@@ -227,6 +227,9 @@ position: absolute;
   margin: 2px;
 }
 
+.add-member-input {
+  padding-left: 0;
+}
 .list-group-item:hover .edit-member,
 .list-group-item:hover .delete-member {
   display: inline-block;

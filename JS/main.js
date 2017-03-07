@@ -243,6 +243,10 @@ function deleteListItem(event) {
 }
 
 // ==== opens edit modal =====
+
+function createModal () {
+
+}
 //   function openEditModal(event) {
 //     const modalDisplay = document.querySelector('.mymodal');
 //     modalDisplay.style.display = ('block');
@@ -265,16 +269,19 @@ function toggleEditModal(event) {
   }
 }
 
-// gets members names from JSON, creates new list with them
+
+// gets members names from JSON, creates new lists with them, then runs addButtonsMember
 function addMembers(membersList) {
   if (membersList !== undefined && !membersList.type) {
     // ======= if there's JSON member DATA ========='
     const dataName = membersList.name;
     const wrapUl = document.querySelector('.list-group');
     const newMemberLi = document.createElement('li');
+
     newMemberLi.innerHTML = dataName;
     newMemberLi.className = 'list-group-item';
-    wrapUl.appendChild(newMemberLi);
+    const addMemberListItem = document.querySelector('.add-member-list-item');
+    wrapUl.insertBefore(newMemberLi, addMemberListItem);
     addButtonsMember(newMemberLi);
   }
 
@@ -282,17 +289,38 @@ function addMembers(membersList) {
   function addButtonsMember(list) {
     const liButtons = document.createElement('div');
     liButtons.className = 'btn-container';
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'btn btn-xs btn-danger edit-member';
-    deleteBtn.innerHTML = "Delete";
     const editBtn = document.createElement('button');
-    editBtn.className = 'btn btn-xs btn-info delete-member';
+    editBtn.className = 'btn btn-xs btn-info edit-member';
     editBtn.innerHTML = "Edit";
-    liButtons.appendChild(deleteBtn);
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'btn btn-xs btn-danger delete-member';
+    deleteBtn.innerHTML = "Delete";
     liButtons.appendChild(editBtn);
+    liButtons.appendChild(deleteBtn);
     list.appendChild(liButtons);
   }
 }
+
+function addNewMemberInput () {
+  const addNewMember = document.createElement('li');
+  addNewMember.className = 'list-group-item add-member-list-item';
+  const inputDiv = document.createElement('div');
+  inputDiv.className = 'col-xs-8 add-member-input';
+  const newMemberInput = document.createElement('input');
+  const addMemberButton = document.createElement('button');
+  addMemberButton.className = 'btn btn-primary';
+  addMemberButton.innerHTML = 'Add';
+  addMemberButton.type = 'button';
+  newMemberInput.className = 'form-control';
+  newMemberInput.type = 'text';
+  newMemberInput.setAttribute("placeholder", "Add New Member");
+  inputDiv.appendChild(newMemberInput);
+  addNewMember.appendChild(addMemberButton);
+  addNewMember.appendChild(inputDiv);
+  const wrapUl = document.querySelector('.list-group');
+  wrapUl.appendChild(addNewMember);
+}
+
 /**
  *
  * Init the app
@@ -301,6 +329,7 @@ handleClosing();
 targetAllAddCardBtns();
 addListHandler();
 makeListSupportTitle();
+addNewMemberInput();
 
 
 function reqListener() {
