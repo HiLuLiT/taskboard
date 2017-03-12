@@ -1,4 +1,92 @@
+const appData = {
+  lists: [],
+  members: []
+};
+console.info(appData);
+// target the wrapper ul and add it click/hash listener so we can get what we clicked on - through event delegation
+// (click listening to the <li> might be tricky since it has <a> and <span> in it).
+
+function initTopbar() {
+  window.addEventListener('hashchange', () => {
+    initPageByHash();
+  });
+
+}
+
+function initPageByHash() {
+  const hash = window.location.hash;
+  // if no hash, go to default page
+  if (!hash) {
+    window.location.hash = '#board';
+    // stop the function otherwise it will keep on running and the listener wil call the function again
+    return;
+  }
+
+  const topbar = document.querySelector('.navbar > ul');
+
+  // find the active one - first I have to go up to the <ul>, then find the <li> with active
+  const currentActive = topbar.querySelector('.active');
+  let targetLi;
+
+  // remove the active class from it
+  currentActive.classList.remove('active');
+
+  if (hash === '#members') {
+
+    // Build Members Skeleton
+    const memberTemplate =`<section class="members-section">
+  <h2 class="members-header">Taskboard Members</h2>
+  <ul class="list-group">
+
+  </ul>
+</section>`;
+
+    // put it in main section
+    const mainSection = document.querySelector('.main-section');
+    mainSection.innerHTML = memberTemplate;
+
+    for (const list of appData.members) {
+      addMembers(list);
+    }
+
+    targetLi = document.querySelector(hash);
+  }
+
+  if (hash === '#board') {
+
+    // Build board skeleton
+    const boardTemplate = ` 
+ <ul class="flex-wrap lists-wrap">
+    <li class="add-li">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <button class="panel-title add-list-btn li-btn">Add a List...</button>
+        </div>
+      </div>
+    </li>
+  </ul>`;
+    const mainSection = document.querySelector('.main-section');
+
+    //put it in main section
+    mainSection.innerHTML = boardTemplate;
+
+    // creates board lists from appData with addNewList function
+    for (const list of appData.lists) {
+      addNewList(list);
+    }
+    addListHandler();
+
+    // add class hidden to member
+    // remove class hidden from board
+    targetLi = document.querySelector(hash);
+  }
+
+  //add active to the <li> of clicked one
+  targetLi.classList.add('active');
+}
+
 //====== NEW LISTS =====
+// getting board lists data from appData, creates new <li>
 function addNewList(data) {
 
   // Get a reference to the parent element
@@ -10,7 +98,7 @@ function addNewList(data) {
   newLi.innerHTML = `
      <div class="panel panel-default">
         <div class="panel-heading">
-          <span class="span-elm panel-title li-title" >New List</span>
+          <span class="span-elm panel-title li-title" ></span>
           <input type="text" class="title-input">
           <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
@@ -32,6 +120,7 @@ function addNewList(data) {
         </div>
       </div>`;
 
+
   // adds new list to position, and makes it support title change
   dadUl.insertBefore(newLi, addList);
   makeListSupportTitle(newLi);
@@ -47,31 +136,53 @@ function addNewList(data) {
   // const editBtn = newLi.querySelector('.edit-card-btn');
   // editListButton(editBtn);
 
+  const listTitle = newLi.querySelector('.span-elm');
 
   if (data !== undefined && !data.type) {
-// ========== if there is JSON data ========
+// ========== if there is appData data ========
 
     // target data title
     const dataTitle = data.title;
 
     // target new list title and gives it title from data
-    const listTitle = newLi.querySelector('.span-elm');
     listTitle.innerHTML = dataTitle;
 
     // target new list's UL
     const mainUl = newLi.querySelector('.main-ul');
 
-    // taregt array of tasks objects
+    // target array of tasks objects
     const taskData = data.tasks;
 
     for (const data of taskData) {
       addCard(mainUl, data);
     }
   }
+  else {
+    // ====== if it's new list ==========
+
+    let newlistTitle = appData.lists.length;
+    // object should have tasks and title properties - tasks is an empty Array, title: "New Title"
+    const newListObj = {
+      tasks: [],
+      title: `New List ${newlistTitle}`,
+    };
+
+    // push new object into appData.lists
+    appData.lists.push(newListObj);
+    console.info(appData);
+
+    // update UI
+    listTitle.innerHTML = `New List ${newlistTitle}`;
+
+    // const updateTitle = document.querySelector('.li-title');
+    // console.info(updateTitle);
+    //
+
+
+  }
 }
 
-
-// adds event listener to all existing lists
+// adds event listener to "add new list"
 function addListHandler() {
   const addList = document.querySelector('.add-li');
   addList.addEventListener('click', addNewList);
@@ -88,9 +199,12 @@ function handleAddingCardEvent(button) {
     addCard(ul);
   });
 }
+
 //creates new card <li> with class & content & EDIT BTN & assigned members initials
+// cards list gives me the <ul> where add new card was clicked, taskData brings me lists from appData
 function addCard(cardslist, taskData) {
-  const newCard = document.createElement('li');
+
+  const newCardElm = document.createElement('li');
   const editBtn = document.createElement('button');
   editBtn.addEventListener('click', toggleEditModal);
   const membersDiv = document.createElement('div');
@@ -99,9 +213,11 @@ function addCard(cardslist, taskData) {
 
   editBtn.className = 'btn btn-info edit-card-btn btn-xs';
   editBtn.textContent = "Edit Card";
+
   if (taskData) {
-    newCard.className = "main-li";
-    newCard.textContent = taskData.text;
+    newCardElm.className = "main-li";
+    newCardElm.textContent = taskData.text;
+
     const dataMembers = taskData.members;
     for (const member of dataMembers) {
       const memberName = document.createElement('span');
@@ -111,16 +227,46 @@ function addCard(cardslist, taskData) {
       memberName.className = "label label-primary";
       membersDiv.appendChild(memberName);
     }
-    newCard.appendChild(membersDiv);
-    newCard.appendChild(editBtn);
-    cardslist.appendChild(newCard);
-
+    newCardElm.appendChild(membersDiv);
+    newCardElm.appendChild(editBtn);
+    cardslist.appendChild(newCardElm);
   }
+
   if (!taskData) {
-    newCard.className = "main-li";
-    newCard.textContent = "Another Card";
-    cardslist.appendChild(newCard);
-    newCard.appendChild(editBtn);
+    // ==== if there's no data from appata=====
+
+    // ====update appData====
+
+    // create new card
+    const newCardData = {
+      members: [],
+      text: "I'm a new Card",
+    };
+
+    newCardElm.className = "main-li";
+    newCardElm.textContent = newCardData.text;
+
+    // catch title on clicked list (so we can compare it to appData & find it's matching location)
+    const liTitle = cardslist.closest('.panel-default').querySelector('.li-title').textContent;
+    console.info(liTitle);
+
+
+    appData.lists.forEach( (item) => {
+       if (item.title === liTitle) {
+         item.tasks.push(newCardData);
+       }
+    });
+    // find matching location in appData lists.tasks
+    // let matchingAppDataTitle = appData.lists.find((item)=> item.title === liTitle);
+
+
+    // push new card to the matched location
+    // matchingAppDataTitle.tasks.push(newCardData);
+
+
+    cardslist.appendChild(newCardElm);
+    // newCard.appendChild(editBtn);
+
   }
 }
 
@@ -244,13 +390,6 @@ function deleteListItem(event) {
 
 // ==== opens edit modal =====
 
-function createModal () {
-
-}
-//   function openEditModal(event) {
-//     const modalDisplay = document.querySelector('.mymodal');
-//     modalDisplay.style.display = ('block');
-//   }
 
 function handleClosing() {
   const closeBtn = document.querySelector('.close-btn');
@@ -273,7 +412,7 @@ function toggleEditModal(event) {
 // gets members names from JSON, creates new lists with them, then runs addButtonsMember
 function addMembers(membersList) {
   if (membersList !== undefined && !membersList.type) {
-    // ======= if there's JSON member DATA ========='
+    // ======= if there's JSON member DATA =========
     const dataName = membersList.name;
     const wrapUl = document.querySelector('.list-group');
     const newMemberLi = document.createElement('li');
@@ -284,6 +423,7 @@ function addMembers(membersList) {
     wrapUl.insertBefore(newMemberLi, addMemberListItem);
     addButtonsMember(newMemberLi);
   }
+  addNewMemberInput();
 
 // adds edit & delete buttons to every list member
   function addButtonsMember(list) {
@@ -301,7 +441,7 @@ function addMembers(membersList) {
   }
 }
 
-function addNewMemberInput () {
+function addNewMemberInput() {
   const addNewMember = document.createElement('li');
   addNewMember.className = 'list-group-item add-member-list-item';
   const inputDiv = document.createElement('div');
@@ -321,44 +461,72 @@ function addNewMemberInput () {
   wrapUl.appendChild(addNewMember);
 }
 
+
+const jsonsAreHere = {
+  members: false,
+  board: false
+};
+
+
+function updateJsonState (jName) {
+  // if (jName === 'board') {
+  //   jsonsAreHere.board = true;
+  // }
+  // if (jName === 'members') {
+  //   jsonsAreHere.members = true;
+  // }
+
+  jsonsAreHere[jName]=true;
+
+  if (jsonsAreHere.members === true && jsonsAreHere.board === true) {
+    initPageByHash();
+  }
+
+
+}
+
+
+function reqBoardListener() {
+  const localDataList = JSON.parse(this.responseText);
+  const listsData = localDataList.board;
+  appData.lists = listsData;
+  updateJsonState('board');
+  // initPageByHash();
+}
+
+function reqMemberListener() {
+  const memberDataList = JSON.parse(this.responseText);
+  const listsData = memberDataList.members;
+  appData.members = listsData;
+
+  updateJsonState('members');
+}
+
+function getBoardData() {
+  var DataList = new XMLHttpRequest();
+  DataList.addEventListener("load", reqBoardListener);
+  DataList.open("GET", "assets/board.json");
+  DataList.send();
+}
+
+function getMembersData() {
+  var membersList = new XMLHttpRequest();
+  membersList.addEventListener("load", reqMemberListener);
+  membersList.open("GET", "assets/members.json");
+  membersList.send();
+}
+
+
 /**
  *
  * Init the app
  */
 handleClosing();
 targetAllAddCardBtns();
-addListHandler();
 makeListSupportTitle();
-addNewMemberInput();
 
-
-function reqListener() {
-  const localDataList = JSON.parse(this.responseText);
-  const listsData = localDataList.board;
-  for (const list of listsData) {
-    addNewList(list);
-  }
-}
-
-function reqMemberListener() {
-  const memberDataList = JSON.parse(this.responseText);
-  const listsData = memberDataList.members;
-  for (const list of listsData) {
-    addMembers(list);
-  }
-}
-
-var DataList = new XMLHttpRequest();
-DataList.addEventListener("load", reqListener);
-DataList.open("GET", "assets/board.json");
-DataList.send();
-
-var membersList = new XMLHttpRequest();
-membersList.addEventListener("load", reqMemberListener);
-membersList.open("GET", "assets/members.json");
-membersList.send();
-
-
-
+initTopbar();
+getBoardData();
+getMembersData();
 
 

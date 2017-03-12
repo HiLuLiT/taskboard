@@ -15,242 +15,106 @@
     </a>
   </div>
   <ul class="nav navbar-nav">
-    <li class="active"><a href="#">Board<span class="sr-only">(current)</span></a></li>
-    <li><a href="#">Members</a></li>
+    <li id="board" class="active"><a href="#board">Board<span class="sr-only"></span></a></li>
+    <li id="members" ><a href="#members">Members<span class="sr-only"></span></a></li>
   </ul>
 </nav>
 
 <!--// MEMBERS //-->
 
-<section class=" members-section">
-  <h2 class="members-header">Taskboard Members</h2>
-  <ul class="list-group">
-    <!--<li class="list-group-item">Alex Ilyaev-->
-      <!--<div class="btn-container">-->
-        <!--<button type="button" class="btn btn-xs btn-info delete-member">Delete</button>-->
-        <!--<button type="button" class="btn btn-xs btn-danger edit-member ">Edit</button>-->
-      <!--</div>-->
-    <!--</li>-->
-    <!--<li class="list-group-item">Gil Tayar</li>-->
-    <!--<li class="list-group-item">Dima Vishnevetsky</li>-->
-    <!--<li class="list-group-item">-->
-      <!--<div class="col-xs-8">-->
-        <!--<input type="text" class="form-control" placeholder="Add New Member">-->
-      <!--</div>-->
-        <!--<button type="button" class="btn btn-primary">Add</button>-->
-    <!--</li>-->
-  </ul>
-</section>
+<!--<section class="members-section hidden">-->
+  <!--<h2 class="members-header">Taskboard Members</h2>-->
+  <!--<ul class="list-group">-->
+
+  <!--</ul>-->
+<!--</section>-->
 
 <!--// BOARD //-->
 
 <main class="main-section">
-  <div class="modal mymodal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="close-x"
-                                                                                            aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title">Edit Card</h4>
-        </div>
 
-        <div class="modal-body">
-          <form class="form-horizontal">
-            <div class="form-group">
-              <label for="cardtext" class="col-sm-2 control-label">Card Text:</label>
-              <div class="col-sm-10">
-                <textarea class="form-control text-box" id="cardtext" rows="5"></textarea>
-              </div>
+
+
+  <!--<ul class="flex-wrap lists-wrap">-->
+    <!--<li class="add-li">-->
+      <!--<div class="panel panel-info">-->
+        <!--<div class="panel-heading">-->
+          <!--<button class="panel-title add-list-btn li-btn">Add a List...</button>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</li>-->
+  <!--</ul>-->
+</main>
+
+<div class="modal mymodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="close-x"
+                                                                                          aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Edit Card</h4>
+      </div>
+
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="cardtext" class="col-sm-2 control-label">Card Text:</label>
+            <div class="col-sm-10">
+              <textarea class="form-control text-box" id="cardtext" rows="5"></textarea>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label for="moveto" class="col-sm-2 control-label">Move To:</label>
-              <div class="col-sm-10">
-                <select id="moveto" class="form-control select-list-menu">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
+          <div class="form-group">
+            <label for="moveto" class="col-sm-2 control-label">Move To:</label>
+            <div class="col-sm-10">
+              <select id="moveto" class="form-control select-list-menu">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Members:</label>
-              <div class="col-sm-7">
-                <div class="panel panel-default">
-                  <div class="panel-body members-checkbox">
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="">
-                        Alex Ilyaev
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="">
-                        Dima Vishnevetsky
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="">
-                        Gil Tayar
-                      </label>
-                    </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Members:</label>
+            <div class="col-sm-7">
+              <div class="panel panel-default">
+                <div class="panel-body members-checkbox">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="">
+                      Alex Ilyaev
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="">
+                      Dima Vishnevetsky
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="">
+                      Gil Tayar
+                    </label>
                   </div>
                 </div>
               </div>
             </div>
-            <button type="button" class="btn btn-danger">Delete Card</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-
-
-  <ul class="flex-wrap lists-wrap">
-
-    <!--<li class="list-li">-->
-    <!--<div class="panel panel-default">-->
-    <!--<div class="panel-heading">-->
-    <!--<span class="span-elm panel-title li-title">Backlog</span>-->
-    <!--<input type="text" class="title-input">-->
-    <!--<div class="dropdown">-->
-    <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"-->
-    <!--aria-haspopup="true" aria-expanded="true">-->
-    <!--<span class="caret"></span>-->
-    <!--</button>-->
-    <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
-    <!--<li><a href="#">Delete List</a></li>-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="panel-body">-->
-    <!--<ul class="main-ul">-->
-    <!--<li class="main-li">Card 1-->
-    <!--<button type="button" class="btn btn-info edit-card-btn btn-xs">Edit Card</button>-->
-    <!--<div class="member-labels">-->
-    <!--<span class="label label-primary"></span>-->
-    <!--<span class="label label-primary"></span>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--<li class="main-li">Card 2-->
-    <!--<button type="button" class="btn btn-info edit-card-btn btn-xs">Edit Card</button>-->
-    <!--<div class="member-labels">-->
-    <!--<span class="label label-primary">DV</span>-->
-    <!--<span class="label label-primary">Hila</span>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--<div class="panel-footer">-->
-    <!--<button class="add-card-btn">Add a Card...</button>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</li>-->
-
-    <!--<li class="list-li">-->
-    <!--<div class="panel panel-default">-->
-    <!--<div class="panel-heading">-->
-    <!--<span class="span-elm panel-title li-title">To Do</span>-->
-    <!--<input type="text">-->
-    <!--<div class="dropdown">-->
-    <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"-->
-    <!--aria-haspopup="true" aria-expanded="true">-->
-    <!--<span class="caret"></span>-->
-    <!--</button>-->
-    <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
-    <!--<li><a href="#">Delete List</a></li>-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="panel-body">-->
-    <!--<ul class="main-ul">-->
-    <!--<li class="main-li">Card 1-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--<div class="panel-footer">-->
-    <!--<button class="add-card-btn">Add a Card...</button>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</li>-->
-
-    <!--<li class="list-li">-->
-    <!--<div class="panel panel-default">-->
-    <!--<div class="panel-heading">-->
-    <!--<span class="span-elm panel-title li-title">In Progress</span>-->
-    <!--<input type="text">-->
-    <!--<div class="dropdown">-->
-    <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"-->
-    <!--aria-haspopup="true" aria-expanded="true">-->
-    <!--<span class="caret"></span>-->
-    <!--</button>-->
-    <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
-    <!--<li><a href="#">Delete List</a></li>-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="panel-body">-->
-    <!--<ul class="main-ul">-->
-    <!--<li class="main-li">Card 1-->
-    <!--<li class="main-li">Card 2-->
-    <!--<li class="main-li">Card 3-->
-
-    <!--</ul>-->
-    <!--</div>-->
-    <!--<div class="panel-footer btn">-->
-    <!--<button class="add-card-btn ">Add a Card...</button>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</li>-->
-
-    <!--<li class="list-li">-->
-    <!--<div class="panel panel-default">-->
-    <!--<div class="panel-heading">-->
-    <!--<span class="span-elm panel-title li-title">Done</span>-->
-    <!--<input type="text">-->
-    <!--<div class="dropdown">-->
-    <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"-->
-    <!--aria-haspopup="true" aria-expanded="true">-->
-    <!--<span class="caret"></span>-->
-    <!--</button>-->
-    <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
-    <!--<li><a href="#">Delete List</a></li>-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="panel-body">-->
-    <!--<ul class="main-ul">-->
-    <!--<li class="main-li">Card 1-->
-    <!--<li class="main-li">Card 2-->
-    <!--<li class="main-li">Card 3-->
-    <!--<li class="main-li">Card 4-->
-    <!--<li class="main-li">Card 5-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--<div class="panel-footer">-->
-    <!--<button class="add-card-btn">Add a Card...</button>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</li>-->
-
-    <li class="add-li">
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <button class="panel-title add-list-btn li-btn">Add a List...</button>
-        </div>
+          </div>
+          <button type="button" class="btn btn-danger">Delete Card</button>
+        </form>
       </div>
-    </li>
-  </ul>
-</main>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 <script src="JS/main.js"></script>

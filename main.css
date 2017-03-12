@@ -17,7 +17,7 @@ body {
 }
 
 .members-section {
-  display: none;
+  /*display: none;*/
 }
 /*================================*/
 /*/// general styling*/
@@ -71,6 +71,7 @@ span {
   height: calc(100% - 50px);
   background-color: lightskyblue;
   overflow: auto;
+  width: 100%;
 }
 
 .navbar-brand {
@@ -108,9 +109,7 @@ span {
   list-style: none;
   width: 250px;
   min-height: 150px;
-  margin: auto;
-  margin-bottom: 30px;
-  margin-top: 20px;
+  margin: 20px 24px 30px;
   border-radius: 10px;
 }
 
