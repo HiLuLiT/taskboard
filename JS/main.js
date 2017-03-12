@@ -253,16 +253,10 @@ function addCard(cardslist, taskData) {
 
     appData.lists.forEach( (item) => {
        if (item.title === liTitle) {
+         // push new card to the matched location
          item.tasks.push(newCardData);
        }
     });
-    // find matching location in appData lists.tasks
-    // let matchingAppDataTitle = appData.lists.find((item)=> item.title === liTitle);
-
-
-    // push new card to the matched location
-    // matchingAppDataTitle.tasks.push(newCardData);
-
 
     cardslist.appendChild(newCardElm);
     // newCard.appendChild(editBtn);
