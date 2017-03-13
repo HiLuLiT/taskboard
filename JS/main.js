@@ -2,7 +2,37 @@ const appData = {
   lists: [],
   members: []
 };
-console.info(appData);
+
+function removeListFromappData(listName) {
+  appData.lists.forEach((item,index) => {
+
+    if (item.title === listName.textContent) {
+
+      // delete card from appData in matched location
+      appData.lists.splice(index,1);
+
+    }
+  });
+}
+
+function addNewListToappData(newListObj) {
+  appData.lists.push(newListObj);
+}
+
+function addnewCardtoAppData(cardslist, newCardData) {
+
+  // catch clicked list unique-ID (so we can compare it to appData & find it's matching location)
+  const liID = cardslist.closest('.list-li').getAttribute('unique-id');
+
+  appData.lists.forEach( (item) => {
+    if (item.id === liID) {
+      // push new card to the matched location
+      item.tasks.push(newCardData);
+      // console.info(appData);
+    }
+  });
+}
+
 // target the wrapper ul and add it click/hash listener so we can get what we clicked on - through event delegation
 // (click listening to the <li> might be tricky since it has <a> and <span> in it).
 
@@ -94,6 +124,7 @@ function addNewList(data) {
   const addList = document.querySelector('.add-li');
 
   let newLi = document.createElement('li');
+  // newLi.setAttribute('unique-id', data ? data.id : uuid());
   newLi.className = "list-li";
   newLi.innerHTML = `
      <div class="panel panel-default">
@@ -141,6 +172,9 @@ function addNewList(data) {
   if (data !== undefined && !data.type) {
 // ========== if there is appData data ========
 
+    //give the list unique-id attribute from appData "id"'s
+    newLi.setAttribute('unique-id', data.id);
+
     // target data title
     const dataTitle = data.title;
 
@@ -153,31 +187,29 @@ function addNewList(data) {
     // target array of tasks objects
     const taskData = data.tasks;
 
+    // create cards for every list from appData
     for (const data of taskData) {
       addCard(mainUl, data);
     }
   }
   else {
-    // ====== if it's new list ==========
+    // ====== if it's new list (no incoming data from appData) ==========
 
-    let newlistTitle = appData.lists.length;
-    // object should have tasks and title properties - tasks is an empty Array, title: "New Title"
+    // object should have tasks, title and ID properties - tasks is an empty Array, title: "New Title"
     const newListObj = {
       tasks: [],
-      title: `New List ${newlistTitle}`,
+      title: `New List`,
+      id: uuid()
     };
 
+    // give the list unique-id with uuid
+    newLi.setAttribute('unique-id', newListObj.id);
+
     // push new object into appData.lists
-    appData.lists.push(newListObj);
-    console.info(appData);
+    addNewListToappData(newListObj);
 
     // update UI
-    listTitle.innerHTML = `New List ${newlistTitle}`;
-
-    // const updateTitle = document.querySelector('.li-title');
-    // console.info(updateTitle);
-    //
-
+    listTitle.innerHTML = `New List`;
 
   }
 }
@@ -215,9 +247,17 @@ function addCard(cardslist, taskData) {
   editBtn.textContent = "Edit Card";
 
   if (taskData) {
+    // ====== if there's data from appData - adding cards from appData ======
+
     newCardElm.className = "main-li";
+
+    // give cards unique-id from appData
+    newCardElm.setAttribute('unique-id', taskData.id);
+
+    // inserting text to card from appData
     newCardElm.textContent = taskData.text;
 
+    // inserting members initials to each card from appData
     const dataMembers = taskData.members;
     for (const member of dataMembers) {
       const memberName = document.createElement('span');
@@ -233,7 +273,7 @@ function addCard(cardslist, taskData) {
   }
 
   if (!taskData) {
-    // ==== if there's no data from appata=====
+    // ==== if there's no data from appata - add new card=====
 
     // ====update appData====
 
@@ -241,26 +281,16 @@ function addCard(cardslist, taskData) {
     const newCardData = {
       members: [],
       text: "I'm a new Card",
+      id: uuid()
     };
 
     newCardElm.className = "main-li";
+    newCardElm.setAttribute('unique-id', newCardData.id);
     newCardElm.textContent = newCardData.text;
 
-    // catch title on clicked list (so we can compare it to appData & find it's matching location)
-    const liTitle = cardslist.closest('.panel-default').querySelector('.li-title').textContent;
-    console.info(liTitle);
-
-
-    appData.lists.forEach( (item) => {
-       if (item.title === liTitle) {
-         // push new card to the matched location
-         item.tasks.push(newCardData);
-       }
-    });
-
+    addnewCardtoAppData(cardslist, newCardData);
     cardslist.appendChild(newCardElm);
-    // newCard.appendChild(editBtn);
-
+    newCardElm.appendChild(editBtn);
   }
 }
 
@@ -342,6 +372,7 @@ const dropDownBtn = document.querySelectorAll('.dropdown-toggle');
 for (const btn of dropDownBtn) {
   makeTheButtonSupportDelete(btn);
 }
+
 function makeTheButtonSupportDelete(btn) {
   //add event listeners to each dropdown btn
   btn.addEventListener('click', openUL);
@@ -379,9 +410,9 @@ function deleteListItem(event) {
 
   if (isSure === true) {
     liItem.remove();
+    removeListFromappData(liItemName);
   }
 }
-
 // ==== opens edit modal =====
 
 
@@ -392,7 +423,7 @@ function handleClosing() {
   closeX.addEventListener('click', toggleEditModal);
 }
 
-function toggleEditModal(event) {
+function toggleEditModal() {
   const modalDisplay = document.querySelector('.mymodal');
   if (modalDisplay.style.display === ('block')) {
     modalDisplay.style.display = ('none');
@@ -403,10 +434,10 @@ function toggleEditModal(event) {
 }
 
 
-// gets members names from JSON, creates new lists with them, then runs addButtonsMember
+// gets members names from appData, creates new lists with them, then runs addButtonsMember
 function addMembers(membersList) {
   if (membersList !== undefined && !membersList.type) {
-    // ======= if there's JSON member DATA =========
+    // ======= if there's appData member DATA =========
     const dataName = membersList.name;
     const wrapUl = document.querySelector('.list-group');
     const newMemberLi = document.createElement('li');
