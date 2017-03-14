@@ -21,6 +21,16 @@ function removeListFromappData(listName) {
   });
 }
 
+
+function deleteMemberFromAppData(memberId) {
+  appData.members.forEach((appDataMember, index) => {
+    if (appDataMember.id === memberId) {
+      appData.members.splice(index, 1);
+    }
+  });
+}
+
+
 function addNewListToappData(newListObj) {
   appData.lists.push(newListObj);
 }
@@ -46,6 +56,7 @@ function saveMemberToAppData(memberId, memberInput) {
     }
   }
 }
+
 
 
 /**
@@ -495,7 +506,6 @@ function addMembers(membersList, wrapUl) {
       </div>
       `
     newMemberLi.innerHTML = buttonsTemplate;
-    console.info(typeof dataName);
     // target newly created <li>
     const newMember = wrapUl.insertBefore(newMemberLi, addMemberListItem);
 
@@ -508,14 +518,27 @@ function addMembers(membersList, wrapUl) {
     // console.info(cancelBtn);
     cancelBtn.addEventListener('click', handleCancelEvent);
 
+    // save member name change to appData
     const saveBtn = newMember.querySelector('.save-btn');
     saveBtn.addEventListener('click', handleSaveMember);
+
+    // delete member from appData
+    const deleteMember = newMember.querySelector('.delete-member');
+    deleteMember.addEventListener('click', handleDeleteMember);
   }
 }
 
-function handleSaveMember(event) {
+function handleDeleteMember(event) {
+  const target = event.target;
+  const memberLi = target.closest('li');
+  const memberId = memberLi.getAttribute('unique-id');
+  // remove memberLi from ui
+  memberLi.remove();
+  // remove from appData
+  deleteMemberFromAppData(memberId);
+}
 
-  // save to span
+function handleSaveMember(event) {
   const target = event.target;
   const memberLi = target.closest('li');
   const memberInput = memberLi.querySelector('input').value;
