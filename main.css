@@ -193,6 +193,8 @@ position: absolute;
 
 /*---------MEMBERS SECTION STYLING ----------*/
 
+
+
 .members-header {
   display: block;
   position: absolute;
@@ -205,19 +207,66 @@ position: absolute;
   position: absolute;
   top: 20%;
   left: 5%;
-  width: 30%;
+
 }
 
 .list-group-item {
   line-height: 30px;
   position: relative;
+  width: 700px;
+  height: 70px;
+  line-height: 50px;
 }
 
-
+.member-name-span {
+  font-weight: normal;
+}
 .btn-container {
   position: absolute;
   right: 20px;
   top: 10px;
+}
+
+
+
+/*/// members edit-mode styling setup*/
+
+
+/*hide cancel & save buttons*/
+.edit-member-mode-btns {
+  display: none;
+}
+
+/*hide member input field*/
+.edit-member-name {
+  width: 50%;
+  display: none;
+}
+
+/*show cancel&save buttons when in edit mode*/
+li.edit-mode > .edit-member-mode-btns {
+  display: inline-block;
+}
+
+/*show input when in edit mode*/
+li.edit-mode > .edit-member-name {
+  display: inline-block;
+}
+
+/*hide span name in edit-mode*/
+li.edit-mode > span {
+  display: none;
+}
+
+/*hide edit&delete btns in edit mode*/
+li.edit-mode > member-btns {
+  display: none;
+}
+
+/*hide hover in edit-mode*/
+.list-group-item.edit-mode:hover .edit-member,
+.list-group-item.edit-mode:hover .delete-member {
+  display: none;
 }
 
 .edit-member,

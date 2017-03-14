@@ -1,15 +1,21 @@
+/**
+ * MODEL ----> appData Manipulation
+ *
+ */
+
+
 const appData = {
   lists: [],
   members: []
 };
 
 function removeListFromappData(listName) {
-  appData.lists.forEach((item,index) => {
+  appData.lists.forEach((item, index) => {
 
     if (item.title === listName.textContent) {
 
       // delete card from appData in matched location
-      appData.lists.splice(index,1);
+      appData.lists.splice(index, 1);
 
     }
   });
@@ -24,7 +30,7 @@ function addnewCardtoAppData(cardslist, newCardData) {
   // catch clicked list unique-ID (so we can compare it to appData & find it's matching location)
   const liID = cardslist.closest('.list-li').getAttribute('unique-id');
 
-  appData.lists.forEach( (item) => {
+  appData.lists.forEach((item) => {
     if (item.id === liID) {
       // push new card to the matched location
       item.tasks.push(newCardData);
@@ -32,6 +38,19 @@ function addnewCardtoAppData(cardslist, newCardData) {
     }
   });
 }
+
+function saveMemberToAppData(memberId, memberInput) {
+  for (const appDataMember of appData.members) {
+    if (appDataMember.id === memberId) {
+      appDataMember.name = memberInput;
+    }
+  }
+}
+
+
+/**
+ * VIEW ------> UI Manipulation
+ */
 
 // target the wrapper ul and add it click/hash listener so we can get what we clicked on - through event delegation
 // (click listening to the <li> might be tricky since it has <a> and <span> in it).
@@ -64,7 +83,7 @@ function initPageByHash() {
   if (hash === '#members') {
 
     // Build Members Skeleton
-    const memberTemplate =`<section class="members-section">
+    const memberTemplate = `<section class="members-section">
   <h2 class="members-header">Taskboard Members</h2>
   <ul class="list-group">
 
@@ -74,10 +93,14 @@ function initPageByHash() {
     // put it in main section
     const mainSection = document.querySelector('.main-section');
     mainSection.innerHTML = memberTemplate;
+    const wrapUL = document.querySelector('.list-group');
+    addNewMemberInput();
 
-    for (const list of appData.members) {
-      addMembers(list);
+    for (const member of appData.members) {
+      addMembers(member, wrapUL);
+
     }
+    // catch wrapUL
 
     targetLi = document.querySelector(hash);
   }
@@ -304,12 +327,15 @@ function targetAllAddCardBtns() {
 
 // ===== Titles ======
 function makeListSupportTitle() {
-// target all spans
+
+// target all titles (spans)
   const titleElm = document.querySelectorAll('.span-elm');
+
   for (const title of titleElm) {
     // adds click event listener and runs function
     title.addEventListener('click', titleClickHandler);
   }
+
   // if click - updates span with value and shows it
   function titleClickHandler(event) {
     // target input (where clicked)
@@ -327,9 +353,11 @@ function makeListSupportTitle() {
 
 // targets all inputs
   const titleInput = document.querySelectorAll('.list-li .title-input');
+
   for (const title of titleInput) {
     // adds key down event listener and runs function
     title.addEventListener('keydown', titleInputKeyHandler);
+
     // if ENTER - updates span with value and shows it
     function titleInputKeyHandler(event) {
       const target = event.target;
@@ -337,19 +365,26 @@ function makeListSupportTitle() {
       if (event.keyCode === 13) {
         //take the value from the input
         const value = target.value;
+
         // update the span(title) with that value
         const titleElm = target.parentNode.querySelector('span');
         titleElm.innerHTML = value;
+
+        // update appData
+
 
         //since span is currently hidden, we need to hide the input and show the span
         target.style.display = 'none';
         titleElm.style.display = 'inline-block';
       }
     };
+
     // adds blur event listener and runs function
     title.addEventListener('blur', titleBlurHandler);
+
     // if blur - updates span with value and shows it
     function titleBlurHandler(event) {
+
       const target = event.target;
       //take the value from the input
       const value = target.value;
@@ -435,42 +470,138 @@ function toggleEditModal() {
 
 
 // gets members names from appData, creates new lists with them, then runs addButtonsMember
-function addMembers(membersList) {
+function addMembers(membersList, wrapUl) {
+
   if (membersList !== undefined && !membersList.type) {
     // ======= if there's appData member DATA =========
+    const iD = membersList.id;
     const dataName = membersList.name;
-    const wrapUl = document.querySelector('.list-group');
     const newMemberLi = document.createElement('li');
+    newMemberLi.setAttribute('unique-id', iD);
 
-    newMemberLi.innerHTML = dataName;
     newMemberLi.className = 'list-group-item';
     const addMemberListItem = document.querySelector('.add-member-list-item');
-    wrapUl.insertBefore(newMemberLi, addMemberListItem);
-    addButtonsMember(newMemberLi);
-  }
-  addNewMemberInput();
 
-// adds edit & delete buttons to every list member
-  function addButtonsMember(list) {
-    const liButtons = document.createElement('div');
-    liButtons.className = 'btn-container';
-    const editBtn = document.createElement('button');
-    editBtn.className = 'btn btn-xs btn-info edit-member';
-    editBtn.innerHTML = "Edit";
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'btn btn-xs btn-danger delete-member';
-    deleteBtn.innerHTML = "Delete";
-    liButtons.appendChild(editBtn);
-    liButtons.appendChild(deleteBtn);
-    list.appendChild(liButtons);
+    const buttonsTemplate = `
+      <span class="member-name-span">${dataName}</span>
+      <input class="form-control edit-member-name" value="${dataName}">
+      <div class="btn-container member-btns">
+      <button type="button" class="btn btn-xs btn-info edit-member">Edit</button>
+      <button type="button" class="btn btn-xs btn-danger delete-member">Delete</button>
+      </div>
+      <div class="btn-container edit-member-mode-btns">
+      <button type="button" class="btn btn-xs btn-default cancel-edit">Cancel</button>
+      <button type="button" class="btn btn-xs btn-success save-btn">Save</button>
+      </div>
+      `
+    newMemberLi.innerHTML = buttonsTemplate;
+    console.info(typeof dataName);
+    // target newly created <li>
+    const newMember = wrapUl.insertBefore(newMemberLi, addMemberListItem);
+
+    // add event listener to edit btn OF NEW MEMBER (not document, this way I don't repeat event listeners)
+    const editButton = newMember.querySelector('.edit-member');
+    editButton.addEventListener('click', handleEditMemberMode);
+
+    // when cancel is clicked - remove edit-mode from <li>
+    const cancelBtn = newMember.querySelector('.cancel-edit');
+    // console.info(cancelBtn);
+    cancelBtn.addEventListener('click', handleCancelEvent);
+
+    const saveBtn = newMember.querySelector('.save-btn');
+    saveBtn.addEventListener('click', handleSaveMember);
   }
 }
+
+function handleSaveMember(event) {
+
+  // save to span
+  const target = event.target;
+  const memberLi = target.closest('li');
+  const memberInput = memberLi.querySelector('input').value;
+  const memberName = memberLi.querySelector('span');
+  memberName.textContent = memberInput;
+  memberLi.classList.toggle('edit-mode');
+  const memberId = memberLi.getAttribute('unique-id');
+
+  // save to appData
+  saveMemberToAppData(memberId, memberInput);
+}
+
+function handleCancelEvent(event) {
+  const target = event.target;
+  const memberLi = target.closest('li');
+  const memberName = memberLi.querySelector('span').innerHTML;
+  const memberInput = memberLi.querySelector('input');
+  memberInput.value = memberName;
+  memberLi.classList.toggle('edit-mode');
+
+}
+
+function handleEditMemberMode(event) {
+  // target is edit btn
+  const target = event.target;
+
+  // target li
+  const memberLi = target.closest('li');
+  const inputField = memberLi.querySelector('input');
+  // when edit clicked - give <li> edit-mode class
+  memberLi.classList.toggle('edit-mode');
+  inputField.focus();
+
+}
+
+// const deleteMember = target.closest('div').querySelector('.delete-member');
+// console.info(deleteMember);
+// deleteMember.style.display = 'none';
+// target.style.display = 'none';
+
+// // show Cancel+Save buttons
+// const editModeButtons = target.closest('div').querySelector('.edit-mode');
+// editModeButtons.classList.toggle('edit-mode');
+
+
+// show input field
+// const inputField = document.createElement('input');
+//   // inputField.className ='form-control edit-member-name';
+//   // const editListName = target.closest('li');
+//   // editListName.appendChild(inputField);
+//
+//   // hide span & fill input placeholder with span text content
+//   const spanName = target.closest('li').querySelector('span');
+//   spanName.style.display = 'none';
+//   inputField.placeholder = spanName.textContent;
+//
+//   const allCancelBtns = document.querySelectorAll('.cancel-edit');
+//   for (const cancelBtn of allCancelBtns) {
+//     cancelBtn.addEventListener('click', function() {
+//       // hide input and show span
+//       inputField.style.display = 'none';
+//       spanName.style.display = 'block';
+//
+//       // hide edit-mode & show edit+delete
+//       editModeButtons.classList.toggle('edit-mode');
+//       deleteMember.style.display = 'inline-block';
+//       target.style.display = 'inline-block';
+//     });
+//   }
+// }
+
+
+// function cancelEditMode (event) {
+//   const target = event.target;
+//
+//   // hide input
+//   const inputField = target.closest('div');
+//   console.info(inputField);
+// }
+
 
 function addNewMemberInput() {
   const addNewMember = document.createElement('li');
   addNewMember.className = 'list-group-item add-member-list-item';
   const inputDiv = document.createElement('div');
-  inputDiv.className = 'col-xs-8 add-member-input';
+  inputDiv.className = 'col-xs-5 add-member-input';
   const newMemberInput = document.createElement('input');
   const addMemberButton = document.createElement('button');
   addMemberButton.className = 'btn btn-primary';
@@ -482,6 +613,7 @@ function addNewMemberInput() {
   inputDiv.appendChild(newMemberInput);
   addNewMember.appendChild(addMemberButton);
   addNewMember.appendChild(inputDiv);
+
   const wrapUl = document.querySelector('.list-group');
   wrapUl.appendChild(addNewMember);
 }
@@ -493,7 +625,7 @@ const jsonsAreHere = {
 };
 
 
-function updateJsonState (jName) {
+function updateJsonState(jName) {
   // if (jName === 'board') {
   //   jsonsAreHere.board = true;
   // }
@@ -501,7 +633,7 @@ function updateJsonState (jName) {
   //   jsonsAreHere.members = true;
   // }
 
-  jsonsAreHere[jName]=true;
+  jsonsAreHere[jName] = true;
 
   if (jsonsAreHere.members === true && jsonsAreHere.board === true) {
     initPageByHash();
