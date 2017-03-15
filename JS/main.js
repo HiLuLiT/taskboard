@@ -57,7 +57,13 @@ function saveMemberToAppData(memberId, memberInput) {
   }
 }
 
-
+function addNewMemberToAppData(id, span) {
+  const newMember = {
+    id: id,
+    name: span
+  };
+  appData.members.push(newMember);
+}
 
 /**
  * VIEW ------> UI Manipulation
@@ -105,12 +111,23 @@ function initPageByHash() {
     const mainSection = document.querySelector('.main-section');
     mainSection.innerHTML = memberTemplate;
     const wrapUL = document.querySelector('.list-group');
-    addNewMemberInput();
+    const inputTemplate = `<li class="list-group-item add-member-list-item">
+  <button class="btn btn-primary add-member-button" type="button">Add</button>
+    <div class="col-xs-5">
+    <input class="form-control add-member-input" type="text" placeholder="Add New Member">
+    </div>
+    </li>
+`
+    const wrapUl = document.querySelector('.list-group');
+    wrapUl.innerHTML = inputTemplate;
 
     for (const member of appData.members) {
-      addMembers(member, wrapUL);
-
+      addMembers(member);
     }
+
+    const addMember = document.querySelector('.add-member-button');
+    addMember.addEventListener('click', addMembers);
+
     // catch wrapUL
 
     targetLi = document.querySelector(hash);
@@ -337,15 +354,15 @@ function targetAllAddCardBtns() {
 
 
 // ===== Titles ======
-function makeListSupportTitle() {
-
+function makeListSupportTitle(newLi) {
+  console.info(newLi);
 // target all titles (spans)
-  const titleElm = document.querySelectorAll('.span-elm');
-
-  for (const title of titleElm) {
-    // adds click event listener and runs function
-    title.addEventListener('click', titleClickHandler);
-  }
+  const titleElm = newLi.querySelector('.span-elm');
+  titleElm.addEventListener('click', titleClickHandler);
+  // for (const title of titleElm) {
+  //   // adds click event listener and runs function
+  //   title.addEventListener('click', );
+  // }
 
   // if click - updates span with value and shows it
   function titleClickHandler(event) {
@@ -360,7 +377,21 @@ function makeListSupportTitle() {
     inputElm.style.display = 'inline-block';
     inputElm.value = target.textContent;
     inputElm.focus();
+
+    const listId = inputElm.closest('li');
+    console.info(listId);
+    editListTitleInAppData(inputElm.textContent);
   }
+
+function editListTitleInAppData (input) {
+  appData.lists.forEach((appDataList, index) => {
+    const listID = appDataList.id;
+    console.info(listID);
+  });
+    // if (appDatalist.id === memberId) {
+    //   appData.members.splice(index, 1);
+    // }
+}
 
 // targets all inputs
   const titleInput = document.querySelectorAll('.list-li .title-input');
@@ -480,22 +511,15 @@ function toggleEditModal() {
 }
 
 
-// gets members names from appData, creates new lists with them, then runs addButtonsMember
-function addMembers(membersList, wrapUl) {
+// gets members names from appData, creates new lists with them
+function addMembers(membersList) {
 
-  if (membersList !== undefined && !membersList.type) {
-    // ======= if there's appData member DATA =========
-    const iD = membersList.id;
-    const dataName = membersList.name;
-    const newMemberLi = document.createElement('li');
-    newMemberLi.setAttribute('unique-id', iD);
-
-    newMemberLi.className = 'list-group-item';
-    const addMemberListItem = document.querySelector('.add-member-list-item');
-
-    const buttonsTemplate = `
-      <span class="member-name-span">${dataName}</span>
-      <input class="form-control edit-member-name" value="${dataName}">
+  const wrapUl = document.querySelector('.list-group');
+  const newMemberLi = document.createElement('li');
+  newMemberLi.className = 'list-group-item';
+  const memberTemplate = `
+      <span class="member-name-span"></span>
+      <input class="form-control edit-member-name">
       <div class="btn-container member-btns">
       <button type="button" class="btn btn-xs btn-info edit-member">Edit</button>
       <button type="button" class="btn btn-xs btn-danger delete-member">Delete</button>
@@ -505,28 +529,53 @@ function addMembers(membersList, wrapUl) {
       <button type="button" class="btn btn-xs btn-success save-btn">Save</button>
       </div>
       `
-    newMemberLi.innerHTML = buttonsTemplate;
-    // target newly created <li>
-    const newMember = wrapUl.insertBefore(newMemberLi, addMemberListItem);
+  newMemberLi.innerHTML = memberTemplate;
+  const span = newMemberLi.querySelector('.member-name-span');
+  const input = newMemberLi.querySelector('.edit-member-name');
+  const addMemberListItem = document.querySelector('.add-member-list-item');
 
-    // add event listener to edit btn OF NEW MEMBER (not document, this way I don't repeat event listeners)
-    const editButton = newMember.querySelector('.edit-member');
-    editButton.addEventListener('click', handleEditMemberMode);
-
-    // when cancel is clicked - remove edit-mode from <li>
-    const cancelBtn = newMember.querySelector('.cancel-edit');
-    // console.info(cancelBtn);
-    cancelBtn.addEventListener('click', handleCancelEvent);
-
-    // save member name change to appData
-    const saveBtn = newMember.querySelector('.save-btn');
-    saveBtn.addEventListener('click', handleSaveMember);
-
-    // delete member from appData
-    const deleteMember = newMember.querySelector('.delete-member');
-    deleteMember.addEventListener('click', handleDeleteMember);
+  if (membersList !== undefined && !membersList.type) {
+    // ======= if there's appData member DATA =========
+    const iD = membersList.id;
+    newMemberLi.setAttribute('unique-id', iD);
+    const dataName = membersList.name;
+    span.innerHTML = dataName;
+    input.value = dataName;
   }
+
+  else {
+    // ====== if it's new member (not from AppData)
+
+    newMemberLi.setAttribute('unique-id', uuid());
+    const memberNameInput = document.querySelector('.add-member-input');
+    span.innerHTML = memberNameInput.value;
+    input.value = memberNameInput.value;
+
+    const newMemberId = newMemberLi.getAttribute('unique-id');
+    addNewMemberToAppData(newMemberId, span.textContent);
+  }
+
+  // push newly created <li> to it's location + target it
+  const newMember = wrapUl.insertBefore(newMemberLi, addMemberListItem);
+
+  // add event listener to edit btn OF NEW MEMBER (not document, this way I don't repeat event listeners)
+  const editButton = newMember.querySelector('.edit-member');
+  editButton.addEventListener('click', handleEditMemberMode);
+
+  // when cancel is clicked - remove edit-mode from <li>
+  const cancelBtn = newMember.querySelector('.cancel-edit');
+  cancelBtn.addEventListener('click', handleCancelEvent);
+
+  // save member name change
+  const saveBtn = newMember.querySelector('.save-btn');
+  saveBtn.addEventListener('click', handleSaveMember);
+
+  // delete member
+  const deleteMember = newMember.querySelector('.delete-member');
+  deleteMember.addEventListener('click', handleDeleteMember);
+
 }
+
 
 function handleDeleteMember(event) {
   const target = event.target;
@@ -572,73 +621,6 @@ function handleEditMemberMode(event) {
   memberLi.classList.toggle('edit-mode');
   inputField.focus();
 
-}
-
-// const deleteMember = target.closest('div').querySelector('.delete-member');
-// console.info(deleteMember);
-// deleteMember.style.display = 'none';
-// target.style.display = 'none';
-
-// // show Cancel+Save buttons
-// const editModeButtons = target.closest('div').querySelector('.edit-mode');
-// editModeButtons.classList.toggle('edit-mode');
-
-
-// show input field
-// const inputField = document.createElement('input');
-//   // inputField.className ='form-control edit-member-name';
-//   // const editListName = target.closest('li');
-//   // editListName.appendChild(inputField);
-//
-//   // hide span & fill input placeholder with span text content
-//   const spanName = target.closest('li').querySelector('span');
-//   spanName.style.display = 'none';
-//   inputField.placeholder = spanName.textContent;
-//
-//   const allCancelBtns = document.querySelectorAll('.cancel-edit');
-//   for (const cancelBtn of allCancelBtns) {
-//     cancelBtn.addEventListener('click', function() {
-//       // hide input and show span
-//       inputField.style.display = 'none';
-//       spanName.style.display = 'block';
-//
-//       // hide edit-mode & show edit+delete
-//       editModeButtons.classList.toggle('edit-mode');
-//       deleteMember.style.display = 'inline-block';
-//       target.style.display = 'inline-block';
-//     });
-//   }
-// }
-
-
-// function cancelEditMode (event) {
-//   const target = event.target;
-//
-//   // hide input
-//   const inputField = target.closest('div');
-//   console.info(inputField);
-// }
-
-
-function addNewMemberInput() {
-  const addNewMember = document.createElement('li');
-  addNewMember.className = 'list-group-item add-member-list-item';
-  const inputDiv = document.createElement('div');
-  inputDiv.className = 'col-xs-5 add-member-input';
-  const newMemberInput = document.createElement('input');
-  const addMemberButton = document.createElement('button');
-  addMemberButton.className = 'btn btn-primary';
-  addMemberButton.innerHTML = 'Add';
-  addMemberButton.type = 'button';
-  newMemberInput.className = 'form-control';
-  newMemberInput.type = 'text';
-  newMemberInput.setAttribute("placeholder", "Add New Member");
-  inputDiv.appendChild(newMemberInput);
-  addNewMember.appendChild(addMemberButton);
-  addNewMember.appendChild(inputDiv);
-
-  const wrapUl = document.querySelector('.list-group');
-  wrapUl.appendChild(addNewMember);
 }
 
 
@@ -703,7 +685,6 @@ function getMembersData() {
  */
 handleClosing();
 targetAllAddCardBtns();
-makeListSupportTitle();
 
 initTopbar();
 getBoardData();
