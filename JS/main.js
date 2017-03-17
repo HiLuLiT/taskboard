@@ -170,6 +170,8 @@ function initPageByHash() {
       <label for="cardtext" class="col-sm-2 control-label">Card Text:</label>
     <div class="col-sm-10">
       <textarea class="form-control text-box" id="cardtext" rows="5"></textarea>
+      <span class="relevent-card-id"></span>
+      <span class="relevent-list-id"></span>
       </div>
       </div>
       <div class="form-group">
@@ -215,7 +217,7 @@ function initPageByHash() {
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-primary">Save changes</button>
+      <button type="button" class="btn btn-primary save-btn">Save changes</button>
     </div>
     </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -236,6 +238,8 @@ function initPageByHash() {
     const closeX = document.querySelector('.close-x');
     closeX.addEventListener('click', closeEditModal);
 
+    const saveBtn = document.querySelector('.save-btn');
+    saveBtn.addEventListener('click',saveModalChangesToAppData);
 
     targetLi = document.querySelector(hash);
   }
@@ -583,25 +587,63 @@ function showEditModal(event) {
   const modal = document.querySelector('.mymodal');
   modal.style.display = 'block';
 
-  // if there's text - target card text
+  // target card id & list id and insert it to modal
   const target = event.target;
-  let targetCard = target.parentNode;
-  let targetCardText = targetCard.querySelector('.card-text-span');
-  console.info(targetCardText.textContent);
-  // fill card with text
-  // target modal text-box
-  const textBox = modal.querySelector('.text-box');
-  textBox.textContent = targetCardText.textContent;
+  const targetCard = target.parentNode;
+  const targetList = targetCard.closest('.list-li');
+  const listID = targetList.getAttribute('unique-id');
+  const cardID = targetCard.getAttribute('unique-id');
+  const releventCardSpan = modal.querySelector('.relevent-card-id');
+  const releventListSpan = modal.querySelector('.relevent-list-id');
+  releventCardSpan.textContent = cardID;
+  releventListSpan.textContent = listID;
 
-  // save it to appData
-  let cardID = targetCard.getAttribute('unique-id');
-  
+  // target modal text-box
+  let textBox = modal.querySelector('.text-box');
+
+  // fill modal with text from appData
+  const appDataLists = appData.lists;
+  for (const list of appDataLists) {
+    for (const task of list.tasks) {
+      if (task.id === releventCardSpan.textContent) {
+        textBox.textContent = task.text ;
+      }
+    }
+  }
+
+}
+
+function saveModalChangesToAppData(event) {
+  console.info('saved');
+
+
+
+  // target cardID -> to find it in appData
+  // const target = event.target;
+  // console.info(target);
+  // let targetCard = target.parentNode;
+  //
+  // let cardID = targetCard.getAttribute('unique-id');
+
+
+  // const appDataLists = appData.lists;
+  // for (const list of appDataLists) {
+  //   for (const task of list.tasks) {
+  //     if (task.id === cardID) {
+  //       task.text = textBox.textContent;
+  //     }
+  //   }
+  // }
+
+
+
 }
 
 function closeEditModal() {
   const modal = document.querySelector('.mymodal');
   modal.style.display = 'none';
 }
+
 
 // gets members names from appData, creates new lists with them
 function addMembers(membersList) {

@@ -193,6 +193,11 @@ position: absolute;
 .card-text-span {
   font-weight: normal;
 }
+
+.relevent-card-id,
+.relevent-list-id {
+  display: none;
+}
 /*---------MEMBERS SECTION STYLING ----------*/
 
 
