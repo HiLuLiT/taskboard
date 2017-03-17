@@ -190,7 +190,9 @@ position: absolute;
   /*left: 0;*/
 /*}*/
 
-
+.card-text-span {
+  font-weight: normal;
+}
 /*---------MEMBERS SECTION STYLING ----------*/
 
 
