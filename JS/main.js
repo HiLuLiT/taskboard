@@ -74,6 +74,38 @@ function editListTitleInAppData(input, listID) {
 }
 
 
+function saveModalChangesToAppData(event) {
+  const target = event.target;
+  const modal = target.closest('.mymodal');
+  const cardID = modal.querySelector('.relevent-card-id').textContent;
+
+  let textBox = modal.querySelector('.text-box').value;
+
+  // update text in appData
+  const appDataLists = appData.lists;
+  for (const list of appDataLists) {
+    for (const task of list.tasks) {
+      if (task.id === cardID) {
+        task.text = textBox;
+      }
+    }
+  }
+  updateCheckedMembersInAppData(modal, cardID);
+  initPageByHash();
+  closeEditModal();
+}
+
+//update checked members in appData
+function updateCheckedMembersInAppData(modal, cardID) {
+  const memberInputs = modal.querySelectorAll('input');
+  const matchingCard = findCardID(cardID);
+  matchingCard.members = [];
+  for (const input of memberInputs) {
+    if (input.checked) {
+      matchingCard.members.push(input.getAttribute('unique-id'));
+    }
+  }
+}
 /**
  * VIEW ------> UI Manipulation
  */
@@ -191,23 +223,25 @@ function initPageByHash() {
     <div class="col-sm-7">
       <div class="panel panel-default">
       <div class="panel-body members-checkbox">
-      <div class="checkbox">
-      <label>
-      <input type="checkbox" value="">
-    </label>
-    </div>
-    <div class="checkbox">
-      <label>
-      <input type="checkbox" value="">
       
-    </label>
-    </div>
-    <div class="checkbox">
-      <label>
-      <input type="checkbox" value="">
-      
-    </label>
-    </div>
+      <!--<div class="checkbox">-->
+      <!--<label>-->
+      <!--<input type="checkbox" value="">-->
+    <!--</label>-->
+    <!--</div>-->
+    
+    <!--<div class="checkbox">-->
+      <!--<label>-->
+      <!--<input type="checkbox" value="">-->
+    <!--</label>-->
+    <!--</div>-->
+    <!---->
+    <!--<div class="checkbox">-->
+      <!--<label>-->
+      <!--<input type="checkbox" value="">-->
+    <!--</label>-->
+    <!--</div>-->
+    
     </div>
     </div>
     </div>
@@ -232,14 +266,29 @@ function initPageByHash() {
     }
     addListHandler();
 
+    const modal = document.querySelector('.modal');
+
     // handle Modal closing Events
-    const closeBtn = document.querySelector('.close-btn');
+    const closeBtn = modal.querySelector('.close-btn');
     closeBtn.addEventListener('click', closeEditModal);
-    const closeX = document.querySelector('.close-x');
+    const closeX = modal.querySelector('.close-x');
     closeX.addEventListener('click', closeEditModal);
 
-    const saveBtn = document.querySelector('.save-btn');
-    saveBtn.addEventListener('click',saveModalChangesToAppData);
+    const saveBtn = modal.querySelector('.save-btn');
+    saveBtn.addEventListener('click', saveModalChangesToAppData);
+
+    // target members from appData
+    const membersFromAppData = appData.members;
+
+    // add members to modal from members appData
+    const membersDiv = modal.querySelector('.members-checkbox');
+    for (const member of membersFromAppData) {
+      membersDiv.innerHTML += `<div class="checkbox">
+      <label>
+      <input type="checkbox" value="${member.name}" unique-id="${member.id}">${member.name}
+    </label>
+    </div>`;
+    }
 
     targetLi = document.querySelector(hash);
   }
@@ -248,10 +297,6 @@ function initPageByHash() {
   targetLi.classList.add('active');
 }
 
-// function handleModalClosing() {
-//
-//
-// }
 
 //====== NEW LISTS =====
 // getting board lists data from appData, creates new <li>
@@ -413,8 +458,6 @@ function titleChangeHandler(target) {
   editListTitleInAppData(titleElm.textContent, listUniqueId);
 
 
-
-
   //since span is currently hidden, we need to hide the input and show the span
   target.style.display = 'none';
   titleElm.style.display = 'inline-block';
@@ -455,14 +498,14 @@ function addCard(cardslist, taskData) {
     for (const memberID of membersFromAppDataLists) {
       let newName;
       // and compare between it's ID to members.id, where every ID has a name
-        const membersFromAppDataMembers = appData.members;
-        for (const appDataMember of membersFromAppDataMembers) {
+      const membersFromAppDataMembers = appData.members;
+      for (const appDataMember of membersFromAppDataMembers) {
 
-          // if the ID from the lists match the ID from the member, apply it's name
-          if (appDataMember.id === memberID) {
-            newName = appDataMember.name;
-          }
+        // if the ID from the lists match the ID from the member, apply it's name
+        if (appDataMember.id === memberID) {
+          newName = appDataMember.name;
         }
+      }
 
       // inserting members initials to each card from appData
       const memberName = document.createElement('span');
@@ -588,7 +631,6 @@ function showEditModal(event) {
   // target card id & list id and insert it to modal
   const target = event.target;
   const targetCard = target.parentNode;
-  console.info(targetCard);
   const targetList = targetCard.closest('.list-li');
   const listID = targetList.getAttribute('unique-id');
   const cardID = targetCard.getAttribute('unique-id');
@@ -597,46 +639,47 @@ function showEditModal(event) {
   releventCardSpan.textContent = cardID;
   releventListSpan.textContent = listID;
 
-  // target modal text-box
+  const matchingCard = findCardID(cardID);
+
   let textBox = modal.querySelector('.text-box');
+
 
   // fill modal with text FROM appData
   const appDataLists = appData.lists;
   for (const list of appDataLists) {
     for (const task of list.tasks) {
       if (task.id === releventCardSpan.textContent) {
-        textBox.textContent = task.text ;
+        textBox.textContent = task.text;
       }
     }
   }
+  // fill modal with checked members
+  const memberInputs = modal.querySelectorAll('input');
+  for (const input of memberInputs) {
+    for (const member of matchingCard.members)
+      if (input.getAttribute('unique-id') === member) {
+        input.checked = 'true';
+      }
+  }
+
 
 }
 
-
-function saveModalChangesToAppData(event) {
-  const target = event.target;
-  const modal = target.closest('.mymodal');
-  const cardID = modal.querySelector('.relevent-card-id').textContent;
-
-  let textBox = modal.querySelector('.text-box').value;
-
-  // update appData
-  const appDataLists = appData.lists;
-  for (const list of appDataLists) {
-    for (const task of list.tasks) {
-      if (task.id === cardID) {
-        task.text = textBox;
+function findCardID(cardId) {
+  const appDatalists = appData.lists;
+  for (const list of appDatalists) {
+    for (const task of list.tasks)
+      if (task.id === cardId) {
+        return task;
       }
-    }
   }
-  initPageByHash()
-
-  closeEditModal()
 }
 
 function closeEditModal() {
   const modal = document.querySelector('.mymodal');
   modal.style.display = 'none';
+  initPageByHash();
+
 }
 
 
