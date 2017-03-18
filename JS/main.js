@@ -179,7 +179,7 @@ function initPageByHash() {
     mainSection.innerHTML = memberTemplate;
     const inputTemplate = `<li class="list-group-item add-member-list-item">
   <button class="btn btn-primary add-member-button" type="button">Add</button>
-    <div class="col-xs-5">
+    <div class="col-xs-5 add-member-div">
     <input class="form-control add-member-input" type="text" placeholder="Add New Member">
     </div>
     </li>
@@ -206,7 +206,7 @@ function initPageByHash() {
  <ul class="flex-wrap lists-wrap">
     <li class="add-li">
       <div class="panel panel-info">
-        <div class="panel-heading">
+        <div class="panel-heading add-list-panel">
           <button class="panel-title add-list-btn li-btn">Add a List...</button>
         </div>
       </div>
@@ -320,7 +320,7 @@ function addNewList(data) {
   newLi.className = "list-li";
   newLi.innerHTML = `
      <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading add-list-panel">
           <span class="span-elm panel-title li-title" ></span>
           <input type="text" class="title-input">
           <div class="dropdown">

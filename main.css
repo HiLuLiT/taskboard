@@ -11,16 +11,6 @@ body {
   background-color: lightskyblue;
 }
 
-/*===== REMOVE THIS WHEN MEMBERS SECTION IS READY =======*/
-.main-section {
-  /*display: none;*/
-}
-
-.members-section {
-  /*display: none;*/
-}
-/*================================*/
-/*/// general styling*/
 
 /*//flex-box div wrapper*/
 .flex-wrap {
@@ -28,6 +18,10 @@ body {
   margin: 0;
   flex-wrap: nowrap;
   padding-left: 0;
+}
+
+.logo-img {
+  margin-top: 2px;
 }
 
 .panel-body {
@@ -93,7 +87,10 @@ span {
   display: block;
   position: relative;
   margin: 10px;
-  width: 300px;
+}
+
+.add-list-panel {
+  width: 298px;
 }
 
 .main-ul {
@@ -288,7 +285,12 @@ li.edit-mode > member-btns {
 }
 
 .add-member-input {
+  /*padding-left: 0;*/
+}
+
+.add-member-div {
   padding-left: 0;
+  padding-top: 8px;
 }
 .list-group-item:hover .edit-member,
 .list-group-item:hover .delete-member {
