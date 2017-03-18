@@ -448,8 +448,6 @@ function addCard(cardslist, taskData) {
     // newCardElm.textContent = taskData.text;
 
     //TODO - review this safely and surely
-
-
     // gets memberID from appData.lists.tasks,members
     const membersFromAppDataLists = taskData.members;
 
@@ -590,6 +588,7 @@ function showEditModal(event) {
   // target card id & list id and insert it to modal
   const target = event.target;
   const targetCard = target.parentNode;
+  console.info(targetCard);
   const targetList = targetCard.closest('.list-li');
   const listID = targetList.getAttribute('unique-id');
   const cardID = targetCard.getAttribute('unique-id');
@@ -601,7 +600,7 @@ function showEditModal(event) {
   // target modal text-box
   let textBox = modal.querySelector('.text-box');
 
-  // fill modal with text from appData
+  // fill modal with text FROM appData
   const appDataLists = appData.lists;
   for (const list of appDataLists) {
     for (const task of list.tasks) {
@@ -613,30 +612,26 @@ function showEditModal(event) {
 
 }
 
+
 function saveModalChangesToAppData(event) {
-  console.info('saved');
+  const target = event.target;
+  const modal = target.closest('.mymodal');
+  const cardID = modal.querySelector('.relevent-card-id').textContent;
 
+  let textBox = modal.querySelector('.text-box').value;
 
+  // update appData
+  const appDataLists = appData.lists;
+  for (const list of appDataLists) {
+    for (const task of list.tasks) {
+      if (task.id === cardID) {
+        task.text = textBox;
+      }
+    }
+  }
+  initPageByHash()
 
-  // target cardID -> to find it in appData
-  // const target = event.target;
-  // console.info(target);
-  // let targetCard = target.parentNode;
-  //
-  // let cardID = targetCard.getAttribute('unique-id');
-
-
-  // const appDataLists = appData.lists;
-  // for (const list of appDataLists) {
-  //   for (const task of list.tasks) {
-  //     if (task.id === cardID) {
-  //       task.text = textBox.textContent;
-  //     }
-  //   }
-  // }
-
-
-
+  closeEditModal()
 }
 
 function closeEditModal() {
