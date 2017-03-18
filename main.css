@@ -111,14 +111,19 @@ span {
   min-height: 150px;
   margin: 20px 24px 30px;
   border-radius: 10px;
+  padding: 20px;
+  padding-top: 10px;
 }
 
 .member-labels {
 position: absolute;
-  bottom: 2%;
-  right: 2%;
+  bottom: 3%;
+  right: 3%;
 }
 
+.member-label {
+  margin-left: 5px;
+}
 .main-li:hover .edit-card-btn {
   display: block;
 }

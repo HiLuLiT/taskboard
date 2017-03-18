@@ -70,6 +70,7 @@ function editListTitleInAppData(input, listID) {
     if (listID === item.id) {
       item.title = input;
     }
+
   });
 }
 
@@ -78,9 +79,8 @@ function saveModalChangesToAppData(event) {
   const target = event.target;
   const modal = target.closest('.mymodal');
   const cardID = modal.querySelector('.relevent-card-id').textContent;
-
+  const listID = modal.querySelector('.relevent-list-id').textContent;
   let textBox = modal.querySelector('.text-box').value;
-
   // update text in appData
   const appDataLists = appData.lists;
   for (const list of appDataLists) {
@@ -91,8 +91,34 @@ function saveModalChangesToAppData(event) {
     }
   }
   updateCheckedMembersInAppData(modal, cardID);
+  moveList(modal, cardID, listID);
   initPageByHash();
   closeEditModal();
+}
+
+function moveList(modal, cardID, listID) {
+  const listMenu = modal.querySelectorAll('option');
+  const matchingCard = findCardID(cardID);
+  for (const option of listMenu) {
+
+    if (option.selected === true) {
+
+      const listToSearchInAppData = option.getAttribute('unique-id');
+      const matchingList = findListID(listToSearchInAppData);
+
+      // push card to selected list
+      matchingList.tasks.push(matchingCard);
+
+
+      // remove card from current list
+      const currentList = findListID(listID);
+      currentList.tasks.forEach((task, index) => {
+        if (task.id === cardID) {
+          currentList.tasks.splice(index, 1);
+        }
+      });
+    }
+  }
 }
 
 //update checked members in appData
@@ -209,12 +235,7 @@ function initPageByHash() {
       <div class="form-group">
       <label for="moveto" class="col-sm-2 control-label">Move To:</label>
     <div class="col-sm-10">
-      <select id="moveto" class="form-control select-list-menu">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
+      <select id="moveto" class="form-control select-list-menu"> 
       </select>
       </div>
       </div>
@@ -222,26 +243,7 @@ function initPageByHash() {
       <label class="col-sm-2 control-label">Members:</label>
     <div class="col-sm-7">
       <div class="panel panel-default">
-      <div class="panel-body members-checkbox">
-      
-      <!--<div class="checkbox">-->
-      <!--<label>-->
-      <!--<input type="checkbox" value="">-->
-    <!--</label>-->
-    <!--</div>-->
-    
-    <!--<div class="checkbox">-->
-      <!--<label>-->
-      <!--<input type="checkbox" value="">-->
-    <!--</label>-->
-    <!--</div>-->
-    <!---->
-    <!--<div class="checkbox">-->
-      <!--<label>-->
-      <!--<input type="checkbox" value="">-->
-    <!--</label>-->
-    <!--</div>-->
-    
+      <div class="panel-body members-checkbox">    
     </div>
     </div>
     </div>
@@ -274,13 +276,12 @@ function initPageByHash() {
     const closeX = modal.querySelector('.close-x');
     closeX.addEventListener('click', closeEditModal);
 
+    // handle modal Save event
     const saveBtn = modal.querySelector('.save-btn');
     saveBtn.addEventListener('click', saveModalChangesToAppData);
 
-    // target members from appData
-    const membersFromAppData = appData.members;
-
     // add members to modal from members appData
+    const membersFromAppData = appData.members;
     const membersDiv = modal.querySelector('.members-checkbox');
     for (const member of membersFromAppData) {
       membersDiv.innerHTML += `<div class="checkbox">
@@ -288,6 +289,14 @@ function initPageByHash() {
       <input type="checkbox" value="${member.name}" unique-id="${member.id}">${member.name}
     </label>
     </div>`;
+    }
+
+    // add lists to modal from appData
+    const listsFromAppData = appData.lists;
+    const listsMenu = modal.querySelector('.select-list-menu');
+    for (const list of listsFromAppData) {
+    listsMenu.innerHTML += `<option value="${list.title}" unique-id="${list.id}">${list.title}</option>`;
+
     }
 
     targetLi = document.querySelector(hash);
@@ -509,10 +518,15 @@ function addCard(cardslist, taskData) {
 
       // inserting members initials to each card from appData
       const memberName = document.createElement('span');
-      const secondWord = newName.indexOf(' ') + 1;
-      memberName.textContent = newName[0] + newName[secondWord];
+      const nameArr = newName.split(' ');
+      const initialsArr = [];
+      for (const name of nameArr) {
+        const letter = name[0];
+       initialsArr.push(letter);
+      }
+      memberName.textContent = initialsArr.join('');
       memberName.title = newName;
-      memberName.className = "label label-primary";
+      memberName.className = "label label-primary member-label";
       membersDiv.appendChild(memberName);
     }
     newCardElm.appendChild(membersDiv);
@@ -639,11 +653,7 @@ function showEditModal(event) {
   releventCardSpan.textContent = cardID;
   releventListSpan.textContent = listID;
 
-  const matchingCard = findCardID(cardID);
-
   let textBox = modal.querySelector('.text-box');
-
-
   // fill modal with text FROM appData
   const appDataLists = appData.lists;
   for (const list of appDataLists) {
@@ -653,6 +663,8 @@ function showEditModal(event) {
       }
     }
   }
+
+  const matchingCard = findCardID(cardID);
   // fill modal with checked members
   const memberInputs = modal.querySelectorAll('input');
   for (const input of memberInputs) {
@@ -662,6 +674,13 @@ function showEditModal(event) {
       }
   }
 
+  // update modal with relevent list
+  const moveOptions = modal.querySelectorAll('option');
+  for (let option of moveOptions) {
+    if (option.getAttribute('unique-id') === releventListSpan.textContent) {
+      option.selected = 'true';
+    }
+  }
 
 }
 
@@ -673,6 +692,16 @@ function findCardID(cardId) {
         return task;
       }
   }
+}
+
+function findListID(listID) {
+  const appDatalists = appData.lists;
+  for (const list of appDatalists) {
+    if (list.id === listID) {
+      return list
+    }
+  }
+
 }
 
 function closeEditModal() {
