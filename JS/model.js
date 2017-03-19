@@ -76,7 +76,6 @@ function editListTitleInAppData(input, listID) {
     if (listID === item.id) {
       item.title = input;
     }
-
   });
 }
 
@@ -144,13 +143,7 @@ function updateCheckedMembersInAppData(modal, cardID) {
   }
 }
 
-
-function deleteCardFromAppData(event) {
-  const target = event.target;
-  const modal = target.closest('.mymodal');
-  const cardID = modal.querySelector('.relevent-card-id').textContent;
-  console.info(cardID);
-
+function deleteCardFromAppData(cardID) {
   appData.lists.forEach((list) => {
     list.tasks.forEach((task, index) => {
       if (task.id === cardID) {

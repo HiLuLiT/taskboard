@@ -32,41 +32,51 @@ function initPageByHash() {
   currentActive.classList.remove('active');
 
   if (hash === '#members') {
+    initPageByMembers();
+    targetLi = document.querySelector(hash);
+  }
 
-    // Build Members Skeleton
-    const memberTemplate = `<section class="members-section">
+  if (hash === '#board') {
+    initPageByBoard();
+    targetLi = document.querySelector(hash);
+  }
+
+  //add active class to the clicked <li>
+  targetLi.classList.add('active');
+}
+
+function initPageByMembers() {
+
+  // Build Members Skeleton
+  const memberTemplate = `<section class="members-section">
   <h2 class="members-header">Taskboard Members</h2>
   <ul class="list-group">
 
   </ul>
 </section>`;
 
-    // put it in main section
-    const mainSection = document.querySelector('.main-section');
-    mainSection.innerHTML = memberTemplate;
-    const inputTemplate = `<li class="list-group-item add-member-list-item">
+  // put it in main section
+  const mainSection = document.querySelector('.main-section');
+  mainSection.innerHTML = memberTemplate;
+  const inputTemplate = `<li class="list-group-item add-member-list-item">
   <button class="btn btn-primary add-member-button" type="button">Add</button>
     <div class="col-xs-5 add-member-div">
     <input class="form-control add-member-input" type="text" placeholder="Add New Member">
     </div>
     </li>
 `
-    const wrapUl = document.querySelector('.list-group');
-    wrapUl.innerHTML = inputTemplate;
+  const wrapUl = document.querySelector('.list-group');
+  wrapUl.innerHTML = inputTemplate;
 
-    for (const member of getMembers()) {
-      addMembers(member);
-    }
-
-    const addMember = document.querySelector('.add-member-button');
-    addMember.addEventListener('click', addMembers);
-
-    // catch wrapUL
-
-    targetLi = document.querySelector(hash);
+  for (const member of getMembers()) {
+    addMembers(member);
   }
 
-  if (hash === '#board') {
+  const addMember = document.querySelector('.add-member-button');
+  addMember.addEventListener('click', addMembers);
+}
+
+function initPageByBoard() {
 
     // Build board skeleton
     const boardTemplate = ` 
@@ -148,29 +158,51 @@ function initPageByHash() {
     saveBtn.addEventListener('click', saveModalChangesToAppData);
 
     // add members to modal from members appData
-    const membersFromAppData = getMembers();
-    const membersDiv = modal.querySelector('.members-checkbox');
-    for (const member of membersFromAppData) {
-      membersDiv.innerHTML += `<div class="checkbox">
+    addModalMembers(modal);
+
+    // handle delete button
+    const deleteBtn = modal.querySelector('.delete-card');
+    deleteBtn.addEventListener('click', deleteCard);
+}
+
+
+function addModalMembers(modal) {
+  const membersFromAppData = getMembers();
+  const membersDiv = modal.querySelector('.members-checkbox');
+  for (const member of membersFromAppData) {
+    membersDiv.innerHTML += `<div class="checkbox">
       <label>
       <input type="checkbox" value="${member.name}" unique-id="${member.id}">${member.name}
     </label>
     </div>`;
-    }
-
-    // handle delete button
-    const deleteBtn = modal.querySelector('.delete-card');
-    console.info(deleteBtn);
-    deleteBtn.addEventListener('click', deleteCardFromAppData);
-
-
-    targetLi = document.querySelector(hash);
   }
-
-  //add active to the <li> of clicked one
-  targetLi.classList.add('active');
 }
 
+
+function deleteCard(event) {
+  const target = event.target;
+  const modal = target.closest('.mymodal');
+  const cardID = modal.querySelector('.relevent-card-id').textContent;
+  const listID = modal.querySelector('.relevent-list-id').textContent;
+  deleteCardFromAppData(cardID);
+
+  //remove from UI
+  const UiLists = document.querySelectorAll('.list-li');
+  let matchingList;
+  for (const list of UiLists) {
+    if (list.getAttribute('unique-id') === listID) {
+      matchingList = list;
+      }
+    }
+  const cardsInMatchingList = matchingList.querySelectorAll('.main-li');
+    for (const card of cardsInMatchingList) {
+      if (card.getAttribute('unique-id') === cardID) {
+        card.remove();
+      }
+    }
+  // close modal
+  closeEditModal();
+}
 
 //====== NEW LISTS =====
 // getting board lists data from appData, creates new <li>
@@ -361,7 +393,6 @@ function addCard(cardslist, taskData) {
     cardTextSpan.textContent = taskData.text;
     // newCardElm.textContent = taskData.text;
 
-    //TODO - review this safely and surely
     // gets memberID from appData.lists.tasks.members
     const membersFromAppDataLists = taskData.members;
 
@@ -746,15 +777,15 @@ function getMembersData() {
   membersList.send();
 }
 
-const cacheData = getDataFromCache();
-
-if (cacheData) {
-  initPageByHash();
-}
-else {
-  getBoardData();
-  getMembersData();
-}
+// const cacheData = getDataFromCache();
+//
+// if (cacheData) {
+//   initPageByHash();
+// }
+// else {
+//   getBoardData();
+//   getMembersData();
+// }
 /**
  *
  * Init the app
