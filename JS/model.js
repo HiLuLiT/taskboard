@@ -1,18 +1,13 @@
 
-
 const appData = {
   lists: [],
   members: []
 };
 
-function removeListFromappData(listName) {
+function removeListFromappData(listID) {
   appData.lists.forEach((item, index) => {
-
-    if (item.title === listName.textContent) {
-
-      // delete from appData in matched location
+    if (item.id === listID) {
       appData.lists.splice(index, 1);
-
     }
   });
 }
@@ -79,7 +74,6 @@ function editListTitleInAppData(input, listID) {
   });
 }
 
-
 function saveModalChangesToAppData(event) {
   const target = event.target;
   const modal = target.closest('.mymodal');
@@ -130,7 +124,6 @@ function moveList(modal, cardID, listID) {
     }
   }
 }
-
 
 function updateCheckedMembersInAppData(modal, cardID) {
   const memberInputs = modal.querySelectorAll('input');

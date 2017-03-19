@@ -520,12 +520,13 @@ function toggleUL(targetList) {
 function deleteListItem(event) {
   const target = event.target;
   const liItem = target.closest('.list-li');
+  const listID = liItem.getAttribute('unique-id');
   const liItemName = liItem.querySelector('span');
   const isSure = confirm(`Are you sure you want to delete ${liItemName.innerHTML} ?`);
 
   if (isSure === true) {
     liItem.remove();
-    removeListFromappData(liItemName);
+    removeListFromappData(listID);
   }
 }
 // ==== opens edit modal =====

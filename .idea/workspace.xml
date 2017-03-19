@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3e654c3-85a9-47cf-9d32-65e9a1ac919a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JS/main.js" afterPath="$PROJECT_DIR$/JS/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JS/model.js" afterPath="$PROJECT_DIR$/JS/model.js" />
     </list>
@@ -35,51 +34,128 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JS/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-30">
-              <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+            <state relative-caret-position="124">
+              <caret line="614" column="18" lean-forward="false" selection-start-line="614" selection-start-column="9" selection-end-line="614" selection-end-column="18" />
               <folding>
+                <element signature="n#!!doc;n#initTopbar#0" expanded="false" />
+                <element signature="e#42#157#0" expanded="false" />
+                <element signature="n#!!block;n#initTopbar#0" expanded="false" />
+                <element signature="e#313#340#0" expanded="false" />
                 <element signature="n#!!block;n#initPageByHash#0" expanded="false" />
+                <element signature="e#461#619#0" expanded="false" />
+                <element signature="e#955#1030#0" expanded="false" />
+                <element signature="e#1057#1130#0" expanded="false" />
                 <element signature="n#!!block;n#initPageByMembers#0" expanded="false" />
+                <element signature="e#2006#2035#0" expanded="false" />
                 <element signature="n#!!block;n#initPageByBoard#0" expanded="false" />
-                <marker date="1489950384000" expanded="true" signature="1330:1428" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="1408:1417" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="1639:1872" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="1760:1862" ph="..." />
-                <marker date="1489950384000" expanded="false" signature="2277:2516" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="2301:2508" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="2338:2498" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="2389:2485" ph="..." />
-                <marker date="1489950384000" expanded="false" signature="2572:4203" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="2621:4169" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="2655:4134" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="2688:2898" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="2771:2844" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="2793:2830" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="2817:2824" ph="×" />
-                <marker date="1489950384000" expanded="true" signature="2928:3900" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="2965:3889" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="2996:3299" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="3102:3286" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="3330:3540" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="3432:3527" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="3497:3514" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="3571:3795" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="3659:3784" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="3699:3773" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="3747:3762" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="3931:4123" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="5404:5534" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="5418:5523" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="6761:7599" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="6812:7373" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="6958:7358" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="7075:7201" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="7272:7341" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="7406:7474" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="7437:7459" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="7509:7586" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="18674:18857" ph="..." />
-                <marker date="1489950384000" expanded="true" signature="18913:19095" ph="..." />
+                <element signature="e#4433#4464#0" expanded="false" />
+                <element signature="n#!!block;n#addModalMembers#0" expanded="false" />
+                <element signature="e#5352#5541#0" expanded="false" />
+                <element signature="n#!!block;n#deleteCard#0" expanded="false" />
+                <element signature="e#5952#6047#0" expanded="false" />
+                <element signature="e#6005#6041#0" expanded="false" />
+                <element signature="e#6165#6258#0" expanded="false" />
+                <element signature="e#6220#6252#0" expanded="false" />
+                <element signature="e#6299#6323#0" expanded="false" />
+                <element signature="n#!!block;n#addNewList#0" expanded="false" />
+                <element signature="e#8176#8763#0" expanded="false" />
+                <element signature="e#8723#8759#0" expanded="false" />
+                <element signature="e#8771#9276#0" expanded="false" />
+                <element signature="e#8974#9040#0" expanded="false" />
+                <element signature="n#!!block;n#addListHandler#0" expanded="false" />
+                <element signature="e#9455#9481#0" expanded="false" />
+                <element signature="n#!!block;n#handleAddingCardEvent#0" expanded="false" />
+                <element signature="e#9664#9782#0" expanded="false" />
+                <element signature="n#!!block;n#titleInputKeyHandler#0" expanded="false" />
+                <element signature="e#9887#9924#0" expanded="false" />
+                <element signature="n#!!block;n#titleBlurHandler#0" expanded="false" />
+                <element signature="n#!!block;n#titleClickHandler#0" expanded="false" />
+                <element signature="n#!!block;n#titleChangeHandler#0" expanded="false" />
+                <element signature="e#11066#11149#0" expanded="false" />
+                <element signature="n#!!block;n#addCard#0" expanded="false" />
+                <element signature="e#11756#13395#0" expanded="false" />
+                <element signature="e#12326#13232#0" expanded="false" />
+                <element signature="e#12543#12730#0" expanded="false" />
+                <element signature="e#12671#12722#0" expanded="false" />
+                <element signature="e#12957#13032#0" expanded="false" />
+                <element signature="e#13414#13950#0" expanded="false" />
+                <element signature="e#13558#13631#0" expanded="false" />
+                <element signature="n#!!block;n#targetAllAddCardBtns#0" expanded="false" />
+                <element signature="e#14079#14116#0" expanded="false" />
+                <element signature="n#!!block;n#makeListSupportTitle#0" expanded="false" />
+                <element signature="e#14454#14679#0" expanded="false" />
+                <element signature="e#14848#14886#0" expanded="false" />
+                <element signature="n#!!block;n#openUL#0" expanded="false" />
+                <element signature="n#!!block;n#toggleUL#0" expanded="false" />
+                <element signature="e#15585#15630#0" expanded="false" />
+                <element signature="n#!!block;n#showEditModal#0" expanded="false" />
+                <element signature="e#17086#17235#0" expanded="false" />
+                <element signature="e#17190#17231#0" expanded="false" />
+                <element signature="e#17417#17528#0" expanded="false" />
+                <element signature="e#17657#17777#0" expanded="false" />
+                <element signature="e#17734#17773#0" expanded="false" />
+                <element signature="n#!!block;n#findCardByID#0" expanded="false" />
+                <element signature="e#17886#17987#0" expanded="false" />
+                <element signature="e#17953#17983#0" expanded="false" />
+                <element signature="n#!!block;n#findListByID#0" expanded="false" />
+                <element signature="e#18096#18155#0" expanded="false" />
+                <element signature="e#18126#18151#0" expanded="false" />
+                <element signature="n#!!block;n#closeEditModal#0" expanded="false" />
+                <element signature="e#19453#19690#0" expanded="false" />
+                <element signature="e#19699#20088#0" expanded="false" />
+                <element signature="n#!!block;n#handleDeleteMember#0" expanded="false" />
+                <element signature="n#!!block;n#handleSaveMember#0" expanded="false" />
+                <element signature="n#!!block;n#handleCancelEvent#0" expanded="false" />
+                <element signature="n#!!block;n#handleEditMemberMode#0" expanded="false" />
+                <element signature="e#22324#22360#0" expanded="false" />
+                <element signature="n#!!block;n#updateJsonState#0" expanded="false" />
+                <element signature="e#22400#22427#0" expanded="false" />
+                <element signature="e#22644#22671#0" expanded="false" />
+                <element signature="n#!!block;n#reqBoardListener#0" expanded="false" />
+                <element signature="n#!!block;n#reqMemberListener#0" expanded="false" />
+                <element signature="n#!!block;n#getBoardData#0" expanded="false" />
+                <element signature="n#!!block;n#getMembersData#0" expanded="false" />
+                <element signature="e#23483#23523#0" expanded="false" />
+                <element signature="e#23634#23660#0" expanded="false" />
+                <marker date="1489952798000" expanded="false" signature="1330:1428" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="1408:1417" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="1639:1872" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="1760:1862" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="2277:2516" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="2301:2508" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="2338:2498" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="2389:2485" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="2572:4203" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="2621:4169" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="2655:4134" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="2688:2898" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="2771:2844" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="2793:2830" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="2817:2824" ph="×" />
+                <marker date="1489952798000" expanded="false" signature="2928:3900" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="2965:3889" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="2996:3299" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="3102:3286" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="3330:3540" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="3432:3527" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="3497:3514" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="3571:3795" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="3659:3784" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="3699:3773" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="3747:3762" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="3931:4123" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="5404:5534" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="5418:5523" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="6761:7599" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="6812:7373" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="6958:7358" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="7075:7201" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="7272:7341" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="7406:7474" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="7437:7459" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="7509:7586" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="18721:18904" ph="..." />
+                <marker date="1489952798000" expanded="false" signature="18960:19142" ph="..." />
               </folding>
             </state>
           </provider>
@@ -88,36 +164,50 @@
       <file leaf-file-name="model.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JS/model.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="145" column="37" lean-forward="false" selection-start-line="145" selection-start-column="37" selection-end-line="145" selection-end-column="37" />
+            <state relative-caret-position="45">
+              <caret line="6" column="39" lean-forward="false" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
               <folding>
-                <element signature="e#18#48#0" expanded="false" />
+                <element signature="e#17#47#0" expanded="false" />
                 <element signature="n#!!block;n#removeListFromappData#0" expanded="false" />
-                <element signature="e#135#283#0" expanded="false" />
-                <element signature="e#183#279#0" expanded="false" />
                 <element signature="n#!!block;n#deleteMemberFromAppData#0" expanded="false" />
-                <element signature="e#386#478#0" expanded="false" />
-                <element signature="e#427#474#0" expanded="false" />
+                <element signature="e#314#406#0" expanded="false" />
+                <element signature="e#355#402#0" expanded="false" />
                 <element signature="n#!!block;n#deleteMemberFromAppDataTasks#0" expanded="false" />
-                <element signature="e#568#760#0" expanded="false" />
-                <element signature="e#603#754#0" expanded="false" />
-                <element signature="e#651#746#0" expanded="false" />
-                <element signature="e#686#738#0" expanded="false" />
+                <element signature="e#496#688#0" expanded="false" />
+                <element signature="e#531#682#0" expanded="false" />
+                <element signature="e#579#674#0" expanded="false" />
+                <element signature="e#614#666#0" expanded="false" />
                 <element signature="n#!!block;n#addNewListToappData#0" expanded="false" />
                 <element signature="n#!!block;n#addnewCardtoAppData#0" expanded="false" />
-                <element signature="e#1107#1261#0" expanded="false" />
-                <element signature="e#1135#1257#0" expanded="false" />
+                <element signature="e#1035#1189#0" expanded="false" />
+                <element signature="e#1063#1185#0" expanded="false" />
                 <element signature="n#!!block;n#saveMemberToAppData#0" expanded="false" />
-                <element signature="e#1368#1460#0" expanded="false" />
-                <element signature="e#1409#1456#0" expanded="false" />
+                <element signature="e#1296#1388#0" expanded="false" />
+                <element signature="e#1337#1384#0" expanded="false" />
                 <element signature="n#!!block;n#addNewMemberToAppData#0" expanded="false" />
-                <element signature="e#1527#1559#0" expanded="false" />
+                <element signature="e#1455#1487#0" expanded="false" />
                 <element signature="n#!!block;n#editListTitleInAppData#0" expanded="false" />
-                <element signature="e#2630#3146#0" expanded="false" />
-                <element signature="e#2829#3140#0" expanded="false" />
-                <element signature="e#3023#3130#0" expanded="false" />
-                <element signature="e#3059#3120#0" expanded="false" />
+                <element signature="e#1610#1677#0" expanded="false" />
+                <element signature="e#1640#1673#0" expanded="false" />
+                <element signature="n#!!block;n#saveModalChangesToAppData#0" expanded="false" />
+                <element signature="e#2101#2218#0" expanded="false" />
+                <element signature="e#2138#2214#0" expanded="false" />
+                <element signature="e#2170#2208#0" expanded="false" />
+                <element signature="n#!!block;n#moveList#0" expanded="false" />
+                <element signature="e#2520#3077#0" expanded="false" />
+                <element signature="e#2557#3073#0" expanded="false" />
+                <element signature="e#2756#3067#0" expanded="false" />
+                <element signature="e#2950#3057#0" expanded="false" />
+                <element signature="e#2986#3047#0" expanded="false" />
+                <element signature="n#!!block;n#updateCheckedMembersInAppData#0" expanded="false" />
+                <element signature="e#3303#3405#0" expanded="false" />
+                <element signature="e#3328#3401#0" expanded="false" />
                 <element signature="n#!!block;n#deleteCardFromAppData#0" expanded="false" />
+                <element signature="e#3484#3616#0" expanded="false" />
+                <element signature="e#3526#3610#0" expanded="false" />
+                <element signature="e#3558#3604#0" expanded="false" />
+                <element signature="n#!!block;n#getMembers#0" expanded="false" />
+                <element signature="n#!!block;n#getLists#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -216,8 +306,8 @@
         <option value="$PROJECT_DIR$/assets/members.json" />
         <option value="$PROJECT_DIR$/main.css" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/JS/model.js" />
         <option value="$PROJECT_DIR$/JS/main.js" />
+        <option value="$PROJECT_DIR$/JS/model.js" />
       </list>
     </option>
   </component>
@@ -405,12 +495,12 @@
       <workItem from="1488619296390" duration="37186000" />
       <workItem from="1488722562766" duration="59094000" />
       <workItem from="1489056044653" duration="170522000" />
-      <workItem from="1489945032157" duration="4646000" />
+      <workItem from="1489945032157" duration="6220000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="391333000" />
+    <option name="totallyTimeSpent" value="392907000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -460,48 +550,125 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="n#!!doc;n#initTopbar#0" expanded="false" />
+            <element signature="e#42#157#0" expanded="false" />
+            <element signature="n#!!block;n#initTopbar#0" expanded="false" />
+            <element signature="e#313#340#0" expanded="false" />
             <element signature="n#!!block;n#initPageByHash#0" expanded="false" />
+            <element signature="e#461#619#0" expanded="false" />
+            <element signature="e#955#1030#0" expanded="false" />
+            <element signature="e#1057#1130#0" expanded="false" />
             <element signature="n#!!block;n#initPageByMembers#0" expanded="false" />
+            <element signature="e#2006#2035#0" expanded="false" />
             <element signature="n#!!block;n#initPageByBoard#0" expanded="false" />
-            <marker date="1489950384000" expanded="true" signature="1330:1428" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="1408:1417" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="1639:1872" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="1760:1862" ph="..." />
-            <marker date="1489950384000" expanded="false" signature="2277:2516" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2301:2508" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2338:2498" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2389:2485" ph="..." />
-            <marker date="1489950384000" expanded="false" signature="2572:4203" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2621:4169" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2655:4134" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2688:2898" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2771:2844" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2793:2830" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2817:2824" ph="×" />
-            <marker date="1489950384000" expanded="true" signature="2928:3900" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2965:3889" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2996:3299" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3102:3286" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3330:3540" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3432:3527" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3497:3514" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3571:3795" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3659:3784" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3699:3773" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3747:3762" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3931:4123" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="5404:5534" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="5418:5523" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="6761:7599" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="6812:7373" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="6958:7358" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="7075:7201" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="7272:7341" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="7406:7474" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="7437:7459" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="7509:7586" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="18674:18857" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="18913:19095" ph="..." />
+            <element signature="e#4433#4464#0" expanded="false" />
+            <element signature="n#!!block;n#addModalMembers#0" expanded="false" />
+            <element signature="e#5352#5541#0" expanded="false" />
+            <element signature="n#!!block;n#deleteCard#0" expanded="false" />
+            <element signature="e#5952#6047#0" expanded="false" />
+            <element signature="e#6005#6041#0" expanded="false" />
+            <element signature="e#6165#6258#0" expanded="false" />
+            <element signature="e#6220#6252#0" expanded="false" />
+            <element signature="e#6299#6323#0" expanded="false" />
+            <element signature="n#!!block;n#addNewList#0" expanded="false" />
+            <element signature="e#8176#8763#0" expanded="false" />
+            <element signature="e#8723#8759#0" expanded="false" />
+            <element signature="e#8771#9276#0" expanded="false" />
+            <element signature="e#8974#9040#0" expanded="false" />
+            <element signature="n#!!block;n#addListHandler#0" expanded="false" />
+            <element signature="e#9455#9481#0" expanded="false" />
+            <element signature="n#!!block;n#handleAddingCardEvent#0" expanded="false" />
+            <element signature="e#9664#9782#0" expanded="false" />
+            <element signature="n#!!block;n#titleInputKeyHandler#0" expanded="false" />
+            <element signature="e#9887#9924#0" expanded="false" />
+            <element signature="n#!!block;n#titleBlurHandler#0" expanded="false" />
+            <element signature="n#!!block;n#titleClickHandler#0" expanded="false" />
+            <element signature="n#!!block;n#titleChangeHandler#0" expanded="false" />
+            <element signature="e#11066#11149#0" expanded="false" />
+            <element signature="n#!!block;n#addCard#0" expanded="false" />
+            <element signature="e#11756#13395#0" expanded="false" />
+            <element signature="e#12326#13232#0" expanded="false" />
+            <element signature="e#12543#12730#0" expanded="false" />
+            <element signature="e#12671#12722#0" expanded="false" />
+            <element signature="e#12957#13032#0" expanded="false" />
+            <element signature="e#13414#13950#0" expanded="false" />
+            <element signature="e#13558#13631#0" expanded="false" />
+            <element signature="n#!!block;n#targetAllAddCardBtns#0" expanded="false" />
+            <element signature="e#14079#14116#0" expanded="false" />
+            <element signature="n#!!block;n#makeListSupportTitle#0" expanded="false" />
+            <element signature="e#14454#14679#0" expanded="false" />
+            <element signature="e#14848#14886#0" expanded="false" />
+            <element signature="n#!!block;n#openUL#0" expanded="false" />
+            <element signature="n#!!block;n#toggleUL#0" expanded="false" />
+            <element signature="e#15585#15630#0" expanded="false" />
+            <element signature="n#!!block;n#showEditModal#0" expanded="false" />
+            <element signature="e#17086#17235#0" expanded="false" />
+            <element signature="e#17190#17231#0" expanded="false" />
+            <element signature="e#17417#17528#0" expanded="false" />
+            <element signature="e#17657#17777#0" expanded="false" />
+            <element signature="e#17734#17773#0" expanded="false" />
+            <element signature="n#!!block;n#findCardByID#0" expanded="false" />
+            <element signature="e#17886#17987#0" expanded="false" />
+            <element signature="e#17953#17983#0" expanded="false" />
+            <element signature="n#!!block;n#findListByID#0" expanded="false" />
+            <element signature="e#18096#18155#0" expanded="false" />
+            <element signature="e#18126#18151#0" expanded="false" />
+            <element signature="n#!!block;n#closeEditModal#0" expanded="false" />
+            <element signature="e#19453#19690#0" expanded="false" />
+            <element signature="e#19699#20088#0" expanded="false" />
+            <element signature="n#!!block;n#handleDeleteMember#0" expanded="false" />
+            <element signature="n#!!block;n#handleSaveMember#0" expanded="false" />
+            <element signature="n#!!block;n#handleCancelEvent#0" expanded="false" />
+            <element signature="n#!!block;n#handleEditMemberMode#0" expanded="false" />
+            <element signature="e#22324#22360#0" expanded="false" />
+            <element signature="n#!!block;n#updateJsonState#0" expanded="false" />
+            <element signature="e#22400#22427#0" expanded="false" />
+            <element signature="e#22644#22671#0" expanded="false" />
+            <element signature="n#!!block;n#reqBoardListener#0" expanded="false" />
+            <element signature="n#!!block;n#reqMemberListener#0" expanded="false" />
+            <element signature="n#!!block;n#getBoardData#0" expanded="false" />
+            <element signature="n#!!block;n#getMembersData#0" expanded="false" />
+            <element signature="e#23483#23523#0" expanded="false" />
+            <element signature="e#23634#23660#0" expanded="false" />
+            <marker date="1489952798000" expanded="false" signature="1330:1428" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="1408:1417" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="1639:1872" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="1760:1862" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2277:2516" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2301:2508" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2338:2498" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2389:2485" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2572:4203" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2621:4169" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2655:4134" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2688:2898" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2771:2844" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2793:2830" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2817:2824" ph="×" />
+            <marker date="1489952798000" expanded="false" signature="2928:3900" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2965:3889" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2996:3299" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3102:3286" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3330:3540" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3432:3527" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3497:3514" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3571:3795" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3659:3784" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3699:3773" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3747:3762" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3931:4123" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="5404:5534" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="5418:5523" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="6761:7599" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="6812:7373" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="6958:7358" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="7075:7201" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="7272:7341" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="7406:7474" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="7437:7459" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="7509:7586" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="18721:18904" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="18960:19142" ph="..." />
           </folding>
         </state>
       </provider>
@@ -511,33 +678,47 @@
         <state relative-caret-position="555">
           <caret line="168" column="1" lean-forward="true" selection-start-line="166" selection-start-column="0" selection-end-line="168" selection-end-column="1" />
           <folding>
-            <element signature="e#18#48#0" expanded="false" />
+            <element signature="e#17#47#0" expanded="false" />
             <element signature="n#!!block;n#removeListFromappData#0" expanded="false" />
-            <element signature="e#135#283#0" expanded="false" />
-            <element signature="e#183#279#0" expanded="false" />
             <element signature="n#!!block;n#deleteMemberFromAppData#0" expanded="false" />
-            <element signature="e#386#478#0" expanded="false" />
-            <element signature="e#427#474#0" expanded="false" />
+            <element signature="e#314#406#0" expanded="false" />
+            <element signature="e#355#402#0" expanded="false" />
             <element signature="n#!!block;n#deleteMemberFromAppDataTasks#0" expanded="false" />
-            <element signature="e#568#760#0" expanded="false" />
-            <element signature="e#603#754#0" expanded="false" />
-            <element signature="e#651#746#0" expanded="false" />
-            <element signature="e#686#738#0" expanded="false" />
+            <element signature="e#496#688#0" expanded="false" />
+            <element signature="e#531#682#0" expanded="false" />
+            <element signature="e#579#674#0" expanded="false" />
+            <element signature="e#614#666#0" expanded="false" />
             <element signature="n#!!block;n#addNewListToappData#0" expanded="false" />
             <element signature="n#!!block;n#addnewCardtoAppData#0" expanded="false" />
-            <element signature="e#1107#1261#0" expanded="false" />
-            <element signature="e#1135#1257#0" expanded="false" />
+            <element signature="e#1035#1189#0" expanded="false" />
+            <element signature="e#1063#1185#0" expanded="false" />
             <element signature="n#!!block;n#saveMemberToAppData#0" expanded="false" />
-            <element signature="e#1368#1460#0" expanded="false" />
-            <element signature="e#1409#1456#0" expanded="false" />
+            <element signature="e#1296#1388#0" expanded="false" />
+            <element signature="e#1337#1384#0" expanded="false" />
             <element signature="n#!!block;n#addNewMemberToAppData#0" expanded="false" />
-            <element signature="e#1527#1559#0" expanded="false" />
+            <element signature="e#1455#1487#0" expanded="false" />
             <element signature="n#!!block;n#editListTitleInAppData#0" expanded="false" />
-            <element signature="e#2630#3146#0" expanded="false" />
-            <element signature="e#2829#3140#0" expanded="false" />
-            <element signature="e#3023#3130#0" expanded="false" />
-            <element signature="e#3059#3120#0" expanded="false" />
+            <element signature="e#1610#1677#0" expanded="false" />
+            <element signature="e#1640#1673#0" expanded="false" />
+            <element signature="n#!!block;n#saveModalChangesToAppData#0" expanded="false" />
+            <element signature="e#2101#2218#0" expanded="false" />
+            <element signature="e#2138#2214#0" expanded="false" />
+            <element signature="e#2170#2208#0" expanded="false" />
+            <element signature="n#!!block;n#moveList#0" expanded="false" />
+            <element signature="e#2520#3077#0" expanded="false" />
+            <element signature="e#2557#3073#0" expanded="false" />
+            <element signature="e#2756#3067#0" expanded="false" />
+            <element signature="e#2950#3057#0" expanded="false" />
+            <element signature="e#2986#3047#0" expanded="false" />
+            <element signature="n#!!block;n#updateCheckedMembersInAppData#0" expanded="false" />
+            <element signature="e#3303#3405#0" expanded="false" />
+            <element signature="e#3328#3401#0" expanded="false" />
             <element signature="n#!!block;n#deleteCardFromAppData#0" expanded="false" />
+            <element signature="e#3484#3616#0" expanded="false" />
+            <element signature="e#3526#3610#0" expanded="false" />
+            <element signature="e#3558#3604#0" expanded="false" />
+            <element signature="n#!!block;n#getMembers#0" expanded="false" />
+            <element signature="n#!!block;n#getLists#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -579,48 +760,125 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="n#!!doc;n#initTopbar#0" expanded="false" />
+            <element signature="e#42#157#0" expanded="false" />
+            <element signature="n#!!block;n#initTopbar#0" expanded="false" />
+            <element signature="e#313#340#0" expanded="false" />
             <element signature="n#!!block;n#initPageByHash#0" expanded="false" />
+            <element signature="e#461#619#0" expanded="false" />
+            <element signature="e#955#1030#0" expanded="false" />
+            <element signature="e#1057#1130#0" expanded="false" />
             <element signature="n#!!block;n#initPageByMembers#0" expanded="false" />
+            <element signature="e#2006#2035#0" expanded="false" />
             <element signature="n#!!block;n#initPageByBoard#0" expanded="false" />
-            <marker date="1489950384000" expanded="true" signature="1330:1428" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="1408:1417" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="1639:1872" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="1760:1862" ph="..." />
-            <marker date="1489950384000" expanded="false" signature="2277:2516" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2301:2508" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2338:2498" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2389:2485" ph="..." />
-            <marker date="1489950384000" expanded="false" signature="2572:4203" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2621:4169" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2655:4134" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2688:2898" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2771:2844" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2793:2830" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2817:2824" ph="×" />
-            <marker date="1489950384000" expanded="true" signature="2928:3900" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2965:3889" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2996:3299" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3102:3286" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3330:3540" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3432:3527" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3497:3514" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3571:3795" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3659:3784" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3699:3773" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3747:3762" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3931:4123" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="5404:5534" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="5418:5523" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="6761:7599" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="6812:7373" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="6958:7358" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="7075:7201" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="7272:7341" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="7406:7474" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="7437:7459" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="7509:7586" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="18674:18857" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="18913:19095" ph="..." />
+            <element signature="e#4433#4464#0" expanded="false" />
+            <element signature="n#!!block;n#addModalMembers#0" expanded="false" />
+            <element signature="e#5352#5541#0" expanded="false" />
+            <element signature="n#!!block;n#deleteCard#0" expanded="false" />
+            <element signature="e#5952#6047#0" expanded="false" />
+            <element signature="e#6005#6041#0" expanded="false" />
+            <element signature="e#6165#6258#0" expanded="false" />
+            <element signature="e#6220#6252#0" expanded="false" />
+            <element signature="e#6299#6323#0" expanded="false" />
+            <element signature="n#!!block;n#addNewList#0" expanded="false" />
+            <element signature="e#8176#8763#0" expanded="false" />
+            <element signature="e#8723#8759#0" expanded="false" />
+            <element signature="e#8771#9276#0" expanded="false" />
+            <element signature="e#8974#9040#0" expanded="false" />
+            <element signature="n#!!block;n#addListHandler#0" expanded="false" />
+            <element signature="e#9455#9481#0" expanded="false" />
+            <element signature="n#!!block;n#handleAddingCardEvent#0" expanded="false" />
+            <element signature="e#9664#9782#0" expanded="false" />
+            <element signature="n#!!block;n#titleInputKeyHandler#0" expanded="false" />
+            <element signature="e#9887#9924#0" expanded="false" />
+            <element signature="n#!!block;n#titleBlurHandler#0" expanded="false" />
+            <element signature="n#!!block;n#titleClickHandler#0" expanded="false" />
+            <element signature="n#!!block;n#titleChangeHandler#0" expanded="false" />
+            <element signature="e#11066#11149#0" expanded="false" />
+            <element signature="n#!!block;n#addCard#0" expanded="false" />
+            <element signature="e#11756#13395#0" expanded="false" />
+            <element signature="e#12326#13232#0" expanded="false" />
+            <element signature="e#12543#12730#0" expanded="false" />
+            <element signature="e#12671#12722#0" expanded="false" />
+            <element signature="e#12957#13032#0" expanded="false" />
+            <element signature="e#13414#13950#0" expanded="false" />
+            <element signature="e#13558#13631#0" expanded="false" />
+            <element signature="n#!!block;n#targetAllAddCardBtns#0" expanded="false" />
+            <element signature="e#14079#14116#0" expanded="false" />
+            <element signature="n#!!block;n#makeListSupportTitle#0" expanded="false" />
+            <element signature="e#14454#14679#0" expanded="false" />
+            <element signature="e#14848#14886#0" expanded="false" />
+            <element signature="n#!!block;n#openUL#0" expanded="false" />
+            <element signature="n#!!block;n#toggleUL#0" expanded="false" />
+            <element signature="e#15585#15630#0" expanded="false" />
+            <element signature="n#!!block;n#showEditModal#0" expanded="false" />
+            <element signature="e#17086#17235#0" expanded="false" />
+            <element signature="e#17190#17231#0" expanded="false" />
+            <element signature="e#17417#17528#0" expanded="false" />
+            <element signature="e#17657#17777#0" expanded="false" />
+            <element signature="e#17734#17773#0" expanded="false" />
+            <element signature="n#!!block;n#findCardByID#0" expanded="false" />
+            <element signature="e#17886#17987#0" expanded="false" />
+            <element signature="e#17953#17983#0" expanded="false" />
+            <element signature="n#!!block;n#findListByID#0" expanded="false" />
+            <element signature="e#18096#18155#0" expanded="false" />
+            <element signature="e#18126#18151#0" expanded="false" />
+            <element signature="n#!!block;n#closeEditModal#0" expanded="false" />
+            <element signature="e#19453#19690#0" expanded="false" />
+            <element signature="e#19699#20088#0" expanded="false" />
+            <element signature="n#!!block;n#handleDeleteMember#0" expanded="false" />
+            <element signature="n#!!block;n#handleSaveMember#0" expanded="false" />
+            <element signature="n#!!block;n#handleCancelEvent#0" expanded="false" />
+            <element signature="n#!!block;n#handleEditMemberMode#0" expanded="false" />
+            <element signature="e#22324#22360#0" expanded="false" />
+            <element signature="n#!!block;n#updateJsonState#0" expanded="false" />
+            <element signature="e#22400#22427#0" expanded="false" />
+            <element signature="e#22644#22671#0" expanded="false" />
+            <element signature="n#!!block;n#reqBoardListener#0" expanded="false" />
+            <element signature="n#!!block;n#reqMemberListener#0" expanded="false" />
+            <element signature="n#!!block;n#getBoardData#0" expanded="false" />
+            <element signature="n#!!block;n#getMembersData#0" expanded="false" />
+            <element signature="e#23483#23523#0" expanded="false" />
+            <element signature="e#23634#23660#0" expanded="false" />
+            <marker date="1489952798000" expanded="false" signature="1330:1428" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="1408:1417" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="1639:1872" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="1760:1862" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2277:2516" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2301:2508" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2338:2498" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2389:2485" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2572:4203" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2621:4169" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2655:4134" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2688:2898" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2771:2844" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2793:2830" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2817:2824" ph="×" />
+            <marker date="1489952798000" expanded="false" signature="2928:3900" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2965:3889" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2996:3299" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3102:3286" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3330:3540" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3432:3527" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3497:3514" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3571:3795" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3659:3784" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3699:3773" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3747:3762" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3931:4123" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="5404:5534" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="5418:5523" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="6761:7599" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="6812:7373" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="6958:7358" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="7075:7201" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="7272:7341" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="7406:7474" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="7437:7459" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="7509:7586" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="18721:18904" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="18960:19142" ph="..." />
           </folding>
         </state>
       </provider>
@@ -835,14 +1093,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/board-advanced.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="5" lean-forward="false" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4065">
@@ -859,89 +1109,188 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/board-advanced.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="5" lean-forward="false" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/JS/model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="145" column="37" lean-forward="false" selection-start-line="145" selection-start-column="37" selection-end-line="145" selection-end-column="37" />
+        <state relative-caret-position="45">
+          <caret line="6" column="39" lean-forward="false" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
           <folding>
-            <element signature="e#18#48#0" expanded="false" />
+            <element signature="e#17#47#0" expanded="false" />
             <element signature="n#!!block;n#removeListFromappData#0" expanded="false" />
-            <element signature="e#135#283#0" expanded="false" />
-            <element signature="e#183#279#0" expanded="false" />
             <element signature="n#!!block;n#deleteMemberFromAppData#0" expanded="false" />
-            <element signature="e#386#478#0" expanded="false" />
-            <element signature="e#427#474#0" expanded="false" />
+            <element signature="e#314#406#0" expanded="false" />
+            <element signature="e#355#402#0" expanded="false" />
             <element signature="n#!!block;n#deleteMemberFromAppDataTasks#0" expanded="false" />
-            <element signature="e#568#760#0" expanded="false" />
-            <element signature="e#603#754#0" expanded="false" />
-            <element signature="e#651#746#0" expanded="false" />
-            <element signature="e#686#738#0" expanded="false" />
+            <element signature="e#496#688#0" expanded="false" />
+            <element signature="e#531#682#0" expanded="false" />
+            <element signature="e#579#674#0" expanded="false" />
+            <element signature="e#614#666#0" expanded="false" />
             <element signature="n#!!block;n#addNewListToappData#0" expanded="false" />
             <element signature="n#!!block;n#addnewCardtoAppData#0" expanded="false" />
-            <element signature="e#1107#1261#0" expanded="false" />
-            <element signature="e#1135#1257#0" expanded="false" />
+            <element signature="e#1035#1189#0" expanded="false" />
+            <element signature="e#1063#1185#0" expanded="false" />
             <element signature="n#!!block;n#saveMemberToAppData#0" expanded="false" />
-            <element signature="e#1368#1460#0" expanded="false" />
-            <element signature="e#1409#1456#0" expanded="false" />
+            <element signature="e#1296#1388#0" expanded="false" />
+            <element signature="e#1337#1384#0" expanded="false" />
             <element signature="n#!!block;n#addNewMemberToAppData#0" expanded="false" />
-            <element signature="e#1527#1559#0" expanded="false" />
+            <element signature="e#1455#1487#0" expanded="false" />
             <element signature="n#!!block;n#editListTitleInAppData#0" expanded="false" />
-            <element signature="e#2630#3146#0" expanded="false" />
-            <element signature="e#2829#3140#0" expanded="false" />
-            <element signature="e#3023#3130#0" expanded="false" />
-            <element signature="e#3059#3120#0" expanded="false" />
+            <element signature="e#1610#1677#0" expanded="false" />
+            <element signature="e#1640#1673#0" expanded="false" />
+            <element signature="n#!!block;n#saveModalChangesToAppData#0" expanded="false" />
+            <element signature="e#2101#2218#0" expanded="false" />
+            <element signature="e#2138#2214#0" expanded="false" />
+            <element signature="e#2170#2208#0" expanded="false" />
+            <element signature="n#!!block;n#moveList#0" expanded="false" />
+            <element signature="e#2520#3077#0" expanded="false" />
+            <element signature="e#2557#3073#0" expanded="false" />
+            <element signature="e#2756#3067#0" expanded="false" />
+            <element signature="e#2950#3057#0" expanded="false" />
+            <element signature="e#2986#3047#0" expanded="false" />
+            <element signature="n#!!block;n#updateCheckedMembersInAppData#0" expanded="false" />
+            <element signature="e#3303#3405#0" expanded="false" />
+            <element signature="e#3328#3401#0" expanded="false" />
             <element signature="n#!!block;n#deleteCardFromAppData#0" expanded="false" />
+            <element signature="e#3484#3616#0" expanded="false" />
+            <element signature="e#3526#3610#0" expanded="false" />
+            <element signature="e#3558#3604#0" expanded="false" />
+            <element signature="n#!!block;n#getMembers#0" expanded="false" />
+            <element signature="n#!!block;n#getLists#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JS/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-30">
-          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+        <state relative-caret-position="124">
+          <caret line="614" column="18" lean-forward="false" selection-start-line="614" selection-start-column="9" selection-end-line="614" selection-end-column="18" />
           <folding>
+            <element signature="n#!!doc;n#initTopbar#0" expanded="false" />
+            <element signature="e#42#157#0" expanded="false" />
+            <element signature="n#!!block;n#initTopbar#0" expanded="false" />
+            <element signature="e#313#340#0" expanded="false" />
             <element signature="n#!!block;n#initPageByHash#0" expanded="false" />
+            <element signature="e#461#619#0" expanded="false" />
+            <element signature="e#955#1030#0" expanded="false" />
+            <element signature="e#1057#1130#0" expanded="false" />
             <element signature="n#!!block;n#initPageByMembers#0" expanded="false" />
+            <element signature="e#2006#2035#0" expanded="false" />
             <element signature="n#!!block;n#initPageByBoard#0" expanded="false" />
-            <marker date="1489950384000" expanded="true" signature="1330:1428" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="1408:1417" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="1639:1872" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="1760:1862" ph="..." />
-            <marker date="1489950384000" expanded="false" signature="2277:2516" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2301:2508" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2338:2498" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2389:2485" ph="..." />
-            <marker date="1489950384000" expanded="false" signature="2572:4203" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2621:4169" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2655:4134" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2688:2898" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2771:2844" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2793:2830" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2817:2824" ph="×" />
-            <marker date="1489950384000" expanded="true" signature="2928:3900" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2965:3889" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="2996:3299" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3102:3286" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3330:3540" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3432:3527" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3497:3514" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3571:3795" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3659:3784" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3699:3773" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3747:3762" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="3931:4123" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="5404:5534" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="5418:5523" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="6761:7599" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="6812:7373" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="6958:7358" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="7075:7201" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="7272:7341" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="7406:7474" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="7437:7459" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="7509:7586" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="18674:18857" ph="..." />
-            <marker date="1489950384000" expanded="true" signature="18913:19095" ph="..." />
+            <element signature="e#4433#4464#0" expanded="false" />
+            <element signature="n#!!block;n#addModalMembers#0" expanded="false" />
+            <element signature="e#5352#5541#0" expanded="false" />
+            <element signature="n#!!block;n#deleteCard#0" expanded="false" />
+            <element signature="e#5952#6047#0" expanded="false" />
+            <element signature="e#6005#6041#0" expanded="false" />
+            <element signature="e#6165#6258#0" expanded="false" />
+            <element signature="e#6220#6252#0" expanded="false" />
+            <element signature="e#6299#6323#0" expanded="false" />
+            <element signature="n#!!block;n#addNewList#0" expanded="false" />
+            <element signature="e#8176#8763#0" expanded="false" />
+            <element signature="e#8723#8759#0" expanded="false" />
+            <element signature="e#8771#9276#0" expanded="false" />
+            <element signature="e#8974#9040#0" expanded="false" />
+            <element signature="n#!!block;n#addListHandler#0" expanded="false" />
+            <element signature="e#9455#9481#0" expanded="false" />
+            <element signature="n#!!block;n#handleAddingCardEvent#0" expanded="false" />
+            <element signature="e#9664#9782#0" expanded="false" />
+            <element signature="n#!!block;n#titleInputKeyHandler#0" expanded="false" />
+            <element signature="e#9887#9924#0" expanded="false" />
+            <element signature="n#!!block;n#titleBlurHandler#0" expanded="false" />
+            <element signature="n#!!block;n#titleClickHandler#0" expanded="false" />
+            <element signature="n#!!block;n#titleChangeHandler#0" expanded="false" />
+            <element signature="e#11066#11149#0" expanded="false" />
+            <element signature="n#!!block;n#addCard#0" expanded="false" />
+            <element signature="e#11756#13395#0" expanded="false" />
+            <element signature="e#12326#13232#0" expanded="false" />
+            <element signature="e#12543#12730#0" expanded="false" />
+            <element signature="e#12671#12722#0" expanded="false" />
+            <element signature="e#12957#13032#0" expanded="false" />
+            <element signature="e#13414#13950#0" expanded="false" />
+            <element signature="e#13558#13631#0" expanded="false" />
+            <element signature="n#!!block;n#targetAllAddCardBtns#0" expanded="false" />
+            <element signature="e#14079#14116#0" expanded="false" />
+            <element signature="n#!!block;n#makeListSupportTitle#0" expanded="false" />
+            <element signature="e#14454#14679#0" expanded="false" />
+            <element signature="e#14848#14886#0" expanded="false" />
+            <element signature="n#!!block;n#openUL#0" expanded="false" />
+            <element signature="n#!!block;n#toggleUL#0" expanded="false" />
+            <element signature="e#15585#15630#0" expanded="false" />
+            <element signature="n#!!block;n#showEditModal#0" expanded="false" />
+            <element signature="e#17086#17235#0" expanded="false" />
+            <element signature="e#17190#17231#0" expanded="false" />
+            <element signature="e#17417#17528#0" expanded="false" />
+            <element signature="e#17657#17777#0" expanded="false" />
+            <element signature="e#17734#17773#0" expanded="false" />
+            <element signature="n#!!block;n#findCardByID#0" expanded="false" />
+            <element signature="e#17886#17987#0" expanded="false" />
+            <element signature="e#17953#17983#0" expanded="false" />
+            <element signature="n#!!block;n#findListByID#0" expanded="false" />
+            <element signature="e#18096#18155#0" expanded="false" />
+            <element signature="e#18126#18151#0" expanded="false" />
+            <element signature="n#!!block;n#closeEditModal#0" expanded="false" />
+            <element signature="e#19453#19690#0" expanded="false" />
+            <element signature="e#19699#20088#0" expanded="false" />
+            <element signature="n#!!block;n#handleDeleteMember#0" expanded="false" />
+            <element signature="n#!!block;n#handleSaveMember#0" expanded="false" />
+            <element signature="n#!!block;n#handleCancelEvent#0" expanded="false" />
+            <element signature="n#!!block;n#handleEditMemberMode#0" expanded="false" />
+            <element signature="e#22324#22360#0" expanded="false" />
+            <element signature="n#!!block;n#updateJsonState#0" expanded="false" />
+            <element signature="e#22400#22427#0" expanded="false" />
+            <element signature="e#22644#22671#0" expanded="false" />
+            <element signature="n#!!block;n#reqBoardListener#0" expanded="false" />
+            <element signature="n#!!block;n#reqMemberListener#0" expanded="false" />
+            <element signature="n#!!block;n#getBoardData#0" expanded="false" />
+            <element signature="n#!!block;n#getMembersData#0" expanded="false" />
+            <element signature="e#23483#23523#0" expanded="false" />
+            <element signature="e#23634#23660#0" expanded="false" />
+            <marker date="1489952798000" expanded="false" signature="1330:1428" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="1408:1417" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="1639:1872" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="1760:1862" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2277:2516" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2301:2508" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2338:2498" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2389:2485" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2572:4203" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2621:4169" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2655:4134" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2688:2898" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2771:2844" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2793:2830" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2817:2824" ph="×" />
+            <marker date="1489952798000" expanded="false" signature="2928:3900" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2965:3889" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="2996:3299" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3102:3286" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3330:3540" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3432:3527" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3497:3514" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3571:3795" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3659:3784" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3699:3773" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3747:3762" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="3931:4123" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="5404:5534" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="5418:5523" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="6761:7599" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="6812:7373" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="6958:7358" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="7075:7201" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="7272:7341" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="7406:7474" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="7437:7459" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="7509:7586" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="18721:18904" ph="..." />
+            <marker date="1489952798000" expanded="false" signature="18960:19142" ph="..." />
           </folding>
         </state>
       </provider>
