@@ -1,158 +1,4 @@
-/**
- * MODEL ----> appData Manipulation
- *
- */
 
-
-const appData = {
-  lists: [],
-  members: []
-};
-
-function removeListFromappData(listName) {
-  appData.lists.forEach((item, index) => {
-
-    if (item.title === listName.textContent) {
-
-      // delete from appData in matched location
-      appData.lists.splice(index, 1);
-
-    }
-  });
-}
-
-
-function deleteMemberFromAppData(memberId) {
-  appData.members.forEach((appDataMember, index) => {
-    if (appDataMember.id === memberId) {
-      appData.members.splice(index, 1);
-    }
-  });
-}
-
-function deleteMemberFromAppDataTasks(memberId) {
-  appData.lists.forEach((list) => {
-    list.tasks.forEach((task) => {
-      task.members.forEach((member, index) => {
-        if (member === memberId) {
-          task.members.splice(index, 1);
-        }
-      });
-    });
-  });
-}
-
-function addNewListToappData(newListObj) {
-  appData.lists.push(newListObj);
-}
-
-function addnewCardtoAppData(cardslist, newCardData) {
-
-  // catch clicked list unique-ID (so we can compare it to appData & find it's matching location)
-  const liID = cardslist.closest('.list-li').getAttribute('unique-id');
-
-  appData.lists.forEach((item) => {
-    if (item.id === liID) {
-      // push new card to the matched location
-      item.tasks.push(newCardData);
-      // console.info(appData);
-    }
-  });
-}
-
-function saveMemberToAppData(memberId, memberInput) {
-  for (const appDataMember of appData.members) {
-    if (appDataMember.id === memberId) {
-      appDataMember.name = memberInput;
-    }
-  }
-}
-
-function addNewMemberToAppData(id, span) {
-  const newMember = {
-    id: id,
-    name: span
-  };
-  appData.members.push(newMember);
-}
-
-function editListTitleInAppData(input, listID) {
-  appData.lists.forEach((item) => {
-    if (listID === item.id) {
-      item.title = input;
-    }
-
-  });
-}
-
-
-function saveModalChangesToAppData(event) {
-  const target = event.target;
-  const modal = target.closest('.mymodal');
-  const cardID = modal.querySelector('.relevent-card-id').textContent;
-  const listID = modal.querySelector('.relevent-list-id').textContent;
-  let textBox = modal.querySelector('.text-box').value;
-  // update text in appData
-  const appDataLists = appData.lists;
-  for (const list of appDataLists) {
-    for (const task of list.tasks) {
-      if (task.id === cardID) {
-        task.text = textBox;
-      }
-    }
-  }
-  updateCheckedMembersInAppData(modal, cardID);
-  moveList(modal, cardID, listID);
-  initPageByHash();
-  closeEditModal();
-}
-
-function moveList(modal, cardID, listID) {
-  const listMenu = modal.querySelectorAll('option');
-  const matchingCard = findCardByID(cardID);
-
-  for (const option of listMenu) {
-
-    if (option.selected === true) {
-
-      const optionID = option.getAttribute('unique-id');
-      const matchingList = findListByID(optionID);
-      const currentList = findListByID(listID);
-
-      if (optionID !== currentList.id) {
-
-        // push card to selected list in AppData
-        matchingList.tasks.push(matchingCard);
-
-
-        // remove card from current list
-
-        currentList.tasks.forEach((task, index) => {
-          if (task.id === cardID) {
-            currentList.tasks.splice(index, 1);
-          }
-        });
-      }
-    }
-  }
-}
-
-//delete card from appData
-function deleteCardFromAppData() {
-
-}
-
-//update checked members in appData
-function updateCheckedMembersInAppData(modal, cardID) {
-  const memberInputs = modal.querySelectorAll('input');
-  const matchingCard = findCardByID(cardID);
-  matchingCard.members = [];
-  for (const input of memberInputs) {
-    if (input.checked) {
-      matchingCard.members.push(input.getAttribute('unique-id'));
-    }
-  }
-}
 /**
  * VIEW ------> UI Manipulation
  */
@@ -208,7 +54,7 @@ function initPageByHash() {
     const wrapUl = document.querySelector('.list-group');
     wrapUl.innerHTML = inputTemplate;
 
-    for (const member of appData.members) {
+    for (const member of getMembers()) {
       addMembers(member);
     }
 
@@ -284,7 +130,7 @@ function initPageByHash() {
     mainSection.innerHTML = boardTemplate;
 
     // creates board lists from appData with addNewList function
-    for (const list of appData.lists) {
+    for (const list of getLists()) {
       addNewList(list);
     }
     addListHandler();
@@ -302,7 +148,7 @@ function initPageByHash() {
     saveBtn.addEventListener('click', saveModalChangesToAppData);
 
     // add members to modal from members appData
-    const membersFromAppData = appData.members;
+    const membersFromAppData = getMembers();
     const membersDiv = modal.querySelector('.members-checkbox');
     for (const member of membersFromAppData) {
       membersDiv.innerHTML += `<div class="checkbox">
@@ -312,13 +158,11 @@ function initPageByHash() {
     </div>`;
     }
 
-    // add lists to modal from appData
-    const listsFromAppData = appData.lists;
-    const listsMenu = modal.querySelector('.select-list-menu');
-    for (const list of listsFromAppData) {
-      listsMenu.innerHTML += `<option value="${list.title}" unique-id="${list.id}">${list.title}</option>`;
+    // handle delete button
+    const deleteBtn = modal.querySelector('.delete-card');
+    console.info(deleteBtn);
+    deleteBtn.addEventListener('click', deleteCardFromAppData);
 
-    }
 
     targetLi = document.querySelector(hash);
   }
@@ -376,9 +220,6 @@ function addNewList(data) {
   // add listener to new list's dropdown btns and makes them support delete
   const dropDownBtn = newLi.querySelector('.dropdown-toggle');
   makeTheButtonSupportDelete(dropDownBtn);
-
-  // const editBtn = newLi.querySelector('.edit-card-btn');
-  // editListButton(editBtn);
 
   const listTitle = newLi.querySelector('.span-elm');
 
@@ -521,7 +362,7 @@ function addCard(cardslist, taskData) {
     // newCardElm.textContent = taskData.text;
 
     //TODO - review this safely and surely
-    // gets memberID from appData.lists.tasks,members
+    // gets memberID from appData.lists.tasks.members
     const membersFromAppDataLists = taskData.members;
 
     // it's an array of Id's so we need to loop on it
@@ -659,6 +500,7 @@ function deleteListItem(event) {
 // ==== opens edit modal =====
 
 function showEditModal(event) {
+
   //show modal
   const modal = document.querySelector('.mymodal');
   modal.style.display = 'block';
@@ -684,23 +526,20 @@ function showEditModal(event) {
   const cardInAppData = findCardByID(cardID);
   textBox.value = cardInAppData.text;
 
-  // const appDataLists = appData.lists;
-  // for (const list of appDataLists) {
-  //   for (const task of list.tasks) {
-  //     if (task.id === releventCardSpan.textContent) {
-  //       textBox.textContent = task.text;
-  //     }
-  //   }
-  // }
-
-  const matchingCard = findCardByID(cardID);
   // fill modal with checked members
   const memberInputs = modal.querySelectorAll('input');
   for (const input of memberInputs) {
-    for (const member of matchingCard.members)
+    for (const member of cardInAppData.members)
       if (input.getAttribute('unique-id') === member) {
         input.checked = 'true';
       }
+  }
+
+  // add lists to modal from appData
+  const listsFromAppData = appData.lists;
+  const listsMenu = modal.querySelector('.select-list-menu');
+  for (const list of listsFromAppData) {
+    listsMenu.innerHTML += `<option value="${list.title}" unique-id="${list.id}">${list.title}</option>`;
   }
 
   // update modal with relevent list
@@ -710,11 +549,6 @@ function showEditModal(event) {
       option.selected = 'true';
     }
   }
-
-  //handle delete button
-  const deleteBtn = modal.querySelector('.delete-card');
-  console.info(deleteBtn);
-
 }
 
 function findCardByID(cardId) {
@@ -912,14 +746,21 @@ function getMembersData() {
   membersList.send();
 }
 
+const cacheData = getDataFromCache();
 
+if (cacheData) {
+  initPageByHash();
+}
+else {
+  getBoardData();
+  getMembersData();
+}
 /**
  *
  * Init the app
  */
 
 targetAllAddCardBtns();
-
 initTopbar();
 getBoardData();
 getMembersData();
