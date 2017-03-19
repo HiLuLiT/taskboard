@@ -14,7 +14,7 @@ function removeListFromappData(listName) {
 
     if (item.title === listName.textContent) {
 
-      // delete card from appData in matched location
+      // delete from appData in matched location
       appData.lists.splice(index, 1);
 
     }
@@ -30,6 +30,17 @@ function deleteMemberFromAppData(memberId) {
   });
 }
 
+function deleteMemberFromAppDataTasks(memberId) {
+  appData.lists.forEach((list) => {
+    list.tasks.forEach((task) => {
+      task.members.forEach((member, index) => {
+        if (member === memberId) {
+          task.members.splice(index, 1);
+        }
+      });
+    });
+  });
+}
 
 function addNewListToappData(newListObj) {
   appData.lists.push(newListObj);
@@ -98,33 +109,43 @@ function saveModalChangesToAppData(event) {
 
 function moveList(modal, cardID, listID) {
   const listMenu = modal.querySelectorAll('option');
-  const matchingCard = findCardID(cardID);
+  const matchingCard = findCardByID(cardID);
+
   for (const option of listMenu) {
 
     if (option.selected === true) {
 
-      const listToSearchInAppData = option.getAttribute('unique-id');
-      const matchingList = findListID(listToSearchInAppData);
+      const optionID = option.getAttribute('unique-id');
+      const matchingList = findListByID(optionID);
+      const currentList = findListByID(listID);
 
-      // push card to selected list
-      matchingList.tasks.push(matchingCard);
+      if (optionID !== currentList.id) {
+
+        // push card to selected list in AppData
+        matchingList.tasks.push(matchingCard);
 
 
-      // remove card from current list
-      const currentList = findListID(listID);
-      currentList.tasks.forEach((task, index) => {
-        if (task.id === cardID) {
-          currentList.tasks.splice(index, 1);
-        }
-      });
+        // remove card from current list
+
+        currentList.tasks.forEach((task, index) => {
+          if (task.id === cardID) {
+            currentList.tasks.splice(index, 1);
+          }
+        });
+      }
     }
   }
+}
+
+//delete card from appData
+function deleteCardFromAppData() {
+
 }
 
 //update checked members in appData
 function updateCheckedMembersInAppData(modal, cardID) {
   const memberInputs = modal.querySelectorAll('input');
-  const matchingCard = findCardID(cardID);
+  const matchingCard = findCardByID(cardID);
   matchingCard.members = [];
   for (const input of memberInputs) {
     if (input.checked) {
@@ -248,7 +269,7 @@ function initPageByHash() {
     </div>
     </div>
     </div>
-    <button type="button" class="btn btn-danger">Delete Card</button>
+    <button type="button" class="btn btn-danger delete-card">Delete Card</button>
     </form>
     </div>
     <div class="modal-footer">
@@ -295,7 +316,7 @@ function initPageByHash() {
     const listsFromAppData = appData.lists;
     const listsMenu = modal.querySelector('.select-list-menu');
     for (const list of listsFromAppData) {
-    listsMenu.innerHTML += `<option value="${list.title}" unique-id="${list.id}">${list.title}</option>`;
+      listsMenu.innerHTML += `<option value="${list.title}" unique-id="${list.id}">${list.title}</option>`;
 
     }
 
@@ -522,7 +543,7 @@ function addCard(cardslist, taskData) {
       const initialsArr = [];
       for (const name of nameArr) {
         const letter = name[0];
-       initialsArr.push(letter);
+        initialsArr.push(letter);
       }
       memberName.textContent = initialsArr.join('');
       memberName.title = newName;
@@ -643,28 +664,36 @@ function showEditModal(event) {
   modal.style.display = 'block';
 
   // target card id & list id and insert it to modal
-  const target = event.target;
+  let target = event.target;
+  //TODO - change parentNode to closest
   const targetCard = target.parentNode;
+
   const targetList = targetCard.closest('.list-li');
+
   const listID = targetList.getAttribute('unique-id');
   const cardID = targetCard.getAttribute('unique-id');
+
   const releventCardSpan = modal.querySelector('.relevent-card-id');
   const releventListSpan = modal.querySelector('.relevent-list-id');
   releventCardSpan.textContent = cardID;
   releventListSpan.textContent = listID;
 
   let textBox = modal.querySelector('.text-box');
-  // fill modal with text FROM appData
-  const appDataLists = appData.lists;
-  for (const list of appDataLists) {
-    for (const task of list.tasks) {
-      if (task.id === releventCardSpan.textContent) {
-        textBox.textContent = task.text;
-      }
-    }
-  }
 
-  const matchingCard = findCardID(cardID);
+  // fill modal with text FROM appData
+  const cardInAppData = findCardByID(cardID);
+  textBox.value = cardInAppData.text;
+
+  // const appDataLists = appData.lists;
+  // for (const list of appDataLists) {
+  //   for (const task of list.tasks) {
+  //     if (task.id === releventCardSpan.textContent) {
+  //       textBox.textContent = task.text;
+  //     }
+  //   }
+  // }
+
+  const matchingCard = findCardByID(cardID);
   // fill modal with checked members
   const memberInputs = modal.querySelectorAll('input');
   for (const input of memberInputs) {
@@ -682,9 +711,13 @@ function showEditModal(event) {
     }
   }
 
+  //handle delete button
+  const deleteBtn = modal.querySelector('.delete-card');
+  console.info(deleteBtn);
+
 }
 
-function findCardID(cardId) {
+function findCardByID(cardId) {
   const appDatalists = appData.lists;
   for (const list of appDatalists) {
     for (const task of list.tasks)
@@ -694,7 +727,7 @@ function findCardID(cardId) {
   }
 }
 
-function findListID(listID) {
+function findListByID(listID) {
   const appDatalists = appData.lists;
   for (const list of appDatalists) {
     if (list.id === listID) {
@@ -707,7 +740,7 @@ function findListID(listID) {
 function closeEditModal() {
   const modal = document.querySelector('.mymodal');
   modal.style.display = 'none';
-  initPageByHash();
+  // initPageByHash();
 
 }
 
@@ -786,6 +819,7 @@ function handleDeleteMember(event) {
   memberLi.remove();
   // remove from appData
   deleteMemberFromAppData(memberId);
+  deleteMemberFromAppDataTasks(memberId);
 }
 
 function handleSaveMember(event) {
