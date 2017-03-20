@@ -1,5 +1,5 @@
 
-const appData = {
+let appData = {
   lists: [],
   members: []
 };
@@ -152,4 +152,28 @@ function getMembers() {
 
 function getLists() {
   return appData.lists
+}
+
+function getTasks(data) {
+  return data.tasks;
+}
+
+function getListID(data) {
+  return data.id;
+}
+
+function getListTitle(data) {
+  return data.title;
+}
+
+function getCardID (taskData) {
+  return taskData.id;
+}
+
+function getCardText(taskData) {
+  return taskData.text;
+}
+
+function getCardMembers(taskData) {
+  return taskData.members;
 }

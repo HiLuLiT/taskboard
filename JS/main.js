@@ -165,7 +165,6 @@ function initPageByBoard() {
     deleteBtn.addEventListener('click', deleteCard);
 }
 
-
 function addModalMembers(modal) {
   const membersFromAppData = getMembers();
   const membersDiv = modal.querySelector('.members-checkbox');
@@ -177,7 +176,6 @@ function addModalMembers(modal) {
     </div>`;
   }
 }
-
 
 function deleteCard(event) {
   const target = event.target;
@@ -207,7 +205,6 @@ function deleteCard(event) {
 //====== NEW LISTS =====
 // getting board lists data from appData, creates new <li>
 function addNewList(data) {
-
   // Get a reference to the parent element
   const dadUl = document.querySelector('.lists-wrap');
   const addList = document.querySelector('.add-li');
@@ -259,10 +256,10 @@ function addNewList(data) {
 // ========== if there is appData data ========
 
     //give the list unique-id attribute from appData "id"'s
-    newLi.setAttribute('unique-id', data.id);
+    newLi.setAttribute('unique-id', getListID(data));
 
     // target data title
-    const dataTitle = data.title;
+    const dataTitle = getListTitle(data);
 
     // target new list title and gives it title from data
     listTitle.innerHTML = dataTitle;
@@ -271,7 +268,7 @@ function addNewList(data) {
     const mainUl = newLi.querySelector('.main-ul');
 
     // target array of tasks objects
-    const taskData = data.tasks;
+    const taskData = getTasks(data);
 
     // create cards for every list from appData
     for (const data of taskData) {
@@ -369,7 +366,6 @@ function titleChangeHandler(target) {
 //creates new card <li> with class & content & EDIT BTN & assigned members initials
 // cards list gives me the <ul> where add new card was clicked, taskData brings me lists from appData
 function addCard(cardslist, taskData) {
-
   const newCardElm = document.createElement('li');
   const cardTextSpan = document.createElement('span');
   const editBtn = document.createElement('button');
@@ -383,24 +379,22 @@ function addCard(cardslist, taskData) {
 
   if (taskData) {
     // ====== if there's data from appData - adding cards from appData ======
-
     newCardElm.className = "main-li";
 
     // give cards unique-id from appData
-    newCardElm.setAttribute('unique-id', taskData.id);
-
+    newCardElm.setAttribute('unique-id', getCardID(taskData));
     // inserting text to span  from appData
-    cardTextSpan.textContent = taskData.text;
+    cardTextSpan.textContent = getCardText(taskData);
     // newCardElm.textContent = taskData.text;
 
     // gets memberID from appData.lists.tasks.members
-    const membersFromAppDataLists = taskData.members;
+    const membersFromAppDataLists = getCardMembers(taskData);
 
     // it's an array of Id's so we need to loop on it
     for (const memberID of membersFromAppDataLists) {
       let newName;
       // and compare between it's ID to members.id, where every ID has a name
-      const membersFromAppDataMembers = appData.members;
+      const membersFromAppDataMembers = getMembers();
       for (const appDataMember of membersFromAppDataMembers) {
 
         // if the ID from the lists match the ID from the member, apply it's name
@@ -470,6 +464,11 @@ function makeListSupportTitle(newLi) {
 // targets all inputs
   const titleInput = document.querySelectorAll('.list-li .title-input');
 
+  // target all dropdown btns
+  const dropDownBtn = document.querySelectorAll('.dropdown-toggle');
+  for (const btn of dropDownBtn) {
+    makeTheButtonSupportDelete(btn);
+  }
   for (const title of titleInput) {
     // adds key down event listener and runs function
     title.addEventListener('keydown', titleInputKeyHandler);
@@ -477,15 +476,6 @@ function makeListSupportTitle(newLi) {
     // adds blur event listener and runs function
     title.addEventListener('blur', titleBlurHandler);
   }
-}
-
-// Dropdown menu & delete list
-
-// show ul when button is clicked
-
-const dropDownBtn = document.querySelectorAll('.dropdown-toggle');
-for (const btn of dropDownBtn) {
-  makeTheButtonSupportDelete(btn);
 }
 
 function makeTheButtonSupportDelete(btn) {
@@ -556,6 +546,7 @@ function showEditModal(event) {
 
   // fill modal with text FROM appData
   const cardInAppData = findCardByID(cardID);
+  console.info(cardInAppData);
   textBox.value = cardInAppData.text;
 
   // fill modal with checked members
@@ -568,7 +559,7 @@ function showEditModal(event) {
   }
 
   // add lists to modal from appData
-  const listsFromAppData = appData.lists;
+  const listsFromAppData = getLists();
   const listsMenu = modal.querySelector('.select-list-menu');
   for (const list of listsFromAppData) {
     listsMenu.innerHTML += `<option value="${list.title}" unique-id="${list.id}">${list.title}</option>`;
@@ -584,7 +575,7 @@ function showEditModal(event) {
 }
 
 function findCardByID(cardId) {
-  const appDatalists = appData.lists;
+  const appDatalists = getLists();
   for (const list of appDatalists) {
     for (const task of list.tasks)
       if (task.id === cardId) {
@@ -594,7 +585,7 @@ function findCardByID(cardId) {
 }
 
 function findListByID(listID) {
-  const appDatalists = appData.lists;
+  const appDatalists = getLists();
   for (const list of appDatalists) {
     if (list.id === listID) {
       return list
@@ -650,10 +641,12 @@ function addMembers(membersList) {
     const memberNameInput = document.querySelector('.add-member-input');
     span.innerHTML = memberNameInput.value;
     input.value = memberNameInput.value;
-
     const newMemberId = newMemberLi.getAttribute('unique-id');
     addNewMemberToAppData(newMemberId, span.textContent);
   }
+
+  // const inputField = document.querySelector('.add-member-input');
+  // inputField.placeholder = "Add New ZIBI";
 
   // push newly created <li> to it's location + target it
   const newMember = wrapUl.insertBefore(newMemberLi, addMemberListItem);
@@ -739,8 +732,8 @@ function updateJsonState(jName) {
   // }
 
   jsonsAreHere[jName] = true;
-
   if (jsonsAreHere.members === true && jsonsAreHere.board === true) {
+    localStorage.setItem('appData', JSON.stringify(appData));
     initPageByHash();
   }
 
@@ -778,22 +771,26 @@ function getMembersData() {
   membersList.send();
 }
 
+function getDataFromCache(){
+  appData = JSON.parse(localStorage.getItem('appData'));
+}
+
 // const cacheData = getDataFromCache();
-//
-// if (cacheData) {
-//   initPageByHash();
-// }
-// else {
-//   getBoardData();
-//   getMembersData();
-// }
+
+if (localStorage.getItem('appData')) {
+  getDataFromCache();
+  initTopbar();
+}
+else {
+  getBoardData();
+  getMembersData();
+}
 /**
  *
  * Init the app
  */
 
 targetAllAddCardBtns();
-initTopbar();
 getBoardData();
 getMembersData();
 
