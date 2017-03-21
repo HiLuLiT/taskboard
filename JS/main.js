@@ -1,4 +1,7 @@
 
+(function () {
+
+
 /**
  * VIEW ------> UI Manipulation
  */
@@ -68,7 +71,7 @@ function initPageByMembers() {
   const wrapUl = document.querySelector('.list-group');
   wrapUl.innerHTML = inputTemplate;
 
-  for (const member of getMembers()) {
+  for (const member of MODEL.getMembers()) {
     addMembers(member);
   }
 
@@ -140,7 +143,7 @@ function initPageByBoard() {
     mainSection.innerHTML = boardTemplate;
 
     // creates board lists from appData with addNewList function
-    for (const list of getLists()) {
+    for (const list of MODEL.getLists()) {
       addNewList(list);
     }
     addListHandler();
@@ -165,46 +168,12 @@ function initPageByBoard() {
     deleteBtn.addEventListener('click', deleteCard);
 }
 
-function addModalMembers(modal) {
-  const membersFromAppData = getMembers();
-  const membersDiv = modal.querySelector('.members-checkbox');
-  for (const member of membersFromAppData) {
-    membersDiv.innerHTML += `<div class="checkbox">
-      <label>
-      <input type="checkbox" value="${member.name}" unique-id="${member.id}">${member.name}
-    </label>
-    </div>`;
-  }
-}
+//====== LISTS =====
 
-function deleteCard(event) {
-  const target = event.target;
-  const modal = target.closest('.mymodal');
-  const cardID = modal.querySelector('.relevent-card-id').textContent;
-  const listID = modal.querySelector('.relevent-list-id').textContent;
-  deleteCardFromAppData(cardID);
-
-  //remove from UI
-  const UiLists = document.querySelectorAll('.list-li');
-  let matchingList;
-  for (const list of UiLists) {
-    if (list.getAttribute('unique-id') === listID) {
-      matchingList = list;
-      }
-    }
-  const cardsInMatchingList = matchingList.querySelectorAll('.main-li');
-    for (const card of cardsInMatchingList) {
-      if (card.getAttribute('unique-id') === cardID) {
-        card.remove();
-      }
-    }
-  // close modal
-  closeEditModal();
-}
-
-//====== NEW LISTS =====
-// getting board lists data from appData, creates new <li>
 function addNewList(data) {
+  // getting board lists data from appData, creates new <li>
+
+
   // Get a reference to the parent element
   const dadUl = document.querySelector('.lists-wrap');
   const addList = document.querySelector('.add-li');
@@ -256,10 +225,10 @@ function addNewList(data) {
 // ========== if there is appData data ========
 
     //give the list unique-id attribute from appData "id"'s
-    newLi.setAttribute('unique-id', getListID(data));
+    newLi.setAttribute('unique-id', MODEL.getListID(data));
 
     // target data title
-    const dataTitle = getListTitle(data);
+    const dataTitle = MODEL.getListTitle(data);
 
     // target new list title and gives it title from data
     listTitle.innerHTML = dataTitle;
@@ -268,7 +237,7 @@ function addNewList(data) {
     const mainUl = newLi.querySelector('.main-ul');
 
     // target array of tasks objects
-    const taskData = getTasks(data);
+    const taskData = MODEL.getTasks(data);
 
     // create cards for every list from appData
     for (const data of taskData) {
@@ -289,7 +258,7 @@ function addNewList(data) {
     newLi.setAttribute('unique-id', newListObj.id);
 
     // push new object into appData.lists
-    addNewListToappData(newListObj);
+    MODEL.addNewListToappData(newListObj);
 
     // update UI
     listTitle.innerHTML = `New List`;
@@ -297,16 +266,16 @@ function addNewList(data) {
   }
 }
 
-// adds event listener to "add new list"
 function addListHandler() {
+  // adds event listener to "add new list"
+
   const addList = document.querySelector('.add-li');
   addList.addEventListener('click', addNewList);
 }
 
-
-// ===== NEW CARDS =======
-// adds a click listener to card button and targets it's destination UL, then runs function
+// ===== CARDS =======
 function handleAddingCardEvent(button) {
+// adds a click listener to card button and targets it's destination UL, then runs function
 
   button.addEventListener('click', function (e) {
     const list = e.target.parentNode.parentNode;
@@ -315,57 +284,10 @@ function handleAddingCardEvent(button) {
   });
 }
 
-function titleInputKeyHandler(event) {
-  const target = event.target;
-
-  if (event.keyCode === 13) {
-    titleChangeHandler(target);
-  }
-}
-
-function titleBlurHandler(event) {
-  const target = event.target;
-  titleChangeHandler(target);
-}
-
-// if click - updates span with value and shows it
-function titleClickHandler(event) {
-  // target input (where clicked)
-  let target = event.target;
-  const inputElm = target.parentNode.querySelector('.title-input');
-
-  // hide the clicked span
-  target.style.display = 'none';
-
-  // show the input (next to the span) & gives it content & focus
-  inputElm.style.display = 'inline-block';
-  inputElm.value = target.textContent;
-  inputElm.focus();
-}
-
-function titleChangeHandler(target) {
-  //take the value from the input
-  const value = target.value;
-
-  // update the span(title) with that value
-  const titleElm = target.parentNode.querySelector('span');
-  titleElm.textContent = value;
-
-  // ===== update appData
-  const listId = titleElm.closest('li');
-  const listUniqueId = listId.getAttribute('unique-id');
-
-  editListTitleInAppData(titleElm.textContent, listUniqueId);
-
-
-  //since span is currently hidden, we need to hide the input and show the span
-  target.style.display = 'none';
-  titleElm.style.display = 'inline-block';
-}
-
+function addCard(cardslist, taskData) {
 //creates new card <li> with class & content & EDIT BTN & assigned members initials
 // cards list gives me the <ul> where add new card was clicked, taskData brings me lists from appData
-function addCard(cardslist, taskData) {
+
   const newCardElm = document.createElement('li');
   const cardTextSpan = document.createElement('span');
   const editBtn = document.createElement('button');
@@ -376,25 +298,24 @@ function addCard(cardslist, taskData) {
   editBtn.textContent = "Edit Card";
   editBtn.addEventListener('click', showEditModal);
 
-
   if (taskData) {
     // ====== if there's data from appData - adding cards from appData ======
     newCardElm.className = "main-li";
 
     // give cards unique-id from appData
-    newCardElm.setAttribute('unique-id', getCardID(taskData));
+    newCardElm.setAttribute('unique-id', MODEL.getCardID(taskData));
     // inserting text to span  from appData
-    cardTextSpan.textContent = getCardText(taskData);
+    cardTextSpan.textContent = MODEL.getCardText(taskData);
     // newCardElm.textContent = taskData.text;
 
     // gets memberID from appData.lists.tasks.members
-    const membersFromAppDataLists = getCardMembers(taskData);
+    const membersFromAppDataLists = MODEL.getCardMembers(taskData);
 
     // it's an array of Id's so we need to loop on it
     for (const memberID of membersFromAppDataLists) {
       let newName;
       // and compare between it's ID to members.id, where every ID has a name
-      const membersFromAppDataMembers = getMembers();
+      const membersFromAppDataMembers = MODEL.getMembers();
       for (const appDataMember of membersFromAppDataMembers) {
 
         // if the ID from the lists match the ID from the member, apply it's name
@@ -439,7 +360,7 @@ function addCard(cardslist, taskData) {
     newCardElm.setAttribute('unique-id', newCardData.id);
     cardTextSpan.textContent = newCardData.text;
 
-    addnewCardtoAppData(cardslist, newCardData);
+    MODEL.addnewCardtoAppData(cardslist, newCardData);
     cardslist.appendChild(newCardElm);
     newCardElm.appendChild(cardTextSpan);
     newCardElm.appendChild(editBtn);
@@ -453,8 +374,32 @@ function targetAllAddCardBtns() {
   }
 }
 
+function deleteCard(event) {
+  const target = event.target;
+  const modal = target.closest('.mymodal');
+  const cardID = modal.querySelector('.relevent-card-id').textContent;
+  const listID = modal.querySelector('.relevent-list-id').textContent;
+  MODEL.deleteCardFromAppData(cardID);
 
-// ===== Titles ======
+  //remove from UI
+  const UiLists = document.querySelectorAll('.list-li');
+  let matchingList;
+  for (const list of UiLists) {
+    if (list.getAttribute('unique-id') === listID) {
+      matchingList = list;
+    }
+  }
+  const cardsInMatchingList = matchingList.querySelectorAll('.main-li');
+  for (const card of cardsInMatchingList) {
+    if (card.getAttribute('unique-id') === cardID) {
+      card.remove();
+    }
+  }
+  // close modal
+  closeEditModal();
+}
+
+// ===== TITLES ======
 function makeListSupportTitle(newLi) {
 
 // target all titles (spans)
@@ -480,7 +425,7 @@ function makeListSupportTitle(newLi) {
 
 function makeTheButtonSupportDelete(btn) {
   //add event listeners to each dropdown btn
-  btn.addEventListener('click', openUL);
+  btn.addEventListener('click', handleDropDown);
 
 // delete list functionality
   const dropDownUl = btn.parentNode.querySelector('.dropdown-menu');
@@ -488,17 +433,16 @@ function makeTheButtonSupportDelete(btn) {
   aElm.addEventListener('mousedown', deleteListItem);
 }
 
-//
-function openUL(event) {
+function handleDropDown(event) {
   //display block ul; catch ul, display it:
   const target = event.target;
   const targetParent = target.parentNode.parentNode;
   const targetUL = targetParent.querySelector('.dropdown-menu');
-  toggleUL(targetUL);
+  toggleDropDown(targetUL);
   //
 }
 
-function toggleUL(targetList) {
+function toggleDropDown(targetList) {
   if (((targetList.style.display) === 'none') || ((!targetList.style.display))) {
     targetList.style.display = 'block';
   }
@@ -506,6 +450,55 @@ function toggleUL(targetList) {
     targetList.style.display = 'none';
 }
 
+function titleInputKeyHandler(event) {
+  const target = event.target;
+
+  if (event.keyCode === 13) {
+    titleChangeHandler(target);
+  }
+}
+
+function titleBlurHandler(event) {
+  const target = event.target;
+  titleChangeHandler(target);
+}
+
+function titleClickHandler(event) {
+  // if click - updates span with value and shows it
+
+
+  // target input (where clicked)
+  let target = event.target;
+  const inputElm = target.parentNode.querySelector('.title-input');
+
+  // hide the clicked span
+  target.style.display = 'none';
+
+  // show the input (next to the span) & gives it content & focus
+  inputElm.style.display = 'inline-block';
+  inputElm.value = target.textContent;
+  inputElm.focus();
+}
+
+function titleChangeHandler(target) {
+  //take the value from the input
+  const value = target.value;
+
+  // update the span(title) with that value
+  const titleElm = target.parentNode.querySelector('span');
+  titleElm.textContent = value;
+
+  // ===== update appData
+  const listId = titleElm.closest('li');
+  const listUniqueId = listId.getAttribute('unique-id');
+
+  MODEL.editListTitleInAppData(titleElm.textContent, listUniqueId);
+
+
+  //since span is currently hidden, we need to hide the input and show the span
+  target.style.display = 'none';
+  titleElm.style.display = 'inline-block';
+}
 
 function deleteListItem(event) {
   const target = event.target;
@@ -516,94 +509,14 @@ function deleteListItem(event) {
 
   if (isSure === true) {
     liItem.remove();
-    removeListFromappData(listID);
-  }
-}
-// ==== opens edit modal =====
-
-function showEditModal(event) {
-
-  //show modal
-  const modal = document.querySelector('.mymodal');
-  modal.style.display = 'block';
-
-  // target card id & list id and insert it to modal
-  let target = event.target;
-  //TODO - change parentNode to closest
-  const targetCard = target.parentNode;
-
-  const targetList = targetCard.closest('.list-li');
-
-  const listID = targetList.getAttribute('unique-id');
-  const cardID = targetCard.getAttribute('unique-id');
-
-  const releventCardSpan = modal.querySelector('.relevent-card-id');
-  const releventListSpan = modal.querySelector('.relevent-list-id');
-  releventCardSpan.textContent = cardID;
-  releventListSpan.textContent = listID;
-
-  let textBox = modal.querySelector('.text-box');
-
-  // fill modal with text FROM appData
-  const cardInAppData = findCardByID(cardID);
-  console.info(cardInAppData);
-  textBox.value = cardInAppData.text;
-
-  // fill modal with checked members
-  const memberInputs = modal.querySelectorAll('input');
-  for (const input of memberInputs) {
-    for (const member of cardInAppData.members)
-      if (input.getAttribute('unique-id') === member) {
-        input.checked = 'true';
-      }
-  }
-
-  // add lists to modal from appData
-  const listsFromAppData = getLists();
-  const listsMenu = modal.querySelector('.select-list-menu');
-  for (const list of listsFromAppData) {
-    listsMenu.innerHTML += `<option value="${list.title}" unique-id="${list.id}">${list.title}</option>`;
-  }
-
-  // update modal with relevent list
-  const moveOptions = modal.querySelectorAll('option');
-  for (let option of moveOptions) {
-    if (option.getAttribute('unique-id') === releventListSpan.textContent) {
-      option.selected = 'true';
-    }
+    MODEL.removeListFromappData(listID);
   }
 }
 
-function findCardByID(cardId) {
-  const appDatalists = getLists();
-  for (const list of appDatalists) {
-    for (const task of list.tasks)
-      if (task.id === cardId) {
-        return task;
-      }
-  }
-}
+// ========= MEMBERS SECTION ========
 
-function findListByID(listID) {
-  const appDatalists = getLists();
-  for (const list of appDatalists) {
-    if (list.id === listID) {
-      return list
-    }
-  }
-
-}
-
-function closeEditModal() {
-  const modal = document.querySelector('.mymodal');
-  modal.style.display = 'none';
-  // initPageByHash();
-
-}
-
-
-// gets members names from appData, creates new lists with them
 function addMembers(membersList) {
+// gets members names from appData, creates new lists with them
 
   const wrapUl = document.querySelector('.list-group');
   const newMemberLi = document.createElement('li');
@@ -642,7 +555,7 @@ function addMembers(membersList) {
     span.innerHTML = memberNameInput.value;
     input.value = memberNameInput.value;
     const newMemberId = newMemberLi.getAttribute('unique-id');
-    addNewMemberToAppData(newMemberId, span.textContent);
+    MODEL.addNewMemberToAppData(newMemberId, span.textContent);
   }
 
   // const inputField = document.querySelector('.add-member-input');
@@ -669,7 +582,6 @@ function addMembers(membersList) {
 
 }
 
-
 function handleDeleteMember(event) {
   const target = event.target;
   const memberLi = target.closest('li');
@@ -677,8 +589,8 @@ function handleDeleteMember(event) {
   // remove memberLi from ui
   memberLi.remove();
   // remove from appData
-  deleteMemberFromAppData(memberId);
-  deleteMemberFromAppDataTasks(memberId);
+  MODEL.deleteMemberFromAppData(memberId);
+  MODEL.deleteMemberFromAppDataTasks(memberId);
 }
 
 function handleSaveMember(event) {
@@ -691,7 +603,7 @@ function handleSaveMember(event) {
   const memberId = memberLi.getAttribute('unique-id');
 
   // save to appData
-  saveMemberToAppData(memberId, memberInput);
+  MODEL.saveMemberToAppData(memberId, memberInput);
 }
 
 function handleCancelEvent(event) {
@@ -716,11 +628,130 @@ function handleEditMemberMode(event) {
   inputField.focus();
 }
 
+// ==== MODAL =====
+function showEditModal(event) {
 
-const jsonsAreHere = {
-  members: false,
-  board: false
-};
+  //show modal
+  const modal = document.querySelector('.mymodal');
+  modal.style.display = 'block';
+
+  // target card id & list id and insert it to modal
+  let target = event.target;
+  //TODO - change parentNode to closest
+  const targetCard = target.parentNode;
+
+  const targetList = targetCard.closest('.list-li');
+
+  const listID = targetList.getAttribute('unique-id');
+  const cardID = targetCard.getAttribute('unique-id');
+
+  const releventCardSpan = modal.querySelector('.relevent-card-id');
+  const releventListSpan = modal.querySelector('.relevent-list-id');
+  releventCardSpan.textContent = cardID;
+  releventListSpan.textContent = listID;
+
+  let textBox = modal.querySelector('.text-box');
+
+  // fill modal with text FROM appData
+  const cardInAppData = MODEL.findCardByID(cardID);
+  textBox.value = cardInAppData.text;
+
+  // fill modal with checked members
+  const memberInputs = modal.querySelectorAll('input');
+  for (const input of memberInputs) {
+
+    for (const member of cardInAppData.members) {
+      if (input.getAttribute('unique-id') === member) {
+        input.checked = true;
+        // update in appData
+
+      }
+    }
+  }
+
+  // add lists to modal from appData
+  const listsFromAppData = MODEL.getLists();
+  const listsMenu = modal.querySelector('.select-list-menu');
+  listsMenu.innerHTML = '';
+
+  for (const list of listsFromAppData) {
+    listsMenu.innerHTML += `<option value="${list.title}" unique-id="${list.id}">${list.title}</option>`;
+  }
+
+  // update modal with relevent list
+  const moveOptions = modal.querySelectorAll('option');
+  for (let option of moveOptions) {
+    if (option.getAttribute('unique-id') === releventListSpan.textContent) {
+      option.selected = 'true';
+    }
+  }
+}
+
+function addModalMembers(modal) {
+  const membersFromAppData = MODEL.getMembers();
+  const membersDiv = modal.querySelector('.members-checkbox');
+  for (const member of membersFromAppData) {
+    membersDiv.innerHTML += `<div class="checkbox">
+      <label>
+      <input type="checkbox" value="${member.name}" unique-id="${member.id}">${member.name}
+    </label>
+    </div>`;
+  }
+}
+
+function closeEditModal() {
+  const modal = document.querySelector('.mymodal');
+  modal.style.display = 'none';
+  const memberInputs = modal.querySelectorAll('input');
+  for (const input of memberInputs) {
+    input.checked = false;
+  }
+}
+
+function saveModalChangesToAppData(event) {
+  const target = event.target;
+  const modal = target.closest('.mymodal');
+  const cardID = modal.querySelector('.relevent-card-id').textContent;
+  const listID = modal.querySelector('.relevent-list-id').textContent;
+  let textBox = modal.querySelector('.text-box').value;
+
+  // update text in appData
+  MODEL.updateCardTextToAppData(textBox, cardID);
+
+  // update checked members
+  MODEL.updateCheckedMembersInAppData(modal, cardID);
+
+  moveList(modal, cardID, listID);
+  initPageByHash();
+  closeEditModal();
+}
+
+function moveList(modal, cardID, listID) {
+  const listMenu = modal.querySelectorAll('option');
+  const matchingCard = MODEL.findCardByID(cardID);
+
+  for (const option of listMenu) {
+
+    if (option.selected === true) {
+
+      const optionID = option.getAttribute('unique-id');
+      const matchingList = MODEL.findListByID(optionID);
+      const currentList = MODEL.findListByID(listID);
+
+      if (optionID !== currentList.id) {
+
+        // push card to selected list in AppData
+        MODEL.pushCardToAppData(matchingList, matchingCard);
+
+
+        // remove card from current list
+        MODEL.removeCardFromListInAppData(currentList, cardID);
+      }
+    }
+  }
+}
+
+// ======== JSONS =======
 
 
 function updateJsonState(jName) {
@@ -730,30 +761,26 @@ function updateJsonState(jName) {
   // if (jName === 'members') {
   //   jsonsAreHere.members = true;
   // }
-
   jsonsAreHere[jName] = true;
+
   if (jsonsAreHere.members === true && jsonsAreHere.board === true) {
-    localStorage.setItem('appData', JSON.stringify(appData));
     initPageByHash();
   }
-
-
 }
-
 
 function reqBoardListener() {
   const localDataList = JSON.parse(this.responseText);
   const listsData = localDataList.board;
-  appData.lists = listsData;
+  // appData.lists = listsData;
+  MODEL.loadBoard(listsData);
   updateJsonState('board');
-  // initPageByHash();
 }
 
 function reqMemberListener() {
   const memberDataList = JSON.parse(this.responseText);
   const listsData = memberDataList.members;
-  appData.members = listsData;
-
+  // appData.members = listsData;
+  MODEL.loadMembers(listsData);
   updateJsonState('members');
 }
 
@@ -771,27 +798,30 @@ function getMembersData() {
   membersList.send();
 }
 
-function getDataFromCache(){
-  appData = JSON.parse(localStorage.getItem('appData'));
-}
+// ==== LOCAL STORAGE ====
 
-// const cacheData = getDataFromCache();
 
 if (localStorage.getItem('appData')) {
-  getDataFromCache();
-  initTopbar();
+  // getDataFromCache();
+  MODEL.loadAppData();
+  initPageByHash();
+  console.info('loaded from local storage');
 }
 else {
   getBoardData();
   getMembersData();
+  console.info('loaded from JSONs');
 }
-/**
- *
- * Init the app
- */
 
+const jsonsAreHere = {
+  members: false,
+  board: false
+};
+
+// ==== INIT THE APP ======
 targetAllAddCardBtns();
-getBoardData();
-getMembersData();
+initTopbar();
 
 
+
+})();
