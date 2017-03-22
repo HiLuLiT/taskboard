@@ -385,7 +385,8 @@
     const cardsInMatchingList = matchingList.querySelectorAll('.main-li');
     for (const card of cardsInMatchingList) {
       if (card.getAttribute('unique-id') === cardID) {
-        $(card).fadeOut(400, function () {
+        // add jQuery fade effect
+        $(card).fadeOut(300, function () {
           card.remove();
         });
       }
