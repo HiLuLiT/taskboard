@@ -6,6 +6,8 @@
  * VIEW ------> UI Manipulation
  */
 
+// this is CLEAN-CODE BRANCH
+
 // target the wrapper ul and add it click/hash listener so we can get what we clicked on - through event delegation
 // (click listening to the <li> might be tricky since it has <a> and <span> in it).
 
@@ -306,7 +308,6 @@ function addCard(cardslist, taskData) {
     newCardElm.setAttribute('unique-id', MODEL.getCardID(taskData));
     // inserting text to span  from appData
     cardTextSpan.textContent = MODEL.getCardText(taskData);
-    // newCardElm.textContent = taskData.text;
 
     // gets memberID from appData.lists.tasks.members
     const membersFromAppDataLists = MODEL.getCardMembers(taskData);
