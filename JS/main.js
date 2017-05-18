@@ -6,7 +6,7 @@
  * VIEW ------> UI Manipulation
  */
 
-// this is CLEAN-CODE BRANCH
+// THIS IS MASTER BRANCH
 
 // target the wrapper ul and add it click/hash listener so we can get what we clicked on - through event delegation
 // (click listening to the <li> might be tricky since it has <a> and <span> in it).
