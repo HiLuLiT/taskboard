@@ -1,7 +1,8 @@
 
 (function () {
 
-  
+  // Clean Code Branch
+
 function initTopbar() {
   window.addEventListener('hashchange', () => {
     initPageByHash();
