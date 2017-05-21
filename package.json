@@ -13,5 +13,8 @@
   "bugs": {
     "url": "https://github.com/CreateBootcamp/taskboard/issues"
   },
-  "homepage": "https://github.com/CreateBootcamp/taskboard#readme"
+  "homepage": "https://github.com/CreateBootcamp/taskboard#readme",
+  "dependencies": {
+    "bootstrap": "3.3.7"
+  }
 }
