@@ -10,7 +10,7 @@ const MODEL = (function () {
     members: []
   };
 
-  
+
   /**
    * public
    */
@@ -51,16 +51,10 @@ const MODEL = (function () {
     saveToCache();
   }
 
-  function addnewCardtoAppData(cardslist, newCardData) {
-
-    // catch clicked list unique-ID (so we can compare it to appData & find it's matching location)
-    const liID = cardslist.closest('.list-li').getAttribute('unique-id');
-
+  function addnewCardtoAppData(liID, newCardData) {
     appData.lists.forEach((item) => {
       if (item.id === liID) {
-        // push new card to the matched location
         item.tasks.push(newCardData);
-        // console.info(appData);
       }
     });
     saveToCache();
@@ -110,9 +104,7 @@ const MODEL = (function () {
     saveToCache();
   }
 
-  function updateCheckedMembersInAppData(modal, cardID) {
-    const memberInputs = modal.querySelectorAll('input');
-
+  function updateCheckedMembersInAppData(memberInputs, cardID) {
     const matchingCard = findCardByID(cardID);
     matchingCard.members = [];
     for (const input of memberInputs) {

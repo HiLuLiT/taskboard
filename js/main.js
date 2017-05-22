@@ -42,17 +42,18 @@
   function initPageByMembers() {
 
     // Build Members Skeleton
-    const memberTemplate = `<section class="members-section">
-  <h2 class="members-header">Taskboard Members</h2>
-  <ul class="list-group">
+    const memberTemplate = `
+     <section class="members-section">
+     <h2 class="members-header">Taskboard Members</h2>
+     <ul class="list-group">
 
-  </ul>
-</section>`;
+     </ul>
+     </section>`;
 
     const mainSection = document.querySelector('.main-section');
     mainSection.innerHTML = memberTemplate;
     const inputTemplate = `<li class="list-group-item add-member-list-item">
-  <button class="btn btn-primary add-member-button" type="button">Add</button>
+    <button class="btn btn-primary add-member-button" type="button">Add</button>
     <div class="col-xs-5 add-member-div">
     <input class="form-control add-member-input" type="text" placeholder="Add New Member">
     </div>
@@ -73,7 +74,7 @@
 
     // Build board skeleton
     const boardTemplate = ` 
- <ul class="flex-wrap lists-wrap">
+    <ul class="flex-wrap lists-wrap">
     <li class="add-li">
       <div class="panel panel-info">
         <div class="panel-heading add-list-panel">
@@ -81,8 +82,8 @@
         </div>
       </div>
     </li>
-  </ul>
-<div class="modal mymodal" tabindex="-1" role="dialog">
+    </ul>
+    <div class="modal mymodal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
       <div class="modal-content">
       <div class="modal-header">
@@ -154,13 +155,10 @@
   }
 
 //====== LISTS =====
-
+// getting board lists data from appData, creates new <li>
   function addNewList(data) {
-    // getting board lists data from appData, creates new <li>
-
     const dadUl = document.querySelector('.lists-wrap');
     const addList = document.querySelector('.add-li');
-
     let newLi = document.createElement('li');
     newLi.className = "list-li";
     newLi.innerHTML = `
@@ -199,9 +197,8 @@
 
     const listTitle = newLi.querySelector('.span-elm');
 
-    if (data !== undefined && !data.type) {
 // ========== if there is appData data ========
-
+    if (data !== undefined && !data.type) {
       newLi.setAttribute('unique-id', MODEL.getListID(data));
       const dataTitle = MODEL.getListTitle(data);
       listTitle.innerHTML = dataTitle;
@@ -213,9 +210,8 @@
         addCard(mainUl, data);
       }
     }
+// ====== if it's new list (no incoming data from appData) ==========
     else {
-      // ====== if it's new list (no incoming data from appData) ==========
-
       const newListObj = {
         tasks: [],
         title: `New List`,
@@ -236,7 +232,6 @@
 
 // ===== CARDS =======
   function handleAddingCardEvent(button) {
-
     button.addEventListener('click', function (e) {
       const list = e.target.parentNode.parentNode;
       const ul = list.querySelector('.main-ul');
@@ -244,9 +239,8 @@
     });
   }
 
+  //creates new card <li> with class & content & EDIT BTN & assigned members initials
   function addCard(cardslist, taskData) {
-//creates new card <li> with class & content & EDIT BTN & assigned members initials
-
     const newCardElm = document.createElement('li');
     const cardTextSpan = document.createElement('span');
     const editBtn = document.createElement('button');
@@ -257,10 +251,9 @@
     editBtn.textContent = "Edit Card";
     editBtn.addEventListener('click', showEditModal);
 
+    // ====== if there's data from appData - adding cards from appData ======
     if (taskData) {
-      // ====== if there's data from appData - adding cards from appData ======
       newCardElm.className = "main-li";
-
       newCardElm.setAttribute('unique-id', MODEL.getCardID(taskData));
       cardTextSpan.textContent = MODEL.getCardText(taskData);
       const membersFromAppDataLists = MODEL.getCardMembers(taskData);
@@ -269,7 +262,6 @@
         let newName;
         const membersFromAppDataMembers = MODEL.getMembers();
         for (const appDataMember of membersFromAppDataMembers) {
-
           if (appDataMember.id === memberID) {
             newName = appDataMember.name;
           }
@@ -293,30 +285,23 @@
       cardslist.appendChild(newCardElm);
 
     }
-
+    // ==== if there's no data from appata - add new card=====
     if (!taskData) {
-      // ==== if there's no data from appata - add new card=====
       const newCardData = {
         members: [],
         text: "I'm a new Card",
         id: uuid()
       };
 
+      const liID = cardslist.closest('.list-li').getAttribute('unique-id');
       newCardElm.className = "main-li";
       newCardElm.setAttribute('unique-id', newCardData.id);
       cardTextSpan.textContent = newCardData.text;
 
-      MODEL.addnewCardtoAppData(cardslist, newCardData);
+      MODEL.addnewCardtoAppData(liID, newCardData);
       cardslist.appendChild(newCardElm);
       newCardElm.appendChild(cardTextSpan);
       newCardElm.appendChild(editBtn);
-    }
-  }
-
-  function targetAllAddCardBtns() {
-    const buttons = document.querySelectorAll('.add-card-btn');
-    for (const btn of buttons) {
-      handleAddingCardEvent(btn);
     }
   }
 
@@ -328,9 +313,9 @@
     MODEL.deleteCardFromAppData(cardID);
 
     //remove from UI
-    const UiLists = document.querySelectorAll('.list-li');
+    const uiLists = document.querySelectorAll('.list-li');
     let matchingList;
-    for (const list of UiLists) {
+    for (const list of uiLists) {
       if (list.getAttribute('unique-id') === listID) {
         matchingList = list;
       }
@@ -365,7 +350,6 @@
   function makeTheButtonSupportDelete(btn) {
     //add event listeners to each dropdown btn
     btn.addEventListener('click', handleDropDown);
-
     const dropDownUl = btn.parentNode.querySelector('.dropdown-menu');
     const aElm = dropDownUl.querySelector('li a');
     aElm.addEventListener('mousedown', deleteListItem);
@@ -379,7 +363,7 @@
   }
 
   function toggleDropDown(targetList) {
-    if (((targetList.style.display) === 'none') || ((!targetList.style.display))) {
+    if (targetList.style.display === 'none' || !targetList.style.display) {
       targetList.style.display = 'block';
     }
     else {
@@ -389,8 +373,8 @@
 
   function titleInputKeyHandler(event) {
     const target = event.target;
-
-    if (event.keyCode === 13) {
+    const enterKey = 13;
+    if (event.keyCode === enterKey) {
       titleChangeHandler(target);
     }
   }
@@ -400,9 +384,8 @@
     titleChangeHandler(target);
   }
 
+  // if clicked - updates span title with value and shows it
   function titleClickHandler(event) {
-    // if click - updates span with value and shows it
-
     let target = event.target;
     const inputElm = target.parentNode.querySelector('.title-input');
     target.style.display = 'none';
@@ -441,9 +424,9 @@
   }
 
 // ========= MEMBERS SECTION ========
+// gets members names from appData, creates new lists with them
 
   function addMembers(membersList) {
-// gets members names from appData, creates new lists with them
 
     const wrapUl = document.querySelector('.list-group');
     const newMemberLi = document.createElement('li');
@@ -465,8 +448,8 @@
     const input = newMemberLi.querySelector('.edit-member-name');
     const addMemberListItem = document.querySelector('.add-member-list-item');
 
+    // ======= if there's appData member DATA =========
     if (membersList !== undefined && !membersList.type) {
-      // ======= if there's appData member DATA =========
       const iD = membersList.id;
       newMemberLi.setAttribute('unique-id', iD);
       const dataName = membersList.name;
@@ -474,9 +457,8 @@
       input.value = dataName;
     }
 
+    // ====== if it's new member (not from AppData)
     else {
-      // ====== if it's new member (not from AppData)
-
       newMemberLi.setAttribute('unique-id', uuid());
       const memberNameInput = document.querySelector('.add-member-input');
       span.innerHTML = memberNameInput.value;
@@ -529,12 +511,10 @@
     const memberInput = memberLi.querySelector('input');
     memberInput.value = memberName;
     memberLi.classList.toggle('edit-mode');
-
   }
 
   function handleEditMemberMode(event) {
     const target = event.target;
-
     const memberLi = target.closest('li');
     const inputField = memberLi.querySelector('input');
     memberLi.classList.toggle('edit-mode');
@@ -622,9 +602,9 @@
     const cardID = modal.querySelector('.relevent-card-id').textContent;
     const listID = modal.querySelector('.relevent-list-id').textContent;
     let textBox = modal.querySelector('.text-box').value;
-
+    const memberInputs = modal.querySelectorAll('input');
     MODEL.updateCardTextToAppData(textBox, cardID);
-    MODEL.updateCheckedMembersInAppData(modal, cardID);
+    MODEL.updateCheckedMembersInAppData(memberInputs, cardID);
 
     moveList(modal, cardID, listID);
     initPageByHash();
@@ -657,9 +637,12 @@
   }
 
 // ======== JSONS =======
-
-
   function updateJsonState(jName) {
+    const jsonsAreHere = {
+      members: false,
+      board: false
+    };
+
     jsonsAreHere[jName] = true;
 
     if (jsonsAreHere.members === true && jsonsAreHere.board === true) {
@@ -696,27 +679,19 @@
   }
 
 // ==== LOCAL STORAGE ====
-
-
-  if (localStorage.getItem('appData')) {
-    // getDataFromCache();
-    MODEL.loadAppData();
-    initPageByHash();
-    console.info('loaded from local storage');
+  function loadStorage() {
+    if (localStorage.getItem('appData')) {
+      MODEL.loadAppData();
+      initPageByHash();
+    }
+    else {
+      getBoardData();
+      getMembersData();
+    }
   }
-  else {
-    getBoardData();
-    getMembersData();
-    console.info('loaded from JSONs');
-  }
-
-  const jsonsAreHere = {
-    members: false,
-    board: false
-  };
 
 // ==== INIT THE APP ======
-  targetAllAddCardBtns();
+  loadStorage();
   initTopbar();
 
 })();
