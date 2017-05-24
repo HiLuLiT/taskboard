@@ -2,7 +2,6 @@ Taskboard - Raw JS Web App Project
 ===================================
 
 A Trello like Single Page Application.  
-This project is part of the Front-End Development Bootcamp at Create.  
 
 Challenges
 ----------
